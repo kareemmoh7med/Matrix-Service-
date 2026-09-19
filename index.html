@@ -3,1628 +3,821 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f2347">
+<meta name="description" content="ماتركس خدمات — خدمات حكومية إلكترونية سريعة وآمنة">
+<link rel="manifest" href="manifest.json">
 <title>ماتركس خدمات</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --primary: #1a3a6b;
-  --primary-dark: #0f2347;
-  --accent: #c8a951;
-  --accent-light: #e8c96d;
-  --bg: #f5f7fa;
-  --surface: #ffffff;
-  --surface2: #eef1f7;
-  --text: #1a1a2e;
-  --text-muted: #6b7280;
-  --border: #dde3f0;
-  --success: #16a34a;
-  --error: #dc2626;
-  --warning: #d97706;
-  --shadow: 0 4px 24px rgba(26,58,107,0.10);
-  --radius: 14px;
-  --radius-sm: 8px;
+:root{--primary:#1a3a6b;--pd:#0f2347;--accent:#c8a951;--al:#e8c96d;--bg:#f0f4fa;--sur:#fff;--sur2:#eef1f7;--txt:#1a1a2e;--mu:#6b7280;--bdr:#dde3f0;--ok:#16a34a;--err:#dc2626;--warn:#d97706;--shd:0 4px 24px rgba(26,58,107,.10);--r:14px;--rs:8px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;direction:rtl}
+/* NAV */
+.nav{background:var(--pd);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.25)}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:900;font-size:1.2rem;cursor:pointer}
+.li{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),var(--al));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:var(--pd);box-shadow:0 2px 8px rgba(200,169,81,.4)}
+.nb{background:var(--accent);color:var(--pd);border:none;border-radius:var(--rs);padding:8px 18px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:.2s}
+.nb:hover{background:var(--al);transform:translateY(-1px)}
+/* PAGES */
+.page{display:none;animation:fi .3s ease}
+.page.active{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--pd) 0%,#1a3a6b 55%,#1e4a8a 100%);color:#fff;padding:60px 20px 48px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(200,169,81,.08) 0%,transparent 70%)}
+.hero-badge{display:inline-block;background:rgba(200,169,81,.18);border:1px solid rgba(200,169,81,.4);color:var(--al);padding:6px 18px;border-radius:20px;font-size:.82rem;font-weight:600;margin-bottom:20px;animation:fi .5s ease}
+.hero h1{font-size:clamp(1.7rem,5vw,2.9rem);font-weight:900;margin-bottom:14px;line-height:1.3}
+.hero h1 span{color:var(--al)}
+.hero p{font-size:1rem;opacity:.85;max-width:500px;margin:0 auto 30px;line-height:1.9}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.bp{background:var(--accent);color:var(--pd);border:none;border-radius:var(--rs);padding:13px 28px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:.2s;box-shadow:0 4px 16px rgba(200,169,81,.35)}
+.bp:hover{background:var(--al);transform:translateY(-2px);box-shadow:0 6px 20px rgba(200,169,81,.45)}
+.bo{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:var(--rs);padding:11px 28px;font-family:'Cairo',sans-serif;font-weight:600;font-size:.95rem;cursor:pointer;transition:.2s}
+.bo:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.65)}
+/* FEATURES */
+.features{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;padding:32px 20px;background:var(--pd);border-bottom:1px solid rgba(255,255,255,.08)}
+.feat{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.8);font-size:.875rem}
+.feat span:first-child{font-size:1.2rem}
+/* SECTION */
+.sec{padding:44px 20px;max-width:960px;margin:0 auto}
+.sec-t{font-size:1.4rem;font-weight:800;margin-bottom:6px;color:var(--pd)}
+.sec-s{color:var(--mu);font-size:.875rem;margin-bottom:26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+/* CARDS */
+.card{background:var(--sur);border:2px solid var(--bdr);border-radius:var(--r);padding:26px 22px;cursor:pointer;transition:.25s;position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;top:0;right:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--accent),var(--primary));transform:scaleY(0);transition:.25s;transform-origin:top}
+.card:hover{border-color:var(--primary);box-shadow:0 8px 32px rgba(26,58,107,.12);transform:translateY(-4px)}
+.card:hover::after{transform:scaleY(1)}
+.ci{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px}
+.cb{background:#dbeafe}.cg{background:#dcfce7}.cy{background:#fef9c3}.cp{background:#f3e8ff}
+.card h3{font-size:1rem;font-weight:700;margin-bottom:8px}
+.card p{font-size:.83rem;color:var(--mu);line-height:1.7}
+.price-row{margin-top:14px;display:flex;align-items:center;gap:8px}
+.pt{background:var(--pd);color:#fff;border-radius:6px;padding:3px 11px;font-size:.8rem;font-weight:700}
+.dt{background:#fef3c7;color:#92400e;border-radius:6px;padding:3px 9px;font-size:.77rem;font-weight:600}
+/* FORM */
+.fc{max-width:700px;margin:0 auto;padding:20px}
+.fcard{background:var(--sur);border-radius:var(--r);box-shadow:var(--shd);overflow:hidden}
+.fh{background:linear-gradient(135deg,var(--pd),var(--primary));color:#fff;padding:22px 26px}
+.fh h2{font-size:1.2rem;font-weight:800;margin-bottom:4px}
+.fh p{font-size:.83rem;opacity:.8}
+.aw{background:#fffbeb;border:1px solid #fcd34d;border-right:4px solid var(--warn);border-radius:var(--rs);padding:11px 14px;margin:16px 26px 0;font-size:.83rem;color:#92400e;display:flex;align-items:center;gap:8px}
+.fb{padding:22px 26px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:540px){.fr{grid-template-columns:1fr}}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:.83rem;font-weight:600;margin-bottom:5px}
+.req{color:var(--err);margin-right:2px}
+.opt{color:var(--mu);font-size:.77rem;font-weight:400}
+.fg input,.fg select,.fg textarea{width:100%;padding:10px 13px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.9rem;color:var(--txt);background:var(--bg);transition:.2s;direction:rtl}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,58,107,.1);background:#fff}
+.fg input.err{border-color:var(--err)}
+.fe{color:var(--err);font-size:.77rem;margin-top:3px;display:none}
+.fe.show{display:block}
+.ua{border:2px dashed var(--bdr);border-radius:var(--rs);padding:20px;text-align:center;cursor:pointer;transition:.2s;background:var(--bg)}
+.ua:hover{border-color:var(--primary);background:#f0f4ff}
+.ua p{font-size:.8rem;color:var(--mu);margin-top:6px}
+.ua.hf{border-color:var(--ok);background:#f0fdf4}
+/* PAYMENT */
+.pb{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #86efac;border-radius:var(--r);padding:22px;margin-bottom:18px}
+.pb h3{font-size:.9rem;font-weight:700;color:#15803d;margin-bottom:12px}
+.wn{background:#fff;border:1.5px solid #86efac;border-radius:var(--rs);padding:11px 14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.wn strong{font-size:1rem;color:var(--pd);letter-spacing:1px}
+.cb2{background:var(--pd);color:#fff;border:none;border-radius:6px;padding:5px 12px;font-family:'Cairo',sans-serif;font-size:.77rem;cursor:pointer;transition:.2s}
+.cb2:hover{background:var(--primary)}
+.ad{text-align:center;padding:14px;background:#fff;border-radius:var(--rs);border:1.5px solid #86efac}
+.ad .am{font-size:2rem;font-weight:900;color:var(--pd)}
+.ad .al2{font-size:.8rem;color:var(--mu)}
+/* TRACKING */
+.tc{background:var(--sur);border-radius:var(--r);box-shadow:var(--shd);padding:26px;max-width:620px;margin:0 auto}
+.tid{background:linear-gradient(135deg,var(--pd),var(--primary));border-radius:var(--rs);padding:18px;text-align:center;margin-bottom:22px;color:#fff}
+.tid .tl{font-size:.77rem;opacity:.75;margin-bottom:4px}
+.tid .tv{font-size:1.4rem;font-weight:900;letter-spacing:3px;font-family:monospace}
+.tid .ts{font-size:.8rem;opacity:.7;margin-top:6px}
+.steps{position:relative}
+.steps::before{content:'';position:absolute;right:19px;top:0;bottom:0;width:2px;background:var(--bdr)}
+.step{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;position:relative}
+.sd{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;position:relative;z-index:1;border:3px solid var(--bdr);background:#fff;transition:.4s}
+.step.done .sd{background:var(--ok);border-color:var(--ok);color:#fff}
+.step.active .sd{background:var(--primary);border-color:var(--primary);color:#fff;animation:pulse 2s infinite}
+.step.waiting .sd{background:var(--sur2);color:var(--mu)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(26,58,107,.4)}50%{box-shadow:0 0 0 8px rgba(26,58,107,0)}}
+.sc h4{font-size:.88rem;font-weight:700;margin-bottom:3px}
+.sc p{font-size:.78rem;color:var(--mu)}
+.step.done .sc h4{color:var(--ok)}
+.step.active .sc h4{color:var(--primary)}
+/* TRACK SEARCH */
+.ts-box{background:var(--sur);border-radius:var(--r);box-shadow:var(--shd);padding:24px;max-width:580px;margin:0 auto}
+.ts-box h3{font-size:1rem;font-weight:700;margin-bottom:16px;color:var(--pd)}
+.trow{display:flex;gap:8px}
+.trow input{flex:1;padding:10px 13px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.9rem;direction:rtl}
+.trow input:focus{outline:none;border-color:var(--primary)}
+/* LOGIN */
+.lp{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,var(--pd),#1e3a5f)}
+.lc{background:#fff;border-radius:var(--r);box-shadow:0 20px 60px rgba(0,0,0,.3);width:100%;max-width:400px;overflow:hidden}
+.lh{background:linear-gradient(135deg,var(--pd),var(--primary));padding:28px 28px 22px;text-align:center;color:#fff}
+.lh .li2{width:54px;height:54px;font-size:1.6rem;margin:0 auto 14px;background:linear-gradient(135deg,var(--accent),var(--al));border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--pd)}
+.lh h2{font-size:1.3rem;font-weight:800;margin-bottom:3px}
+.lh p{font-size:.82rem;opacity:.75}
+.lb{padding:24px 28px}
+/* ADMIN */
+.al{display:flex;min-height:calc(100vh - 64px)}
+.as{width:230px;background:var(--pd);color:#fff;padding:18px 0;flex-shrink:0;position:relative}
+@media(max-width:768px){.as{display:none}}
+.si{padding:11px 18px;cursor:pointer;display:flex;align-items:center;gap:9px;font-size:.875rem;transition:background .2s;border-right:3px solid transparent}
+.si:hover{background:rgba(255,255,255,.08)}
+.si.active{background:rgba(255,255,255,.12);border-right-color:var(--accent);color:var(--al)}
+.am2{flex:1;padding:22px;overflow-x:hidden}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:22px}
+.sc2{background:var(--sur);border-radius:var(--r);padding:18px;border:1.5px solid var(--bdr);transition:.2s}
+.sc2:hover{box-shadow:var(--shd)}
+.sc2 .sn{font-size:1.9rem;font-weight:900;color:var(--primary)}
+.sc2 .sl{font-size:.77rem;color:var(--mu);margin-top:3px}
+.sc2 .si2{font-size:1.3rem;margin-bottom:6px}
+.tbl{background:var(--sur);border-radius:var(--r);border:1.5px solid var(--bdr);overflow:hidden}
+table{width:100%;border-collapse:collapse}
+th{background:var(--sur2);padding:10px 13px;text-align:right;font-size:.76rem;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.5px}
+td{padding:11px 13px;border-bottom:1px solid var(--bdr);font-size:.83rem}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--bg)}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600}
+.bp2{background:#fef3c7;color:#92400e}.bpr{background:#dbeafe;color:#1e40af}.bg{background:#dcfce7;color:#15803d}.br{background:#fee2e2;color:#991b1b}
+.ab{background:none;border:1.5px solid var(--bdr);border-radius:6px;padding:4px 10px;font-family:'Cairo',sans-serif;font-size:.77rem;cursor:pointer;transition:.2s;margin-left:3px}
+.ab:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.ab.ok2:hover{background:var(--ok);border-color:var(--ok);color:#fff}
+.ab.dn:hover{background:var(--err);border-color:var(--err);color:#fff}
+/* MODAL */
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:14px;animation:fi .2s}
+.md{background:#fff;border-radius:var(--r);max-width:600px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.mh{padding:16px 20px;border-bottom:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1}
+.mh h3{font-size:.95rem;font-weight:700}
+.mc{background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--mu)}
+.mb2{padding:16px 20px}
+.dr{display:flex;border-bottom:1px solid var(--bdr);padding:9px 0;gap:13px}
+.dr:last-child{border-bottom:none}
+.dl{width:130px;font-size:.79rem;color:var(--mu);font-weight:600;flex-shrink:0}
+.dv{font-size:.84rem;font-weight:500}
+.ii{width:100%;border-radius:var(--rs);border:1.5px solid var(--bdr);margin:10px 0;max-height:180px;object-fit:cover}
+/* PRINT */
+.print-only{display:none}
+@media print{
+  .no-print{display:none!important}
+  .print-only{display:block}
+  .print-card{width:148mm;border:2px solid #0f2347;border-radius:8px;padding:16px 20px;font-family:'Cairo',sans-serif;direction:rtl}
+  body{background:#fff}
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'Cairo', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  direction: rtl;
-}
-
-/* ====== NAVBAR ====== */
-.navbar {
-  background: var(--primary-dark);
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: white;
-  font-weight: 900;
-  font-size: 1.3rem;
-  letter-spacing: -0.5px;
-}
-
-.logo-icon {
-  width: 38px; height: 38px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-light));
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem;
-  font-weight: 900;
-  color: var(--primary-dark);
-  box-shadow: 0 2px 8px rgba(200,169,81,0.4);
-}
-
-.nav-btn {
-  background: var(--accent);
-  color: var(--primary-dark);
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: 8px 20px;
-  font-family: 'Cairo', sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.nav-btn:hover { background: var(--accent-light); transform: translateY(-1px); }
-
-/* ====== PAGES ====== */
-.page { display: none; animation: fadeIn 0.3s ease; }
-.page.active { display: block; }
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-/* ====== HERO ====== */
-.hero {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, #1e4a8a 100%);
-  color: white;
-  padding: 64px 24px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-.hero-badge {
-  display: inline-block;
-  background: rgba(200,169,81,0.2);
-  border: 1px solid rgba(200,169,81,0.4);
-  color: var(--accent-light);
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-.hero h1 {
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  font-weight: 900;
-  margin-bottom: 16px;
-  line-height: 1.3;
-}
-
-.hero h1 span { color: var(--accent-light); }
-
-.hero p {
-  font-size: 1.05rem;
-  opacity: 0.85;
-  max-width: 520px;
-  margin: 0 auto 32px;
-  line-height: 1.8;
-}
-
-.hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-.btn-primary {
-  background: var(--accent);
-  color: var(--primary-dark);
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: 14px 32px;
-  font-family: 'Cairo', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 4px 16px rgba(200,169,81,0.35);
-}
-.btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,169,81,0.45); }
-
-.btn-outline {
-  background: transparent;
-  color: white;
-  border: 2px solid rgba(255,255,255,0.4);
-  border-radius: var(--radius-sm);
-  padding: 12px 32px;
-  font-family: 'Cairo', sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.7); }
-
-/* ====== SERVICES GRID ====== */
-.section { padding: 48px 24px; max-width: 900px; margin: 0 auto; }
-.section-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; color: var(--primary-dark); }
-.section-sub { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 28px; }
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
-}
-
-.service-card {
-  background: var(--surface);
-  border: 2px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px 24px;
-  cursor: pointer;
-  transition: all 0.25s;
-  position: relative;
-  overflow: hidden;
-}
-
-.service-card::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 4px; height: 100%;
-  background: var(--primary);
-  transform: scaleY(0);
-  transition: transform 0.25s;
-  transform-origin: top;
-}
-
-.service-card:hover {
-  border-color: var(--primary);
-  box-shadow: var(--shadow);
-  transform: translateY(-4px);
-}
-.service-card:hover::after { transform: scaleY(1); }
-
-.service-icon {
-  width: 52px; height: 52px;
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem;
-  margin-bottom: 16px;
-}
-
-.icon-blue { background: #dbeafe; }
-.icon-green { background: #dcfce7; }
-.icon-gold { background: #fef9c3; }
-
-.service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
-.service-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; }
-
-.service-price {
-  margin-top: 16px;
-  display: flex; align-items: center; gap: 8px;
-}
-
-.price-tag {
-  background: var(--primary);
-  color: white;
-  border-radius: 6px;
-  padding: 4px 12px;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.days-tag {
-  background: #fef3c7;
-  color: #92400e;
-  border-radius: 6px;
-  padding: 4px 10px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-/* ====== FORM ====== */
-.form-container {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 24px;
-}
-
-.form-card {
-  background: var(--surface);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
-
-.form-header {
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-  color: white;
-  padding: 24px 28px;
-}
-
-.form-header h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
-.form-header p { font-size: 0.875rem; opacity: 0.8; }
-
-.alert-warning {
-  background: #fffbeb;
-  border: 1px solid #fcd34d;
-  border-right: 4px solid var(--warning);
-  border-radius: var(--radius-sm);
-  padding: 12px 16px;
-  margin: 20px 28px 0;
-  font-size: 0.875rem;
-  color: #92400e;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.form-body { padding: 24px 28px; }
-
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
-
-.form-group { margin-bottom: 18px; }
-.form-group label {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-
-.required { color: var(--error); margin-right: 2px; }
-.optional { color: var(--text-muted); font-size: 0.8rem; font-weight: 400; }
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 11px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-sm);
-  font-family: 'Cairo', sans-serif;
-  font-size: 0.95rem;
-  color: var(--text);
-  background: var(--bg);
-  transition: border-color 0.2s, box-shadow 0.2s;
-  direction: rtl;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(26,58,107,0.1);
-  background: white;
-}
-
-.form-group input.error { border-color: var(--error); }
-.field-error { color: var(--error); font-size: 0.8rem; margin-top: 4px; display: none; }
-.field-error.show { display: block; }
-
-.upload-area {
-  border: 2px dashed var(--border);
-  border-radius: var(--radius-sm);
-  padding: 24px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  background: var(--bg);
-}
-.upload-area:hover { border-color: var(--primary); background: #f0f4ff; }
-.upload-area p { font-size: 0.875rem; color: var(--text-muted); margin-top: 8px; }
-.upload-area.has-file { border-color: var(--success); background: #f0fdf4; }
-
-/* ====== PAYMENT ====== */
-.payment-box {
-  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-  border: 1.5px solid #86efac;
-  border-radius: var(--radius);
-  padding: 24px;
-  margin-bottom: 20px;
-}
-
-.payment-box h3 { font-size: 1rem; font-weight: 700; color: #15803d; margin-bottom: 12px; }
-
-.wallet-number {
-  background: white;
-  border: 1.5px solid #86efac;
-  border-radius: var(--radius-sm);
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.wallet-number strong { font-size: 1.1rem; color: var(--primary-dark); letter-spacing: 1px; }
-
-.copy-btn {
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 14px;
-  font-family: 'Cairo', sans-serif;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.copy-btn:hover { background: var(--primary-dark); }
-
-.amount-display {
-  text-align: center;
-  padding: 16px;
-  background: white;
-  border-radius: var(--radius-sm);
-  border: 1.5px solid #86efac;
-}
-.amount-display .amount { font-size: 2rem; font-weight: 900; color: var(--primary-dark); }
-.amount-display .amount-label { font-size: 0.85rem; color: var(--text-muted); }
-
-/* ====== TRACKING ====== */
-.tracking-card {
-  background: var(--surface);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 28px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.tracking-id {
-  background: var(--surface2);
-  border-radius: var(--radius-sm);
-  padding: 16px;
-  text-align: center;
-  margin-bottom: 24px;
-}
-.tracking-id .label { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; }
-.tracking-id .value { font-size: 1.4rem; font-weight: 900; color: var(--primary); letter-spacing: 2px; }
-
-.steps { position: relative; }
-.steps::before {
-  content: '';
-  position: absolute;
-  right: 19px; top: 0; bottom: 0;
-  width: 2px;
-  background: var(--border);
-}
-
-.step {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  margin-bottom: 24px;
-  position: relative;
-}
-
-.step-dot {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem;
-  flex-shrink: 0;
-  position: relative;
-  z-index: 1;
-  border: 3px solid var(--border);
-  background: white;
-}
-
-.step.done .step-dot { background: var(--success); border-color: var(--success); color: white; }
-.step.active .step-dot { background: var(--primary); border-color: var(--primary); color: white; animation: pulse 2s infinite; }
-.step.waiting .step-dot { background: var(--surface2); color: var(--text-muted); }
-
-@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(26,58,107,0.4); } 50% { box-shadow: 0 0 0 8px rgba(26,58,107,0); } }
-
-.step-content h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
-.step-content p { font-size: 0.82rem; color: var(--text-muted); }
-.step.done .step-content h4 { color: var(--success); }
-.step.active .step-content h4 { color: var(--primary); }
-
-/* ====== LOGIN ====== */
-.login-page {
-  min-height: calc(100vh - 64px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background: linear-gradient(135deg, var(--primary-dark), #1e3a5f);
-}
-
-.login-card {
-  background: white;
-  border-radius: var(--radius);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-  width: 100%;
-  max-width: 420px;
-  overflow: hidden;
-}
-
-.login-header {
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-  padding: 32px 32px 24px;
-  text-align: center;
-  color: white;
-}
-
-.login-header .logo-icon { width: 56px; height: 56px; font-size: 1.6rem; margin: 0 auto 16px; }
-.login-header h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 4px; }
-.login-header p { font-size: 0.875rem; opacity: 0.75; }
-
-.login-body { padding: 28px 32px; }
-
-/* ====== ADMIN ====== */
-.admin-layout {
-  display: flex;
-  min-height: calc(100vh - 64px);
-}
-
-.admin-sidebar {
-  width: 240px;
-  background: var(--primary-dark);
-  color: white;
-  padding: 24px 0;
-  flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-  .admin-sidebar { display: none; }
-}
-
-.sidebar-item {
-  padding: 12px 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  transition: background 0.2s;
-  border-right: 3px solid transparent;
-}
-.sidebar-item:hover { background: rgba(255,255,255,0.08); }
-.sidebar-item.active { background: rgba(255,255,255,0.12); border-right-color: var(--accent); color: var(--accent-light); }
-
-.admin-main { flex: 1; padding: 28px; overflow-x: hidden; }
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  margin-bottom: 28px;
-}
-
-.stat-card {
-  background: var(--surface);
-  border-radius: var(--radius);
-  padding: 20px;
-  border: 1.5px solid var(--border);
-}
-
-.stat-card .stat-num { font-size: 2rem; font-weight: 900; color: var(--primary); }
-.stat-card .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
-.stat-card .stat-icon { font-size: 1.5rem; margin-bottom: 8px; }
-
-.table-container {
-  background: var(--surface);
-  border-radius: var(--radius);
-  border: 1.5px solid var(--border);
-  overflow: hidden;
-}
-
-.table-header {
-  padding: 16px 20px;
-  border-bottom: 1.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.table-header h3 { font-size: 1rem; font-weight: 700; }
-
-table { width: 100%; border-collapse: collapse; }
-th {
-  background: var(--surface2);
-  padding: 12px 16px;
-  text-align: right;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 0.875rem; }
-tr:last-child td { border-bottom: none; }
-tr:hover td { background: var(--bg); }
-
-.badge {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-.badge-pending { background: #fef3c7; color: #92400e; }
-.badge-processing { background: #dbeafe; color: #1e40af; }
-.badge-done { background: #dcfce7; color: #15803d; }
-.badge-rejected { background: #fee2e2; color: #991b1b; }
-
-.action-btn {
-  background: none;
-  border: 1.5px solid var(--border);
-  border-radius: 6px;
-  padding: 5px 12px;
-  font-family: 'Cairo', sans-serif;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-left: 4px;
-}
-.action-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
-.action-btn.danger:hover { background: var(--error); border-color: var(--error); color: white; }
-
-/* ====== MODAL ====== */
-.modal-overlay {
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  animation: fadeIn 0.2s;
-}
-
-.modal {
-  background: white;
-  border-radius: var(--radius);
-  max-width: 560px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-}
-
-.modal-header {
-  padding: 20px 24px;
-  border-bottom: 1.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.modal-header h3 { font-size: 1rem; font-weight: 700; }
-.modal-close { background: none; border: none; font-size: 1.3rem; cursor: pointer; color: var(--text-muted); }
-
-.modal-body { padding: 20px 24px; }
-
-.detail-row {
-  display: flex;
-  border-bottom: 1px solid var(--border);
-  padding: 10px 0;
-  gap: 16px;
-}
-.detail-row:last-child { border-bottom: none; }
-.detail-label { width: 140px; font-size: 0.82rem; color: var(--text-muted); font-weight: 600; flex-shrink: 0; }
-.detail-value { font-size: 0.875rem; font-weight: 500; }
-
-.id-image {
-  width: 100%;
-  border-radius: var(--radius-sm);
-  border: 1.5px solid var(--border);
-  margin: 12px 0;
-  max-height: 200px;
-  object-fit: cover;
-}
-
-/* ====== PRINT ====== */
-@media print {
-  .no-print { display: none !important; }
-  .print-card {
-    width: 148mm;
-    min-height: 100mm;
-    border: 2px solid var(--primary-dark);
-    border-radius: 8px;
-    padding: 16px 20px;
-    font-family: 'Cairo', sans-serif;
-    direction: rtl;
-  }
-}
-
-/* ====== MISC ====== */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%) translateY(80px);
-  background: var(--primary-dark);
-  color: white;
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-  font-weight: 600;
-  z-index: 999;
-  transition: transform 0.3s;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-.toast.show { transform: translateX(-50%) translateY(0); }
-.toast.success { background: var(--success); }
-.toast.error { background: var(--error); }
-
-.divider { height: 1px; background: var(--border); margin: 20px 0; }
-
-.back-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: none;
-  border: none;
-  color: var(--primary);
-  font-family: 'Cairo', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 8px 0;
-  margin-bottom: 16px;
-}
-.back-btn:hover { color: var(--primary-dark); }
-
-.text-center { text-align: center; }
-.mt-4 { margin-top: 16px; }
-.mt-8 { margin-top: 32px; }
-.mb-4 { margin-bottom: 16px; }
-
-.spinner {
-  width: 24px; height: 24px;
-  border: 3px solid rgba(255,255,255,0.3);
-  border-top-color: white;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 8px;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
+/* TOAST */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--pd);color:#fff;padding:11px 22px;border-radius:var(--rs);font-size:.875rem;font-weight:600;z-index:999;transition:transform .3s;box-shadow:0 4px 20px rgba(0,0,0,.3);white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.ok{background:var(--ok)}
+.toast.err{background:var(--err)}
+/* MISC */
+.bk{display:flex;align-items:center;gap:7px;background:none;border:none;color:var(--primary);font-family:'Cairo',sans-serif;font-size:.875rem;font-weight:600;cursor:pointer;padding:7px 0;margin-bottom:14px}
+.bk:hover{color:var(--pd)}
+.dv2{height:1px;background:var(--bdr);margin:16px 0}
+/* FOOTER */
+footer{background:var(--pd);color:rgba(255,255,255,.6);text-align:center;padding:20px;font-size:.82rem;margin-top:40px}
+footer a{color:var(--al);text-decoration:none;font-weight:600}
+footer a:hover{text-decoration:underline}
+/* PWA install */
+.install-bar{background:linear-gradient(135deg,var(--accent),var(--al));color:var(--pd);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;font-size:.85rem;font-weight:600;gap:10px;flex-wrap:wrap}
+.install-bar button{background:var(--pd);color:#fff;border:none;border-radius:6px;padding:7px 16px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer}
+/* RESPONSIVE NAV */
+@media(max-width:480px){.logo span{display:none}}
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar no-print">
-  <div class="logo">
-    <div class="logo-icon">M</div>
-    ماتركس خدمات
+<!-- INSTALL BAR -->
+<div class="install-bar no-print" id="installBar" style="display:none">
+  <span>📱 ثبّت التطبيق على جهازك للوصول السريع</span>
+  <div style="display:flex;gap:8px">
+    <button onclick="installApp()">تثبيت</button>
+    <button onclick="document.getElementById('installBar').style.display='none'" style="background:rgba(0,0,0,.2)">لاحقاً</button>
   </div>
-  <div id="navActions">
-    <button class="nav-btn" onclick="showPage('login')">تسجيل الدخول</button>
+</div>
+
+<!-- NAV -->
+<nav class="nav no-print">
+  <div class="logo" onclick="showPage('home')">
+    <div class="li">M</div>
+    <span>ماتركس خدمات</span>
+  </div>
+  <div id="navAct">
+    <button class="nb" onclick="showPage('login')">تسجيل الدخول</button>
   </div>
 </nav>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- ===== HOME PAGE ===== -->
+<!-- ══════════ HOME ══════════ -->
 <div class="page active" id="page-home">
   <div class="hero">
     <div class="hero-badge">🏛️ خدمات حكومية إلكترونية</div>
-    <h1>استخرج <span>وثائقك الرسمية</span><br>بكل سهولة</h1>
-    <p>خدمة سريعة وآمنة لاستخراج الوثائق الرسمية — شهادات الميلاد، عقود الزواج، وغيرها — من مكانك.</p>
+    <h1>استخرج <span>وثائقك الرسمية</span><br>بكل سهولة وأمان</h1>
+    <p>خدمة سريعة وموثوقة لاستخراج الوثائق الرسمية — من مكانك بدون تعب أو انتظار</p>
     <div class="hero-actions">
-      <button class="btn-primary" onclick="showPage('services')">ابدأ طلبك الآن</button>
-      <button class="btn-outline" onclick="showTrackingInput()">تتبع طلب موجود</button>
+      <button class="bp" onclick="showPage('services')">🚀 ابدأ طلبك الآن</button>
+      <button class="bo" onclick="showPage('track-search')">🔍 تتبع طلبك</button>
     </div>
   </div>
-
-  <div class="section">
-    <div class="section-title">خدماتنا المتاحة</div>
-    <div class="section-sub">اختر الخدمة التي تحتاجها وأكمل طلبك في دقائق</div>
-    <div class="services-grid">
-      <div class="service-card" onclick="startRequest('birth')">
-        <div class="service-icon icon-blue">📋</div>
+  <div class="features">
+    <div class="feat"><span>⚡</span><span>خدمة سريعة</span></div>
+    <div class="feat"><span>🔒</span><span>آمن وموثوق</span></div>
+    <div class="feat"><span>📱</span><span>يعمل على كل الأجهزة</span></div>
+    <div class="feat"><span>💳</span><span>دفع إلكتروني</span></div>
+    <div class="feat"><span>📍</span><span>تتبع طلبك لحظة بلحظة</span></div>
+  </div>
+  <div class="sec">
+    <div class="sec-t">خدماتنا المتاحة</div>
+    <div class="sec-s">اختر الخدمة التي تحتاجها وأكمل طلبك في دقائق</div>
+    <div class="grid">
+      <div class="card" onclick="showPage('birth-form')">
+        <div class="ci cb">📋</div>
         <h3>شهادة الميلاد</h3>
         <p>استخراج شهادة ميلاد جديدة أو بدل فاقد بسهولة تامة</p>
-        <div class="service-price">
-          <span class="price-tag">125 جنيه</span>
-          <span class="days-tag">⏱ 4-5 أيام</span>
-        </div>
+        <div class="price-row"><span class="pt">125 جنيه</span><span class="dt">⏱ 4-5 أيام</span></div>
       </div>
-      <div class="service-card" onclick="startRequest('marriage')">
-        <div class="service-icon icon-green">💍</div>
+      <div class="card" onclick="showPage('marriage-form')">
+        <div class="ci cg">💍</div>
         <h3>شهادة الزواج</h3>
         <p>توثيق عقد الزواج واستخراج صورة رسمية معتمدة</p>
-        <div class="service-price">
-          <span class="price-tag">150 جنيه</span>
-          <span class="days-tag">⏱ 5-7 أيام</span>
-        </div>
+        <div class="price-row"><span class="pt">150 جنيه</span><span class="dt">⏱ 5-7 أيام</span></div>
       </div>
-      <div class="service-card">
-        <div class="service-icon icon-gold">📄</div>
+      <div class="card" onclick="showPage('family-form')">
+        <div class="ci cy">👨‍👩‍👧‍👦</div>
         <h3>قيد عائلي</h3>
         <p>استخراج بيان قيد عائلي محدث من سجلات المحكمة</p>
-        <div class="service-price">
-          <span class="price-tag">100 جنيه</span>
-          <span class="days-tag">⏱ 3-4 أيام</span>
+        <div class="price-row"><span class="pt">100 جنيه</span><span class="dt">⏱ 4-5 أيام</span></div>
+      </div>
+    </div>
+    <!-- HOW IT WORKS -->
+    <div style="margin-top:44px">
+      <div class="sec-t">كيف يعمل النظام؟</div>
+      <div class="sec-s">3 خطوات بسيطة واستلم وثيقتك</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+        <div style="background:var(--sur);border-radius:var(--r);padding:22px;text-align:center;border:1.5px solid var(--bdr)">
+          <div style="font-size:2rem;margin-bottom:10px">📝</div>
+          <div style="font-weight:700;margin-bottom:6px">1. أدخل بياناتك</div>
+          <div style="font-size:.83rem;color:var(--mu)">أكمل النموذج ببياناتك الشخصية الصحيحة</div>
+        </div>
+        <div style="background:var(--sur);border-radius:var(--r);padding:22px;text-align:center;border:1.5px solid var(--bdr)">
+          <div style="font-size:2rem;margin-bottom:10px">💳</div>
+          <div style="font-weight:700;margin-bottom:6px">2. أدفع الرسوم</div>
+          <div style="font-size:.83rem;color:var(--mu)">أرسل الرسوم عبر المحفظة الإلكترونية</div>
+        </div>
+        <div style="background:var(--sur);border-radius:var(--r);padding:22px;text-align:center;border:1.5px solid var(--bdr)">
+          <div style="font-size:2rem;margin-bottom:10px">📄</div>
+          <div style="font-weight:700;margin-bottom:6px">3. استلم وثيقتك</div>
+          <div style="font-size:.83rem;color:var(--mu)">تابع طلبك واستلم الوثيقة في الموعد المحدد</div>
         </div>
       </div>
     </div>
   </div>
+  <footer class="no-print">
+    <div style="margin-bottom:8px">ماتركس خدمات — جميع الحقوق محفوظة © 2025</div>
+    <div>تطوير من التبرمج | <a href="https://kareem-mohamed-rust.vercel.app/" target="_blank">Kareem Mohamed</a></div>
+  </footer>
 </div>
 
-<!-- ===== SERVICES PAGE ===== -->
+<!-- ══════════ SERVICES ══════════ -->
 <div class="page" id="page-services">
-  <div class="section">
-    <button class="back-btn" onclick="showPage('home')">&#8594; الرجوع للرئيسية</button>
-    <div class="section-title">اختر الخدمة</div>
-    <div class="section-sub">حدد نوع الوثيقة التي تحتاج إلى استخراجها</div>
-    <div class="services-grid">
-      <div class="service-card" onclick="startRequest('birth')">
-        <div class="service-icon icon-blue">📋</div>
-        <h3>شهادة الميلاد</h3>
-        <p>استخراج شهادة ميلاد جديدة أو بدل فاقد</p>
-        <div class="service-price">
-          <span class="price-tag">125 جنيه</span>
-          <span class="days-tag">⏱ 4-5 أيام</span>
-        </div>
-      </div>
-      <div class="service-card" onclick="startRequest('marriage')">
-        <div class="service-icon icon-green">💍</div>
-        <h3>شهادة الزواج</h3>
-        <p>توثيق عقد الزواج واستخراج صورة رسمية</p>
-        <div class="service-price">
-          <span class="price-tag">150 جنيه</span>
-          <span class="days-tag">⏱ 5-7 أيام</span>
-        </div>
-      </div>
+  <div class="sec">
+    <button class="bk" onclick="showPage('home')">&#8594; الرئيسية</button>
+    <div class="sec-t">اختر الخدمة</div>
+    <div class="sec-s">حدد نوع الوثيقة التي تحتاج إلى استخراجها</div>
+    <div class="grid">
+      <div class="card" onclick="showPage('birth-form')"><div class="ci cb">📋</div><h3>شهادة الميلاد</h3><p>استخراج شهادة ميلاد جديدة أو بدل فاقد</p><div class="price-row"><span class="pt">125 جنيه</span><span class="dt">⏱ 4-5 أيام</span></div></div>
+      <div class="card" onclick="showPage('marriage-form')"><div class="ci cg">💍</div><h3>شهادة الزواج</h3><p>توثيق عقد الزواج واستخراج صورة رسمية</p><div class="price-row"><span class="pt">150 جنيه</span><span class="dt">⏱ 5-7 أيام</span></div></div>
+      <div class="card" onclick="showPage('family-form')"><div class="ci cy">👨‍👩‍👧‍👦</div><h3>قيد عائلي</h3><p>استخراج بيان قيد عائلي محدث</p><div class="price-row"><span class="pt">100 جنيه</span><span class="dt">⏱ 4-5 أيام</span></div></div>
     </div>
   </div>
 </div>
 
-<!-- ===== BIRTH FORM ===== -->
+<!-- ══════════ TRACK SEARCH ══════════ -->
+<div class="page" id="page-track-search">
+  <div class="sec">
+    <button class="bk" onclick="showPage('home')">&#8594; الرئيسية</button>
+    <div class="sec-t">تتبع طلبك</div>
+    <div class="sec-s">ابحث برقم الطلب أو الاسم أو الرقم القومي</div>
+    <div class="ts-box">
+      <h3>🔍 البحث عن الطلب</h3>
+      <div class="fg">
+        <label>رقم الطلب</label>
+        <div class="trow">
+          <input id="s_code" placeholder="مثال: MX-ABC123" dir="ltr" onkeydown="if(event.key==='Enter')searchCode()">
+          <button class="bp" style="padding:10px 16px;font-size:.875rem;white-space:nowrap" onclick="searchCode()">بحث</button>
+        </div>
+      </div>
+      <div class="dv2" style="text-align:center;position:relative"><span style="background:var(--sur);padding:0 12px;color:var(--mu);font-size:.8rem;position:relative;z-index:1">أو</span></div>
+      <div class="fg">
+        <label>الاسم</label>
+        <div class="trow">
+          <input id="s_name" placeholder="أدخل اسمك" onkeydown="if(event.key==='Enter')searchName()">
+          <button class="bp" style="padding:10px 16px;font-size:.875rem;white-space:nowrap" onclick="searchName()">بحث</button>
+        </div>
+      </div>
+      <div class="fg">
+        <label>الرقم القومي</label>
+        <div class="trow">
+          <input id="s_nid" placeholder="14 رقم" maxlength="14" dir="ltr" onkeydown="if(event.key==='Enter')searchNid()">
+          <button class="bp" style="padding:10px 16px;font-size:.875rem;white-space:nowrap" onclick="searchNid()">بحث</button>
+        </div>
+      </div>
+      <div id="sResults"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ BIRTH FORM ══════════ -->
 <div class="page" id="page-birth-form">
-  <div class="form-container">
-    <button class="back-btn" onclick="showPage('services')">&#8594; الرجوع</button>
-    <div class="form-card">
-      <div class="form-header">
-        <h2>📋 طلب شهادة ميلاد</h2>
-        <p>أدخل البيانات المطلوبة بدقة</p>
-      </div>
-      <div class="alert-warning">
-        ⚠️ تنبيه: تُستخرج الشهادة خلال <strong>4 إلى 5 أيام عمل</strong> من تأكيد الدفع
-      </div>
-      <div class="form-body">
-        <div class="form-group">
-          <label>صورة بطاقة الهوية <span class="optional">(بطاقة صاحب الطلب أو ولي الأمر)</span></label>
-          <div class="upload-area" onclick="document.getElementById('idPhoto').click()" id="uploadArea">
-            <div style="font-size:2rem">📷</div>
-            <p>اضغط لرفع صورة البطاقة</p>
-            <p style="font-size:0.78rem;margin-top:4px">JPG, PNG — حتى 5MB</p>
-          </div>
-          <input type="file" id="idPhoto" accept="image/*" style="display:none" onchange="handleFileUpload(this)">
+  <div class="fc">
+    <button class="bk" onclick="showPage('services')">&#8594; الرجوع</button>
+    <div class="fcard">
+      <div class="fh"><h2>📋 طلب شهادة ميلاد</h2><p>أدخل البيانات المطلوبة بدقة</p></div>
+      <div class="aw">⚠️ تُستخرج الشهادة خلال <strong>4 إلى 5 أيام عمل</strong> من تأكيد الدفع</div>
+      <div class="fb">
+        <div class="fg">
+          <label>صورة البطاقة <span class="opt">(صاحب الطلب أو ولي الأمر — اختياري)</span></label>
+          <div class="ua" onclick="$('b_img').click()" id="b_ua"><div style="font-size:1.8rem">📷</div><p>اضغط لرفع صورة البطاقة (JPG/PNG)</p></div>
+          <input type="file" id="b_img" accept="image/*" style="display:none" onchange="upload(this,'b_ua')">
         </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label><span class="required">*</span> الاسم الرباعي (عربي)</label>
-            <input type="text" id="fullName" placeholder="مثال: محمد أحمد علي حسن" oninput="validateName(this)">
-            <div class="field-error" id="nameError">الاسم يجب أن يكون رباعياً باللغة العربية</div>
+        <div class="fr">
+          <div class="fg">
+            <label><span class="req">*</span> الاسم الرباعي (عربي)</label>
+            <input id="b_name" placeholder="محمد أحمد علي حسن" oninput="valName(this,'b_ne')">
+            <div class="fe" id="b_ne">الاسم يجب أن يكون رباعياً باللغة العربية</div>
           </div>
-          <div class="form-group">
-            <label><span class="required">*</span> اسم الأم</label>
-            <input type="text" id="motherName" placeholder="اسم الأم الثنائي على الأقل">
-            <div class="field-error" id="motherError">اسم الأم مطلوب</div>
+          <div class="fg">
+            <label><span class="req">*</span> اسم الأم</label>
+            <input id="b_mother" placeholder="اسم الأم الثنائي على الأقل">
+            <div class="fe" id="b_me">اسم الأم مطلوب</div>
           </div>
         </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label><span class="required">*</span> تاريخ الميلاد</label>
-            <input type="date" id="birthDate">
-            <div class="field-error" id="dateError">تاريخ الميلاد مطلوب</div>
+        <div class="fr">
+          <div class="fg">
+            <label><span class="req">*</span> تاريخ الميلاد</label>
+            <input type="date" id="b_date">
+            <div class="fe" id="b_de">تاريخ الميلاد مطلوب</div>
           </div>
-          <div class="form-group">
-            <label><span class="required">*</span> رقم الهاتف</label>
-            <input type="tel" id="phone" placeholder="01xxxxxxxxx" maxlength="11">
-            <div class="field-error" id="phoneError">رقم هاتف صحيح مطلوب</div>
+          <div class="fg">
+            <label><span class="req">*</span> رقم الهاتف</label>
+            <input type="tel" id="b_phone" placeholder="01xxxxxxxxx" maxlength="11" dir="ltr">
+            <div class="fe" id="b_pe">رقم هاتف مصري صحيح مطلوب</div>
           </div>
         </div>
-
-        <div class="form-group">
-          <label>الرقم القومي لصاحب شهادة الميلاد <span class="optional">(اختياري)</span></label>
-          <input type="text" id="nationalId" placeholder="14 رقم" maxlength="14">
+        <div class="fg">
+          <label>الرقم القومي لصاحب الشهادة <span class="opt">(اختياري)</span></label>
+          <input id="b_nid" placeholder="14 رقم" maxlength="14" dir="ltr">
         </div>
-
-        <button class="btn-primary" style="width:100%;padding:14px" onclick="submitBirthForm()">
-          متابعة للدفع
-        </button>
+        <button class="bp" style="width:100%;padding:13px" onclick="submitBirth()">متابعة للدفع ◀</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===== MARRIAGE FORM ===== -->
+<!-- ══════════ MARRIAGE FORM ══════════ -->
 <div class="page" id="page-marriage-form">
-  <div class="form-container">
-    <button class="back-btn" onclick="showPage('services')">&#8594; الرجوع</button>
-    <div class="form-card">
-      <div class="form-header">
-        <h2>💍 طلب شهادة زواج</h2>
-        <p>أدخل بيانات الزوجين كاملة</p>
-      </div>
-      <div class="alert-warning">
-        ⚠️ تنبيه: تُستخرج الشهادة خلال <strong>5 إلى 7 أيام عمل</strong> من تأكيد الدفع
-      </div>
-      <div class="form-body">
-        <div class="form-row">
-          <div class="form-group">
-            <label><span class="required">*</span> اسم الزوج رباعياً</label>
-            <input type="text" id="husbandName" placeholder="الاسم الرباعي عربي">
-            <div class="field-error" id="husbandError">اسم الزوج مطلوب رباعياً</div>
-          </div>
-          <div class="form-group">
-            <label><span class="required">*</span> اسم الزوجة رباعياً</label>
-            <input type="text" id="wifeName" placeholder="الاسم الرباعي عربي">
-            <div class="field-error" id="wifeError">اسم الزوجة مطلوب رباعياً</div>
-          </div>
+  <div class="fc">
+    <button class="bk" onclick="showPage('services')">&#8594; الرجوع</button>
+    <div class="fcard">
+      <div class="fh"><h2>💍 طلب شهادة زواج</h2><p>أدخل بيانات الزوجين كاملة</p></div>
+      <div class="aw">⚠️ تُستخرج الشهادة خلال <strong>5 إلى 7 أيام عمل</strong> من تأكيد الدفع</div>
+      <div class="fb">
+        <div class="fr">
+          <div class="fg"><label><span class="req">*</span> اسم الزوج رباعياً</label><input id="m_h" placeholder="الاسم الرباعي عربي" oninput="valName(this,'m_he')"><div class="fe" id="m_he">اسم الزوج مطلوب رباعياً بالعربية</div></div>
+          <div class="fg"><label><span class="req">*</span> اسم الزوجة رباعياً</label><input id="m_w" placeholder="الاسم الرباعي عربي" oninput="valName(this,'m_we')"><div class="fe" id="m_we">اسم الزوجة مطلوب رباعياً بالعربية</div></div>
         </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label><span class="required">*</span> الرقم القومي للزوج</label>
-            <input type="text" id="husbandNid" placeholder="14 رقم" maxlength="14">
-            <div class="field-error" id="husbandNidError">الرقم القومي مطلوب</div>
-          </div>
-          <div class="form-group">
-            <label><span class="required">*</span> الرقم القومي للزوجة</label>
-            <input type="text" id="wifeNid" placeholder="14 رقم" maxlength="14">
-            <div class="field-error" id="wifeNidError">الرقم القومي مطلوب</div>
-          </div>
+        <div class="fr">
+          <div class="fg"><label><span class="req">*</span> رقم قومي الزوج</label><input id="m_hn" placeholder="14 رقم" maxlength="14" dir="ltr"><div class="fe" id="m_hne">الرقم القومي مطلوب (14 رقم)</div></div>
+          <div class="fg"><label><span class="req">*</span> رقم قومي الزوجة</label><input id="m_wn" placeholder="14 رقم" maxlength="14" dir="ltr"><div class="fe" id="m_wne">الرقم القومي مطلوب (14 رقم)</div></div>
         </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label><span class="required">*</span> صورة بطاقة الزوج</label>
-            <div class="upload-area" onclick="document.getElementById('husbandId').click()" id="husbandUpload">
-              <div style="font-size:1.5rem">📷</div>
-              <p style="font-size:0.82rem">رفع بطاقة الزوج</p>
-            </div>
-            <input type="file" id="husbandId" accept="image/*" style="display:none" onchange="handleMarriageUpload(this,'husband')">
-          </div>
-          <div class="form-group">
-            <label><span class="required">*</span> صورة بطاقة الزوجة</label>
-            <div class="upload-area" onclick="document.getElementById('wifeId').click()" id="wifeUpload">
-              <div style="font-size:1.5rem">📷</div>
-              <p style="font-size:0.82rem">رفع بطاقة الزوجة</p>
-            </div>
-            <input type="file" id="wifeId" accept="image/*" style="display:none" onchange="handleMarriageUpload(this,'wife')">
-          </div>
+        <div class="fr">
+          <div class="fg"><label><span class="req">*</span> بطاقة الزوج</label><div class="ua" onclick="$('m_hi').click()" id="m_hua"><div style="font-size:1.4rem">📷</div><p style="font-size:.8rem">رفع بطاقة الزوج</p></div><input type="file" id="m_hi" accept="image/*" style="display:none" onchange="upload(this,'m_hua')"></div>
+          <div class="fg"><label><span class="req">*</span> بطاقة الزوجة</label><div class="ua" onclick="$('m_wi').click()" id="m_wua"><div style="font-size:1.4rem">📷</div><p style="font-size:.8rem">رفع بطاقة الزوجة</p></div><input type="file" id="m_wi" accept="image/*" style="display:none" onchange="upload(this,'m_wua')"></div>
         </div>
-
-        <div class="form-group">
-          <label><span class="required">*</span> رقم الهاتف</label>
-          <input type="tel" id="marriagePhone" placeholder="01xxxxxxxxx" maxlength="11">
-          <div class="field-error" id="marriagePhoneError">رقم هاتف صحيح مطلوب</div>
-        </div>
-
-        <button class="btn-primary" style="width:100%;padding:14px" onclick="submitMarriageForm()">
-          متابعة للدفع
-        </button>
+        <div class="fg"><label><span class="req">*</span> رقم الهاتف</label><input type="tel" id="m_p" placeholder="01xxxxxxxxx" maxlength="11" dir="ltr"><div class="fe" id="m_pe">رقم هاتف مصري صحيح مطلوب</div></div>
+        <button class="bp" style="width:100%;padding:13px" onclick="submitMarriage()">متابعة للدفع ◀</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===== PAYMENT PAGE ===== -->
+<!-- ══════════ FAMILY FORM ══════════ -->
+<div class="page" id="page-family-form">
+  <div class="fc">
+    <button class="bk" onclick="showPage('services')">&#8594; الرجوع</button>
+    <div class="fcard">
+      <div class="fh"><h2>👨‍👩‍👧‍👦 طلب قيد عائلي</h2><p>أدخل بيانات رب الأسرة</p></div>
+      <div class="aw">⚠️ يُستخرج القيد العائلي خلال <strong>4 إلى 5 أيام عمل</strong> من تأكيد الدفع</div>
+      <div class="fb">
+        <div class="fr">
+          <div class="fg"><label><span class="req">*</span> اسم رب الأسرة رباعياً</label><input id="f_name" placeholder="الاسم الرباعي عربي" oninput="valName(this,'f_ne')"><div class="fe" id="f_ne">الاسم يجب أن يكون رباعياً بالعربية</div></div>
+          <div class="fg"><label><span class="req">*</span> الرقم القومي</label><input id="f_nid" placeholder="14 رقم" maxlength="14" dir="ltr"><div class="fe" id="f_nide">الرقم القومي مطلوب (14 رقم)</div></div>
+        </div>
+        <div class="fg">
+          <label><span class="req">*</span> بطاقة رب الأسرة</label>
+          <div class="ua" onclick="$('f_img').click()" id="f_ua"><div style="font-size:1.8rem">📷</div><p>اضغط لرفع صورة البطاقة</p></div>
+          <input type="file" id="f_img" accept="image/*" style="display:none" onchange="upload(this,'f_ua')">
+        </div>
+        <div class="fr">
+          <div class="fg"><label><span class="req">*</span> رقم الهاتف</label><input type="tel" id="f_p" placeholder="01xxxxxxxxx" maxlength="11" dir="ltr"><div class="fe" id="f_pe">رقم هاتف مصري صحيح مطلوب</div></div>
+          <div class="fg"><label>عدد أفراد الأسرة <span class="opt">(اختياري)</span></label><input type="number" id="f_mem" placeholder="مثال: 4" min="1" max="30"></div>
+        </div>
+        <button class="bp" style="width:100%;padding:13px" onclick="submitFamily()">متابعة للدفع ◀</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PAYMENT ══════════ -->
 <div class="page" id="page-payment">
-  <div class="form-container">
-    <div class="form-card">
-      <div class="form-header">
-        <h2>💳 الدفع</h2>
-        <p>أرسل المبلغ المطلوب على المحفظة</p>
-      </div>
-      <div class="form-body">
-        <div class="payment-box">
+  <div class="fc">
+    <div class="fcard">
+      <div class="fh"><h2>💳 إتمام الدفع</h2><p>أرسل المبلغ المطلوب ثم أدخل رقم المرجع</p></div>
+      <div class="fb">
+        <div class="pb">
           <h3>📱 رقم المحفظة (فودافون كاش / إنستاباي)</h3>
-          <div class="wallet-number">
-            <strong>01000000000</strong>
-            <button class="copy-btn" onclick="copyWallet()">نسخ</button>
-          </div>
-          <div class="amount-display">
-            <div class="amount-label">المبلغ المطلوب</div>
-            <div class="amount" id="payAmount">125</div>
-            <div class="amount-label">جنيه مصري</div>
-          </div>
+          <div class="wn"><strong>01000000000</strong><button class="cb2" onclick="copyW()">نسخ الرقم</button></div>
+          <div class="ad"><div class="al2">المبلغ المطلوب</div><div class="am" id="payAmt">125</div><div class="al2">جنيه مصري</div></div>
         </div>
-
-        <div class="form-group">
-          <label><span class="required">*</span> رقم مرجع التحويل</label>
-          <input type="text" id="transRef" placeholder="أدخل رقم المرجع بعد التحويل">
-          <div class="field-error" id="transError">رقم المرجع مطلوب</div>
+        <div class="fg">
+          <label><span class="req">*</span> رقم مرجع التحويل</label>
+          <input id="t_ref" placeholder="أدخل رقم المرجع بعد التحويل" dir="ltr">
+          <div class="fe" id="t_re">رقم المرجع مطلوب</div>
         </div>
-
-        <button class="btn-primary" style="width:100%;padding:14px" onclick="confirmPayment()">
-          تأكيد الدفع وإرسال الطلب
-        </button>
+        <button class="bp" style="width:100%;padding:13px" onclick="confirmPay()">✅ تأكيد الدفع وإرسال الطلب</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===== TRACKING PAGE ===== -->
+<!-- ══════════ TRACKING ══════════ -->
 <div class="page" id="page-tracking">
-  <div class="form-container">
-    <button class="back-btn" onclick="showPage('home')">&#8594; الرجوع للرئيسية</button>
-    <div class="tracking-card">
-      <div class="tracking-id">
-        <div class="label">رقم الطلب</div>
-        <div class="value" id="trackingCode">---</div>
+  <div class="sec">
+    <button class="bk" onclick="showPage('home')">&#8594; الرئيسية</button>
+    <div class="tc">
+      <div class="tid">
+        <div class="tl">رقم طلبك — احتفظ به للمتابعة</div>
+        <div class="tv" id="trkCode">---</div>
+        <div class="ts" id="trkType">---</div>
       </div>
-
-      <div class="steps" id="trackingSteps">
-        <div class="step done">
-          <div class="step-dot">✓</div>
-          <div class="step-content">
-            <h4>تم استلام الطلب</h4>
-            <p>تم استلام بياناتك بنجاح</p>
-          </div>
-        </div>
-        <div class="step done" id="stepPayment">
-          <div class="step-dot">✓</div>
-          <div class="step-content">
-            <h4>تم تأكيد الدفع</h4>
-            <p>تم استلام رسوم الخدمة</p>
-          </div>
-        </div>
-        <div class="step active" id="stepProcessing">
-          <div class="step-dot">⚙</div>
-          <div class="step-content">
-            <h4>جارٍ المعالجة</h4>
-            <p>طلبك قيد المراجعة من قبل الإدارة</p>
-          </div>
-        </div>
-        <div class="step waiting" id="stepReady">
-          <div class="step-dot">📄</div>
-          <div class="step-content">
-            <h4>جاهز للاستلام</h4>
-            <p>ستصلك رسالة عند جاهزية الوثيقة</p>
-          </div>
-        </div>
-        <div class="step waiting" id="stepDone">
-          <div class="step-dot">🏁</div>
-          <div class="step-content">
-            <h4>تم الاستلام</h4>
-            <p>اكتملت الخدمة بنجاح</p>
-          </div>
-        </div>
+      <div class="steps">
+        <div class="step done"><div class="sd">✓</div><div class="sc"><h4>تم استلام الطلب</h4><p>تم استلام بياناتك بنجاح</p></div></div>
+        <div class="step done" id="ts1"><div class="sd">✓</div><div class="sc"><h4>تم تأكيد الدفع</h4><p>تم استلام رسوم الخدمة</p></div></div>
+        <div class="step active" id="ts2"><div class="sd">⚙</div><div class="sc"><h4>جارٍ المعالجة</h4><p>طلبك قيد المراجعة من الإدارة</p></div></div>
+        <div class="step waiting" id="ts3"><div class="sd">📄</div><div class="sc"><h4>جاهز للاستلام</h4><p>ستصلك رسالة عند جاهزية الوثيقة</p></div></div>
+        <div class="step waiting" id="ts4"><div class="sd">🏁</div><div class="sc"><h4>تم الاستلام</h4><p>اكتملت الخدمة بنجاح</p></div></div>
       </div>
-
-      <div style="margin-top:24px;padding:16px;background:var(--surface2);border-radius:var(--radius-sm);font-size:0.875rem;color:var(--text-muted)">
-        📞 للاستفسار: تواصل معنا عبر الهاتف أو الواتساب على <strong>01000000000</strong>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== LOGIN PAGE ===== -->
-<div class="page" id="page-login">
-  <div class="login-page">
-    <div class="login-card">
-      <div class="login-header">
-        <div class="logo-icon">M</div>
-        <h2>ماتركس خدمات</h2>
-        <p>تسجيل الدخول للنظام</p>
-      </div>
-      <div class="login-body">
-        <div class="form-group">
-          <label>البريد الإلكتروني</label>
-          <input type="email" id="loginEmail" placeholder="example@email.com" dir="ltr">
-          <div class="field-error" id="loginEmailError">بريد إلكتروني صحيح مطلوب</div>
-        </div>
-        <div class="form-group">
-          <label>كلمة المرور</label>
-          <input type="password" id="loginPass" placeholder="••••••••" dir="ltr">
-          <div class="field-error" id="loginPassError">كلمة المرور مطلوبة</div>
-        </div>
-        <button class="btn-primary" style="width:100%;padding:14px;margin-top:8px" onclick="doLogin()">
-          دخول
-        </button>
-        <div id="loginError" style="color:var(--error);font-size:0.85rem;margin-top:12px;text-align:center;display:none">
-          بيانات الدخول غير صحيحة
-        </div>
-        <div class="divider"></div>
-        <button class="back-btn" style="justify-content:center;width:100%" onclick="showPage('home')">
-          &#8594; الرجوع للرئيسية
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== ADMIN PAGE ===== -->
-<div class="page" id="page-admin">
-  <div class="admin-layout">
-    <div class="admin-sidebar no-print">
-      <div style="padding:16px 20px 24px;border-bottom:1px solid rgba(255,255,255,0.1)">
-        <div style="font-size:0.75rem;opacity:0.6;margin-bottom:4px">مرحباً</div>
-        <div style="font-weight:700" id="adminName">المدير</div>
+      <div id="trkNote" style="display:none;margin-top:14px;padding:12px 14px;background:#fffbeb;border:1px solid #fcd34d;border-radius:var(--rs);font-size:.85rem"></div>
+      <div style="margin-top:18px;padding:14px;background:var(--sur2);border-radius:var(--rs);font-size:.85rem;color:var(--mu)">
+        📞 للاستفسار تواصل معنا على: <strong style="color:var(--txt)">01000000000</strong>
       </div>
       <div style="margin-top:12px">
-        <div class="sidebar-item active" onclick="adminTab('requests')">📋 الطلبات</div>
-        <div class="sidebar-item" onclick="adminTab('stats')">📊 الإحصائيات</div>
-        <div class="sidebar-item" onclick="adminTab('settings')">⚙️ الإعدادات</div>
-        <div class="sidebar-item" style="margin-top:auto;position:absolute;bottom:24px;width:240px" onclick="doLogout()">
-          🚪 تسجيل الخروج
-        </div>
-      </div>
-    </div>
-
-    <div class="admin-main">
-      <!-- STATS TAB -->
-      <div id="tab-stats" style="display:none">
-        <h2 style="margin-bottom:20px;font-size:1.3rem;font-weight:800">📊 الإحصائيات</h2>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-icon">📋</div>
-            <div class="stat-num" id="statTotal">0</div>
-            <div class="stat-label">إجمالي الطلبات</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon">⏳</div>
-            <div class="stat-num" id="statPending">0</div>
-            <div class="stat-label">طلبات معلقة</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon">✅</div>
-            <div class="stat-num" id="statDone">0</div>
-            <div class="stat-label">طلبات مكتملة</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon">💰</div>
-            <div class="stat-num" id="statRevenue">0</div>
-            <div class="stat-label">الإيرادات (جنيه)</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- REQUESTS TAB -->
-      <div id="tab-requests">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px">
-          <h2 style="font-size:1.3rem;font-weight:800">📋 إدارة الطلبات</h2>
-          <select id="filterStatus" onchange="renderAdminTable()" style="padding:8px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:'Cairo',sans-serif;font-size:0.875rem">
-            <option value="">الكل</option>
-            <option value="pending">معلق</option>
-            <option value="processing">قيد المعالجة</option>
-            <option value="done">مكتمل</option>
-            <option value="rejected">مرفوض</option>
-          </select>
-        </div>
-        <div class="table-container" style="overflow-x:auto">
-          <table>
-            <thead>
-              <tr>
-                <th>رقم الطلب</th>
-                <th>الاسم</th>
-                <th>نوع الخدمة</th>
-                <th>الحالة</th>
-                <th>التاريخ</th>
-                <th>إجراءات</th>
-              </tr>
-            </thead>
-            <tbody id="adminTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- SETTINGS TAB -->
-      <div id="tab-settings" style="display:none">
-        <h2 style="margin-bottom:20px;font-size:1.3rem;font-weight:800">⚙️ الإعدادات</h2>
-        <div class="form-card" style="max-width:480px">
-          <div class="form-body">
-            <div class="form-group">
-              <label>تغيير كلمة مرور المدير</label>
-              <input type="password" id="newPass1" placeholder="كلمة المرور الجديدة" dir="ltr">
-            </div>
-            <div class="form-group">
-              <label>تأكيد كلمة المرور</label>
-              <input type="password" id="newPass2" placeholder="أعد كتابة كلمة المرور" dir="ltr">
-            </div>
-            <button class="btn-primary" onclick="changePassword()">حفظ التغييرات</button>
-          </div>
-        </div>
+        <button class="ab" onclick="showPage('track-search')">🔍 تتبع طلب آخر</button>
+        <button class="ab" onclick="showPage('home')">🏠 الرئيسية</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===== MODAL: REQUEST DETAIL ===== -->
-<div class="modal-overlay" id="detailModal" style="display:none" onclick="closeModal(event)">
-  <div class="modal" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <h3 id="modalTitle">تفاصيل الطلب</h3>
-      <button class="modal-close" onclick="document.getElementById('detailModal').style.display='none'">✕</button>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
-    <div style="padding:16px 24px;border-top:1.5px solid var(--border);display:flex;gap:10px;flex-wrap:wrap" class="no-print">
-      <button class="btn-primary" style="padding:10px 20px;font-size:0.875rem" onclick="window.print()">🖨️ طباعة</button>
-      <button class="btn-outline" style="padding:10px 20px;font-size:0.875rem;color:var(--text);border-color:var(--border)" onclick="downloadRequest()">⬇️ تنزيل</button>
-      <div style="margin-right:auto;display:flex;gap:8px">
-        <button class="action-btn" onclick="updateRequestStatus('processing')">قيد المعالجة</button>
-        <button class="action-btn" onclick="updateRequestStatus('done')">✅ مكتمل</button>
-        <button class="action-btn danger" onclick="updateRequestStatus('rejected')">رفض</button>
+<!-- ══════════ LOGIN ══════════ -->
+<div class="page" id="page-login">
+  <div class="lp">
+    <div class="lc">
+      <div class="lh">
+        <div class="li2">M</div>
+        <h2>ماتركس خدمات</h2>
+        <p>دخول الإدارة</p>
+      </div>
+      <div class="lb">
+        <div class="fg"><label>البريد الإلكتروني</label><input type="email" id="l_em" placeholder="example@email.com" dir="ltr"></div>
+        <div class="fg"><label>كلمة المرور</label><input type="password" id="l_pw" placeholder="••••••••" dir="ltr" onkeydown="if(event.key==='Enter')doLogin()"></div>
+        <button class="bp" style="width:100%;padding:13px;margin-top:6px" onclick="doLogin()">دخول</button>
+        <div id="l_err" style="color:var(--err);font-size:.82rem;margin-top:10px;text-align:center;display:none">بيانات الدخول غير صحيحة</div>
+        <div class="dv2"></div>
+        <button class="bk" style="justify-content:center;width:100%" onclick="showPage('home')">&#8594; الرجوع للرئيسية</button>
       </div>
     </div>
-    <div style="padding:0 24px 16px">
-      <textarea id="adminNote" placeholder="ملاحظة للطلب..." style="width:100%;padding:10px;border:1.5px solid var(--border);border-radius:8px;font-family:'Cairo',sans-serif;font-size:0.875rem;resize:vertical;min-height:60px;direction:rtl"></textarea>
-      <button class="action-btn" style="margin-top:8px" onclick="saveNote()">حفظ الملاحظة</button>
+  </div>
+</div>
+
+<!-- ══════════ ADMIN ══════════ -->
+<div class="page" id="page-admin">
+  <div class="al">
+    <div class="as no-print">
+      <div style="padding:14px 18px 18px;border-bottom:1px solid rgba(255,255,255,.1)">
+        <div style="font-size:.72rem;opacity:.6;margin-bottom:3px">مرحباً</div>
+        <div style="font-weight:700;font-size:.95rem" id="adminNm">المدير</div>
+        <div style="font-size:.75rem;opacity:.55;margin-top:2px" id="adminRole"></div>
+      </div>
+      <div style="margin-top:10px">
+        <div class="si active" onclick="aTab('req')">📋 الطلبات</div>
+        <div class="si" onclick="aTab('stats')">📊 الإحصائيات</div>
+        <div class="si" onclick="aTab('set')">⚙️ الإعدادات</div>
+      </div>
+      <div style="position:absolute;bottom:16px;width:230px">
+        <div class="si" onclick="doLogout()">🚪 تسجيل الخروج</div>
+      </div>
+    </div>
+    <div class="am2">
+
+      <!-- REQUESTS -->
+      <div id="t_req">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+          <h2 style="font-size:1.15rem;font-weight:800">📋 إدارة الطلبات</h2>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <input id="a_search" placeholder="بحث..." oninput="renderTbl()" style="padding:8px 12px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.82rem;width:160px">
+            <select id="a_fs" onchange="renderTbl()" style="padding:8px 11px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.82rem">
+              <option value="">كل الحالات</option>
+              <option value="processing">قيد المعالجة</option>
+              <option value="done">مكتمل</option>
+              <option value="rejected">مرفوض</option>
+            </select>
+            <select id="a_ft" onchange="renderTbl()" style="padding:8px 11px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.82rem">
+              <option value="">كل الخدمات</option>
+              <option value="birth">ميلاد</option>
+              <option value="marriage">زواج</option>
+              <option value="family">قيد عائلي</option>
+            </select>
+          </div>
+        </div>
+        <div class="tbl" style="overflow-x:auto">
+          <table><thead><tr><th>رقم الطلب</th><th>الاسم</th><th>الخدمة</th><th>الهاتف</th><th>الحالة</th><th>التاريخ</th><th>إجراءات</th></tr></thead>
+          <tbody id="a_tbl"></tbody></table>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div id="t_stats" style="display:none">
+        <h2 style="margin-bottom:16px;font-size:1.15rem;font-weight:800">📊 الإحصائيات</h2>
+        <div class="sg">
+          <div class="sc2"><div class="si2">📋</div><div class="sn" id="s_tot">0</div><div class="sl">إجمالي الطلبات</div></div>
+          <div class="sc2"><div class="si2">⏳</div><div class="sn" id="s_pen">0</div><div class="sl">قيد المعالجة</div></div>
+          <div class="sc2"><div class="si2">✅</div><div class="sn" id="s_don">0</div><div class="sl">مكتملة</div></div>
+          <div class="sc2"><div class="si2">❌</div><div class="sn" id="s_rej">0</div><div class="sl">مرفوضة</div></div>
+          <div class="sc2"><div class="si2">💰</div><div class="sn" id="s_rev">0</div><div class="sl">الإيرادات (جنيه)</div></div>
+          <div class="sc2"><div class="si2">📋</div><div class="sn" id="s_bi">0</div><div class="sl">شهادات ميلاد</div></div>
+          <div class="sc2"><div class="si2">💍</div><div class="sn" id="s_ma">0</div><div class="sl">شهادات زواج</div></div>
+          <div class="sc2"><div class="si2">👨‍👩‍👧‍👦</div><div class="sn" id="s_fa">0</div><div class="sl">قيود عائلية</div></div>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div id="t_set" style="display:none">
+        <h2 style="margin-bottom:16px;font-size:1.15rem;font-weight:800">⚙️ الإعدادات</h2>
+        <div class="fcard" style="max-width:440px">
+          <div class="fb">
+            <div class="fg"><label>تغيير كلمة مرور المدير</label><input type="password" id="np1" placeholder="كلمة المرور الجديدة" dir="ltr"></div>
+            <div class="fg"><label>تأكيد كلمة المرور</label><input type="password" id="np2" placeholder="أعد كتابة كلمة المرور" dir="ltr"></div>
+            <button class="bp" onclick="chgPass()">حفظ التغييرات</button>
+          </div>
+        </div>
+        <div style="margin-top:20px">
+          <div class="fcard" style="max-width:440px">
+            <div class="fb">
+              <div style="font-weight:700;margin-bottom:12px;color:var(--err)">⚠️ منطقة الخطر</div>
+              <button class="ab dn" onclick="clearAll()">🗑️ حذف كل الطلبات</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="mo" id="modal" style="display:none" onclick="if(event.target===this)this.style.display='none'">
+  <div class="md" onclick="event.stopPropagation()">
+    <div class="mh no-print"><h3 id="m_t">تفاصيل الطلب</h3><button class="mc" onclick="$('modal').style.display='none'">✕</button></div>
+    <div class="mb2" id="m_b"></div>
+    <div style="padding:14px 20px;border-top:1.5px solid var(--bdr)" class="no-print">
+      <textarea id="a_note" placeholder="أضف ملاحظة للطلب..." style="width:100%;padding:9px 12px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.84rem;resize:vertical;min-height:56px;direction:rtl;margin-bottom:10px"></textarea>
+      <div style="display:flex;gap:7px;flex-wrap:wrap">
+        <button class="ab" onclick="saveNote()">💾 حفظ</button>
+        <button class="ab" onclick="setSt('processing')">🔄 قيد المعالجة</button>
+        <button class="ab ok2" onclick="setSt('done')">✅ مكتمل</button>
+        <button class="ab dn" onclick="setSt('rejected')">❌ رفض</button>
+        <button class="ab" onclick="window.print()">🖨️ طباعة</button>
+        <button class="ab" onclick="dlReq()">⬇️ تنزيل</button>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-// ============================================================
-// DATA STORE (localStorage-based)
-// ============================================================
-const REQUESTS_KEY = 'matrix_requests';
-const USERS_KEY = 'matrix_users';
+// ─── HELPERS ────────────────────────────────────────
+const $=id=>document.getElementById(id);
+const K='mx_v3';
+const USERS={'centermatrix020@gmail.com':{p:'1964111',r:'admin',n:'المدير'},'kareem.00005455249@gmail.com':{p:'1682006',r:'super',n:'Kareem Mohamed'}};
+let CU=null,PD=null,AID=null,deferPrompt=null;
 
-const USERS = {
-  'centermatrix020@gmail.com': { pass: '1964111', role: 'admin', name: 'المدير' },
-  'kareem.00005455249@gmail.com': { pass: '1682006', role: 'superadmin', name: 'كريم محمد' }
-};
+function gR(){return JSON.parse(localStorage.getItem(K)||'[]')}
+function sR(r){localStorage.setItem(K,JSON.stringify(r))}
+function genId(){return 'MX-'+Math.random().toString(36).substr(2,6).toUpperCase()}
+function toast(m,t=''){const el=$('toast');el.textContent=m;el.className='toast '+t+' show';setTimeout(()=>el.classList.remove('show'),3500)}
+function showE(id,s){$(id).classList.toggle('show',s)}
+function isAr(s){return /^[\u0600-\u06FF\s]+$/.test(s.trim())}
+function wc(s){return s.trim().split(/\s+/).filter(w=>w).length}
+function valName(inp,eId){const v=inp.value,ok=isAr(v)&&wc(v)>=4;inp.classList.toggle('err',v.length>0&&!ok);showE(eId,v.length>0&&!ok);return ok}
+function chkPh(v){return /^01[0-9]{9}$/.test(v)}
+function upload(inp,aId){if(!inp.files[0])return;const a=$(aId);a.innerHTML=`<div style="font-size:1.4rem">✅</div><p style="color:var(--ok);font-size:.8rem">${inp.files[0].name}</p>`;a.classList.add('hf')}
+function rf(f){return new Promise(r=>{if(!f){r(null);return}const rd=new FileReader();rd.onload=e=>r(e.target.result);rd.readAsDataURL(f)})}
 
-function getRequests() {
-  return JSON.parse(localStorage.getItem(REQUESTS_KEY) || '[]');
-}
-function saveRequests(r) {
-  localStorage.setItem(REQUESTS_KEY, JSON.stringify(r));
-}
+// ─── NAV ────────────────────────────────────────────
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));$('page-'+id).classList.add('active');window.scrollTo(0,0)}
 
-function genId() {
-  return 'MX-' + Date.now().toString(36).toUpperCase().slice(-6);
-}
-
-// ============================================================
-// NAVIGATION
-// ============================================================
-let currentUser = null;
-let currentRequestData = null;
-let currentRequestId = null;
-
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  window.scrollTo(0, 0);
-}
-
-function startRequest(type) {
-  if (type === 'birth') showPage('birth-form');
-  else if (type === 'marriage') showPage('marriage-form');
+// ─── BIRTH ──────────────────────────────────────────
+async function submitBirth(){
+  let ok=true;
+  const name=$('b_name').value,mother=$('b_mother').value.trim(),date=$('b_date').value,phone=$('b_phone').value;
+  if(!isAr(name)||wc(name)<4){showE('b_ne',true);ok=false}
+  if(!mother){showE('b_me',true);ok=false}
+  if(!date){showE('b_de',true);ok=false}
+  if(!chkPh(phone)){showE('b_pe',true);ok=false}
+  if(!ok)return;
+  const img=await rf($('b_img').files[0]);
+  PD={type:'birth',typeName:'شهادة ميلاد',amount:125,name,motherName:mother,birthDate:date,phone,nationalId:$('b_nid').value,idImage:img,date:new Date().toLocaleDateString('ar-EG')};
+  $('payAmt').textContent='125';showPage('payment');
 }
 
-function showTrackingInput() {
-  const code = prompt('أدخل رقم الطلب:');
-  if (code) openTracking(code.trim());
+// ─── MARRIAGE ───────────────────────────────────────
+async function submitMarriage(){
+  let ok=true;
+  const hn=$('m_h').value,wn=$('m_w').value,hN=$('m_hn').value,wN=$('m_wn').value,ph=$('m_p').value;
+  if(!isAr(hn)||wc(hn)<4){showE('m_he',true);ok=false}
+  if(!isAr(wn)||wc(wn)<4){showE('m_we',true);ok=false}
+  if(hN.length!==14){showE('m_hne',true);ok=false}
+  if(wN.length!==14){showE('m_wne',true);ok=false}
+  if(!chkPh(ph)){showE('m_pe',true);ok=false}
+  if(!ok)return;
+  const hI=await rf($('m_hi').files[0]),wI=await rf($('m_wi').files[0]);
+  PD={type:'marriage',typeName:'شهادة زواج',amount:150,husbandName:hn,wifeName:wn,husbandNid:hN,wifeNid:wN,phone:ph,husbandImage:hI,wifeImage:wI,date:new Date().toLocaleDateString('ar-EG')};
+  $('payAmt').textContent='150';showPage('payment');
 }
 
-function openTracking(code) {
-  const reqs = getRequests();
-  const req = reqs.find(r => r.id === code);
-  if (!req) { showToast('لم يتم العثور على الطلب', 'error'); return; }
-  document.getElementById('trackingCode').textContent = code;
-  updateTrackingSteps(req.status);
+// ─── FAMILY ─────────────────────────────────────────
+async function submitFamily(){
+  let ok=true;
+  const name=$('f_name').value,nid=$('f_nid').value,ph=$('f_p').value;
+  if(!isAr(name)||wc(name)<4){showE('f_ne',true);ok=false}
+  if(nid.length!==14){showE('f_nide',true);ok=false}
+  if(!chkPh(ph)){showE('f_pe',true);ok=false}
+  if(!ok)return;
+  const img=await rf($('f_img').files[0]);
+  PD={type:'family',typeName:'قيد عائلي',amount:100,name,nationalId:nid,phone:ph,members:$('f_mem').value,idImage:img,date:new Date().toLocaleDateString('ar-EG')};
+  $('payAmt').textContent='100';showPage('payment');
+}
+
+// ─── PAYMENT ────────────────────────────────────────
+function copyW(){navigator.clipboard.writeText('01000000000').then(()=>toast('تم نسخ رقم المحفظة ✓','ok'))}
+
+function confirmPay(){
+  const ref=$('t_ref').value.trim();
+  if(!ref){showE('t_re',true);return}
+  const id=genId(),r=gR();
+  const req={id,...PD,transRef:ref,status:'processing',adminNote:'',createdAt:new Date().toISOString()};
+  r.push(req);sR(r);
+  $('trkCode').textContent=id;
+  $('trkType').textContent=req.typeName+' — '+req.date;
+  setSteps('processing');
+  $('trkNote').style.display='none';
+  showPage('tracking');
+  toast('✅ تم إرسال طلبك! رقمه: '+id,'ok');
+  $('t_ref').value='';
+}
+
+// ─── STEPS ──────────────────────────────────────────
+function setSteps(status){
+  const ids=['ts1','ts2','ts3','ts4'],dots=['✓','⚙','📄','🏁'];
+  const map={processing:['done','active','waiting','waiting'],done:['done','done','done','done'],rejected:['done','waiting','waiting','waiting']};
+  const s=map[status]||map.processing;
+  ids.forEach((id,i)=>{const el=$(id);el.className='step '+s[i];el.querySelector('.sd').textContent=s[i]==='done'?'✓':dots[i]});
+}
+
+// ─── SEARCH ─────────────────────────────────────────
+function searchCode(){const c=$('s_code').value.trim().toUpperCase();if(!c)return;const r=gR().filter(x=>x.id===c);showResults(r)}
+function searchName(){const q=$('s_name').value.trim().toLowerCase();if(!q)return;const r=gR().filter(x=>(x.name||x.husbandName||'').toLowerCase().includes(q)||((x.wifeName||'').toLowerCase().includes(q)));showResults(r)}
+function searchNid(){const q=$('s_nid').value.trim();if(!q)return;const r=gR().filter(x=>x.nationalId===q||x.husbandNid===q||x.wifeNid===q);showResults(r)}
+
+function showResults(results){
+  const el=$('sResults');
+  if(!results.length){el.innerHTML='<div style="background:var(--sur2);border-radius:var(--rs);padding:14px;font-size:.875rem;color:var(--mu);text-align:center">لم يتم العثور على نتائج</div>';return}
+  const sm={processing:'قيد المعالجة 🔄',done:'مكتمل ✅',rejected:'مرفوض ❌'};
+  el.innerHTML=results.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).map(r=>`
+    <div onclick="goTrack('${r.id}')" style="background:var(--sur);border:1.5px solid var(--bdr);border-radius:var(--rs);padding:14px 16px;margin-top:10px;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--bdr)'">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
+        <div>
+          <div style="font-weight:700;font-size:.95rem">${r.name||r.husbandName||'---'}</div>
+          <div style="font-size:.8rem;color:var(--mu);margin-top:3px">${r.typeName} — ${r.date}</div>
+          <div style="font-size:.8rem;color:var(--mu)">📞 ${r.phone}</div>
+        </div>
+        <div style="text-align:left">
+          <div style="font-family:monospace;font-size:.85rem;color:var(--primary);font-weight:700;margin-bottom:4px">${r.id}</div>
+          <div style="font-size:.8rem;font-weight:600">${sm[r.status]||r.status}</div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function goTrack(id){
+  const r=gR().find(x=>x.id===id);if(!r)return;
+  $('trkCode').textContent=id;
+  $('trkType').textContent=r.typeName+' — '+r.date;
+  setSteps(r.status);
+  const ne=$('trkNote');
+  if(r.adminNote){ne.innerHTML='<strong>ملاحظة الإدارة:</strong> '+r.adminNote;ne.style.display='block'}else ne.style.display='none';
   showPage('tracking');
 }
 
-function updateTrackingSteps(status) {
-  const steps = { pending: 0, processing: 1, done: 2, rejected: -1 };
-  const stepEls = ['stepPayment', 'stepProcessing', 'stepReady', 'stepDone'];
-  const states = {
-    pending:    ['done', 'active', 'waiting', 'waiting'],
-    processing: ['done', 'done',   'active',  'waiting'],
-    done:       ['done', 'done',   'done',    'done'],
-  };
-  const s = states[status] || states.pending;
-  stepEls.forEach((id, i) => {
-    const el = document.getElementById(id);
-    el.className = 'step ' + s[i];
-    const dot = el.querySelector('.step-dot');
-    if (s[i] === 'done') dot.textContent = '✓';
-    else if (s[i] === 'active') dot.textContent = '⚙';
-  });
+// ─── LOGIN ──────────────────────────────────────────
+function doLogin(){
+  const em=$('l_em').value.trim(),pw=$('l_pw').value;
+  const u=USERS[em];
+  if(!u||u.p!==pw){$('l_err').style.display='block';return}
+  $('l_err').style.display='none';
+  CU={email:em,...u};
+  $('adminNm').textContent=u.n;
+  $('adminRole').textContent=u.r==='super'?'Super Admin':'مدير النظام';
+  $('navAct').innerHTML=`<span style="color:rgba(255,255,255,.75);font-size:.82rem;margin-left:10px">${u.n}</span><button class="nb" onclick="doLogout()">خروج</button>`;
+  renderTbl();updStats();showPage('admin');aTab('req');
+}
+function doLogout(){CU=null;$('navAct').innerHTML=`<button class="nb" onclick="showPage('login')">تسجيل الدخول</button>`;showPage('home')}
+
+// ─── ADMIN ──────────────────────────────────────────
+function aTab(t){
+  ['req','stats','set'].forEach(x=>$('t_'+x).style.display=x===t?'block':'none');
+  document.querySelectorAll('.si').forEach((el,i)=>el.classList.toggle('active',['req','stats','set'][i]===t));
+  if(t==='stats')updStats();
 }
 
-// ============================================================
-// FORM VALIDATION
-// ============================================================
-function isArabic(str) {
-  return /^[\u0600-\u06FF\s]+$/.test(str.trim());
-}
-function countWords(str) {
-  return str.trim().split(/\s+/).filter(w => w.length > 0).length;
-}
-
-function validateName(input) {
-  const val = input.value;
-  const err = document.getElementById('nameError');
-  const valid = isArabic(val) && countWords(val) >= 4;
-  input.classList.toggle('error', val.length > 0 && !valid);
-  err.classList.toggle('show', val.length > 0 && !valid);
-  return valid;
+function updStats(){
+  const r=gR();
+  $('s_tot').textContent=r.length;
+  $('s_pen').textContent=r.filter(x=>x.status==='processing').length;
+  $('s_don').textContent=r.filter(x=>x.status==='done').length;
+  $('s_rej').textContent=r.filter(x=>x.status==='rejected').length;
+  $('s_rev').textContent=r.filter(x=>x.status!=='rejected').reduce((s,x)=>s+(x.amount||0),0);
+  $('s_bi').textContent=r.filter(x=>x.type==='birth').length;
+  $('s_ma').textContent=r.filter(x=>x.type==='marriage').length;
+  $('s_fa').textContent=r.filter(x=>x.type==='family').length;
 }
 
-function handleFileUpload(input) {
-  if (input.files[0]) {
-    const area = document.getElementById('uploadArea');
-    area.innerHTML = `<div style="font-size:2rem">✅</div><p style="color:var(--success)">تم رفع: ${input.files[0].name}</p>`;
-    area.classList.add('has-file');
+function renderTbl(){
+  const q=($('a_search')?.value||'').toLowerCase();
+  const fs=$('a_fs')?.value||'',ft=$('a_ft')?.value||'';
+  let r=gR().filter(x=>{
+    const n=(x.name||x.husbandName||'').toLowerCase();
+    return(!fs||x.status===fs)&&(!ft||x.type===ft)&&(!q||n.includes(q)||x.id.toLowerCase().includes(q)||x.phone?.includes(q));
+  }).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+  const sm={processing:['قيد المعالجة','bpr'],done:['مكتمل','bg'],rejected:['مرفوض','br']};
+  const tb=$('a_tbl');if(!tb)return;
+  if(!r.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--mu);padding:28px">لا توجد طلبات</td></tr>';return}
+  tb.innerHTML=r.map(x=>{const[l,c]=sm[x.status]||['---',''];return`<tr>
+    <td><strong style="font-family:monospace;font-size:.78rem">${x.id}</strong></td>
+    <td>${x.name||x.husbandName||'---'}</td>
+    <td>${x.typeName||'---'}</td>
+    <td style="direction:ltr;text-align:right;font-size:.8rem">${x.phone||'---'}</td>
+    <td><span class="badge ${c}">${l}</span></td>
+    <td style="font-size:.77rem">${x.date||'---'}</td>
+    <td><button class="ab" onclick="openDetail('${x.id}')">عرض</button></td>
+  </tr>`}).join('');
+}
+
+function openDetail(id){
+  const r=gR().find(x=>x.id===id);if(!r)return;
+  AID=id;$('m_t').textContent='طلب: '+id;$('a_note').value=r.adminNote||'';
+  const row=(l,v)=>`<div class="dr"><div class="dl">${l}</div><div class="dv">${v||'---'}</div></div>`;
+  let h='';
+  if(r.type==='birth'){
+    h=row('الخدمة',r.typeName)+row('الاسم الرباعي',r.name)+row('اسم الأم',r.motherName)+row('تاريخ الميلاد',r.birthDate)+row('الهاتف',r.phone)+row('الرقم القومي',r.nationalId||'لم يُدخل')+row('مرجع الدفع',r.transRef)+row('الحالة',r.status)+row('التاريخ',r.date);
+    if(r.idImage)h+=`<img src="${r.idImage}" class="ii">`;
+  }else if(r.type==='marriage'){
+    h=row('الخدمة',r.typeName)+row('اسم الزوج',r.husbandName)+row('اسم الزوجة',r.wifeName)+row('رقم قومي الزوج',r.husbandNid)+row('رقم قومي الزوجة',r.wifeNid)+row('الهاتف',r.phone)+row('مرجع الدفع',r.transRef)+row('الحالة',r.status)+row('التاريخ',r.date);
+    if(r.husbandImage)h+=`<div style="margin-top:8px"><small style="color:var(--mu)">بطاقة الزوج:</small><img src="${r.husbandImage}" class="ii"></div>`;
+    if(r.wifeImage)h+=`<div style="margin-top:8px"><small style="color:var(--mu)">بطاقة الزوجة:</small><img src="${r.wifeImage}" class="ii"></div>`;
+  }else{
+    h=row('الخدمة',r.typeName)+row('اسم رب الأسرة',r.name)+row('الرقم القومي',r.nationalId)+row('الهاتف',r.phone)+row('عدد الأفراد',r.members||'---')+row('مرجع الدفع',r.transRef)+row('الحالة',r.status)+row('التاريخ',r.date);
+    if(r.idImage)h+=`<img src="${r.idImage}" class="ii">`;
   }
+  if(r.adminNote)h+=`<div style="margin-top:10px;background:#fffbeb;border:1px solid #fcd34d;border-radius:var(--rs);padding:10px 13px;font-size:.84rem"><strong>ملاحظة الإدارة:</strong> ${r.adminNote}</div>`;
+  $('m_b').innerHTML=h;$('modal').style.display='flex';
 }
 
-function handleMarriageUpload(input, who) {
-  if (input.files[0]) {
-    const area = document.getElementById(who + 'Upload');
-    area.innerHTML = `<div style="font-size:1.5rem">✅</div><p style="color:var(--success);font-size:0.82rem">${input.files[0].name}</p>`;
-    area.classList.add('has-file');
-  }
-}
+function setSt(s){const r=gR();const i=r.findIndex(x=>x.id===AID);if(i===-1)return;r[i].status=s;sR(r);$('modal').style.display='none';renderTbl();toast('تم تحديث حالة الطلب','ok')}
+function saveNote(){const n=$('a_note').value;const r=gR();const i=r.findIndex(x=>x.id===AID);if(i===-1)return;r[i].adminNote=n;sR(r);toast('تم حفظ الملاحظة','ok')}
+function dlReq(){const r=gR().find(x=>x.id===AID);if(!r)return;const b=new Blob([JSON.stringify(r,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='req-'+r.id+'.json';a.click()}
+function chgPass(){const p1=$('np1').value,p2=$('np2').value;if(!p1||p1!==p2){toast('كلمتا المرور غير متطابقتين','err');return}if(CU)USERS[CU.email].p=p1;toast('تم تغيير كلمة المرور','ok');$('np1').value='';$('np2').value=''}
+function clearAll(){if(confirm('هل أنت متأكد من حذف كل الطلبات؟ لا يمكن التراجع.')){sR([]);renderTbl();updStats();toast('تم حذف كل الطلبات')}}
 
-function showErr(id, show) {
-  document.getElementById(id).classList.toggle('show', show);
-}
+// ─── PWA ────────────────────────────────────────────
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferPrompt=e;$('installBar').style.display='flex'});
+function installApp(){if(!deferPrompt)return;deferPrompt.prompt();deferPrompt.userChoice.then(()=>{deferPrompt=null;$('installBar').style.display='none'})}
+window.addEventListener('appinstalled',()=>{$('installBar').style.display='none';toast('تم تثبيت التطبيق بنجاح ✓','ok')});
 
-// ============================================================
-// BIRTH FORM SUBMIT
-// ============================================================
-function submitBirthForm() {
-  let ok = true;
-
-  const name = document.getElementById('fullName').value;
-  const nameValid = isArabic(name) && countWords(name) >= 4;
-  if (!nameValid) { showErr('nameError', true); ok = false; }
-
-  const mother = document.getElementById('motherName').value.trim();
-  if (!mother) { showErr('motherError', true); ok = false; }
-
-  const date = document.getElementById('birthDate').value;
-  if (!date) { showErr('dateError', true); ok = false; }
-
-  const phone = document.getElementById('phone').value;
-  if (!/^01[0-9]{9}$/.test(phone)) { showErr('phoneError', true); ok = false; }
-
-  if (!ok) return;
-
-  const idFile = document.getElementById('idPhoto').files[0];
-  const reader = idFile ? new FileReader() : null;
-
-  const save = (imgData) => {
-    currentRequestData = {
-      type: 'birth',
-      typeName: 'شهادة ميلاد',
-      amount: 125,
-      name: name,
-      motherName: mother,
-      birthDate: date,
-      phone: phone,
-      nationalId: document.getElementById('nationalId').value,
-      idImage: imgData || null,
-      date: new Date().toLocaleDateString('ar-EG'),
-    };
-    document.getElementById('payAmount').textContent = '125';
-    showPage('payment');
-  };
-
-  if (reader) { reader.onload = e => save(e.target.result); reader.readAsDataURL(idFile); }
-  else save(null);
-}
-
-// ============================================================
-// MARRIAGE FORM SUBMIT
-// ============================================================
-function submitMarriageForm() {
-  let ok = true;
-  const hn = document.getElementById('husbandName').value;
-  const wn = document.getElementById('wifeName').value;
-  const hNid = document.getElementById('husbandNid').value;
-  const wNid = document.getElementById('wifeNid').value;
-  const phone = document.getElementById('marriagePhone').value;
-
-  if (!isArabic(hn) || countWords(hn) < 4) { showErr('husbandError', true); ok = false; }
-  if (!isArabic(wn) || countWords(wn) < 4) { showErr('wifeError', true); ok = false; }
-  if (hNid.length !== 14) { showErr('husbandNidError', true); ok = false; }
-  if (wNid.length !== 14) { showErr('wifeNidError', true); ok = false; }
-  if (!/^01[0-9]{9}$/.test(phone)) { showErr('marriagePhoneError', true); ok = false; }
-
-  if (!ok) return;
-
-  const hFile = document.getElementById('husbandId').files[0];
-  const wFile = document.getElementById('wifeId').files[0];
-
-  const save = (hImg, wImg) => {
-    currentRequestData = {
-      type: 'marriage',
-      typeName: 'شهادة زواج',
-      amount: 150,
-      husbandName: hn,
-      wifeName: wn,
-      husbandNid: hNid,
-      wifeNid: wNid,
-      phone: phone,
-      husbandImage: hImg || null,
-      wifeImage: wImg || null,
-      date: new Date().toLocaleDateString('ar-EG'),
-    };
-    document.getElementById('payAmount').textContent = '150';
-    showPage('payment');
-  };
-
-  let hImg = null, wImg = null;
-  const done = () => { if ((hFile ? hImg : true) && (wFile ? wImg : true)) save(hImg, wImg); };
-  if (hFile) { const r = new FileReader(); r.onload = e => { hImg = e.target.result; done(); }; r.readAsDataURL(hFile); } 
-  if (wFile) { const r = new FileReader(); r.onload = e => { wImg = e.target.result; done(); }; r.readAsDataURL(wFile); }
-  if (!hFile && !wFile) save(null, null);
-}
-
-// ============================================================
-// PAYMENT
-// ============================================================
-function copyWallet() {
-  navigator.clipboard.writeText('01000000000').then(() => showToast('تم نسخ رقم المحفظة ✓', 'success'));
-}
-
-function confirmPayment() {
-  const ref = document.getElementById('transRef').value.trim();
-  if (!ref) { showErr('transError', true); return; }
-
-  const id = genId();
-  currentRequestId = id;
-
-  const req = {
-    id,
-    ...currentRequestData,
-    transRef: ref,
-    status: 'processing',
-    adminNote: '',
-    createdAt: new Date().toISOString(),
-  };
-
-  const reqs = getRequests();
-  reqs.push(req);
-  saveRequests(reqs);
-
-  document.getElementById('trackingCode').textContent = id;
-  updateTrackingSteps('processing');
-  showPage('tracking');
-  showToast('✅ تم إرسال طلبك بنجاح! رقم طلبك: ' + id, 'success');
-}
-
-// ============================================================
-// LOGIN
-// ============================================================
-function doLogin() {
-  const email = document.getElementById('loginEmail').value.trim();
-  const pass = document.getElementById('loginPass').value;
-  const errEl = document.getElementById('loginError');
-
-  const user = USERS[email];
-  if (!user || user.pass !== pass) {
-    errEl.style.display = 'block';
-    return;
-  }
-
-  errEl.style.display = 'none';
-  currentUser = { email, ...user };
-
-  document.getElementById('adminName').textContent = user.name;
-  document.getElementById('navActions').innerHTML = `
-    <span style="color:rgba(255,255,255,0.8);font-size:0.875rem;margin-left:12px">${user.name}</span>
-    <button class="nav-btn" onclick="doLogout()">خروج</button>
-  `;
-
-  renderAdminTable();
-  updateStats();
-  showPage('admin');
-  adminTab('requests');
-}
-
-function doLogout() {
-  currentUser = null;
-  document.getElementById('navActions').innerHTML = `<button class="nav-btn" onclick="showPage('login')">تسجيل الدخول</button>`;
-  showPage('home');
-}
-
-// ============================================================
-// ADMIN
-// ============================================================
-function adminTab(tab) {
-  ['requests', 'stats', 'settings'].forEach(t => {
-    document.getElementById('tab-' + t).style.display = t === tab ? 'block' : 'none';
-  });
-  document.querySelectorAll('.sidebar-item').forEach((el, i) => {
-    el.classList.toggle('active', ['requests', 'stats', 'settings'][i] === tab);
-  });
-  if (tab === 'stats') updateStats();
-}
-
-function updateStats() {
-  const reqs = getRequests();
-  document.getElementById('statTotal').textContent = reqs.length;
-  document.getElementById('statPending').textContent = reqs.filter(r => r.status === 'pending' || r.status === 'processing').length;
-  document.getElementById('statDone').textContent = reqs.filter(r => r.status === 'done').length;
-  document.getElementById('statRevenue').textContent = reqs.filter(r => r.status !== 'rejected').reduce((s, r) => s + (r.amount || 0), 0);
-}
-
-function renderAdminTable() {
-  const filter = document.getElementById('filterStatus')?.value || '';
-  let reqs = getRequests();
-  if (filter) reqs = reqs.filter(r => r.status === filter);
-  reqs = reqs.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-  const statusMap = {
-    pending: ['معلق', 'badge-pending'],
-    processing: ['قيد المعالجة', 'badge-processing'],
-    done: ['مكتمل', 'badge-done'],
-    rejected: ['مرفوض', 'badge-rejected'],
-  };
-
-  const tbody = document.getElementById('adminTableBody');
-  if (!reqs.length) {
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:32px">لا توجد طلبات</td></tr>';
-    return;
-  }
-
-  tbody.innerHTML = reqs.map(r => {
-    const [label, cls] = statusMap[r.status] || ['غير معروف', ''];
-    const name = r.name || r.husbandName || '---';
-    return `
-      <tr>
-        <td><strong style="font-family:monospace">${r.id}</strong></td>
-        <td>${name}</td>
-        <td>${r.typeName || '---'}</td>
-        <td><span class="badge ${cls}">${label}</span></td>
-        <td style="font-size:0.8rem">${r.date || '---'}</td>
-        <td>
-          <button class="action-btn" onclick="openDetail('${r.id}')">عرض</button>
-        </td>
-      </tr>
-    `;
-  }).join('');
-}
-
-let activeDetailId = null;
-
-function openDetail(id) {
-  const reqs = getRequests();
-  const r = reqs.find(x => x.id === id);
-  if (!r) return;
-  activeDetailId = id;
-
-  document.getElementById('modalTitle').textContent = 'طلب رقم: ' + id;
-  document.getElementById('adminNote').value = r.adminNote || '';
-
-  let html = '';
-  if (r.type === 'birth') {
-    html = buildDetailRows([
-      ['نوع الخدمة', r.typeName],
-      ['الاسم الرباعي', r.name],
-      ['اسم الأم', r.motherName],
-      ['تاريخ الميلاد', r.birthDate],
-      ['رقم الهاتف', r.phone],
-      ['الرقم القومي', r.nationalId || 'لم يُدخل'],
-      ['مرجع الدفع', r.transRef],
-      ['الحالة', r.status],
-      ['التاريخ', r.date],
-    ]);
-    if (r.idImage) html += `<img src="${r.idImage}" class="id-image" alt="بطاقة الهوية">`;
-  } else {
-    html = buildDetailRows([
-      ['نوع الخدمة', r.typeName],
-      ['اسم الزوج', r.husbandName],
-      ['اسم الزوجة', r.wifeName],
-      ['رقم قومي الزوج', r.husbandNid],
-      ['رقم قومي الزوجة', r.wifeNid],
-      ['رقم الهاتف', r.phone],
-      ['مرجع الدفع', r.transRef],
-      ['الحالة', r.status],
-      ['التاريخ', r.date],
-    ]);
-    if (r.husbandImage) html += `<div style="margin-top:8px"><div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:4px">بطاقة الزوج:</div><img src="${r.husbandImage}" class="id-image" alt="بطاقة الزوج"></div>`;
-    if (r.wifeImage) html += `<div style="margin-top:8px"><div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:4px">بطاقة الزوجة:</div><img src="${r.wifeImage}" class="id-image" alt="بطاقة الزوجة"></div>`;
-  }
-
-  if (r.adminNote) html += `<div style="margin-top:12px;background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;padding:10px 14px;font-size:0.875rem"><strong>ملاحظة الإدارة:</strong> ${r.adminNote}</div>`;
-
-  document.getElementById('modalBody').innerHTML = html;
-  document.getElementById('detailModal').style.display = 'flex';
-}
-
-function buildDetailRows(pairs) {
-  return pairs.map(([l, v]) => `
-    <div class="detail-row">
-      <div class="detail-label">${l}</div>
-      <div class="detail-value">${v || '---'}</div>
-    </div>
-  `).join('');
-}
-
-function closeModal(e) {
-  if (e.target.id === 'detailModal') document.getElementById('detailModal').style.display = 'none';
-}
-
-function updateRequestStatus(status) {
-  const reqs = getRequests();
-  const idx = reqs.findIndex(r => r.id === activeDetailId);
-  if (idx === -1) return;
-  reqs[idx].status = status;
-  saveRequests(reqs);
-  document.getElementById('detailModal').style.display = 'none';
-  renderAdminTable();
-  showToast('تم تحديث حالة الطلب', 'success');
-}
-
-function saveNote() {
-  const note = document.getElementById('adminNote').value;
-  const reqs = getRequests();
-  const idx = reqs.findIndex(r => r.id === activeDetailId);
-  if (idx === -1) return;
-  reqs[idx].adminNote = note;
-  saveRequests(reqs);
-  showToast('تم حفظ الملاحظة', 'success');
-}
-
-function downloadRequest() {
-  const reqs = getRequests();
-  const r = reqs.find(x => x.id === activeDetailId);
-  if (!r) return;
-  const blob = new Blob([JSON.stringify(r, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'request-' + r.id + '.json';
-  a.click();
-}
-
-function changePassword() {
-  const p1 = document.getElementById('newPass1').value;
-  const p2 = document.getElementById('newPass2').value;
-  if (!p1 || p1 !== p2) { showToast('كلمتا المرور غير متطابقتين', 'error'); return; }
-  if (currentUser) USERS[currentUser.email].pass = p1;
-  showToast('تم تغيير كلمة المرور', 'success');
-}
-
-// ============================================================
-// TOAST
-// ============================================================
-function showToast(msg, type = '') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast ' + type + ' show';
-  setTimeout(() => t.classList.remove('show'), 3500);
-}
-
-// Init
-renderAdminTable();
+// ─── SERVICE WORKER ─────────────────────────────────
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})})}
 </script>
 </body>
 </html>
