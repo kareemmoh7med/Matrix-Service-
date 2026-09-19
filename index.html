@@ -4,224 +4,192 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0f2347">
-<meta name="description" content="ماتركس خدمات — خدمات حكومية إلكترونية سريعة وآمنة">
+<meta name="description" content="ماتركس خدمات — خدمات حكومية إلكترونية">
 <link rel="manifest" href="manifest.json">
 <title>ماتركس خدمات</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
-:root{--primary:#1a3a6b;--pd:#0f2347;--accent:#c8a951;--al:#e8c96d;--bg:#f0f4fa;--sur:#fff;--sur2:#eef1f7;--txt:#1a1a2e;--mu:#6b7280;--bdr:#dde3f0;--ok:#16a34a;--err:#dc2626;--warn:#d97706;--shd:0 4px 24px rgba(26,58,107,.10);--r:14px;--rs:8px}
+:root{--pr:#1a3a6b;--pd:#0f2347;--ac:#c8a951;--al:#e8c96d;--bg:#f0f4fa;--su:#fff;--s2:#eef1f7;--tx:#1a1a2e;--mu:#6b7280;--bd:#dde3f0;--ok:#16a34a;--er:#dc2626;--wa:#d97706;--sh:0 4px 24px rgba(26,58,107,.10);--r:14px;--rs:8px}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;direction:rtl}
-/* NAV */
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;direction:rtl}
 .nav{background:var(--pd);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.25)}
 .logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:900;font-size:1.2rem;cursor:pointer}
-.li{width:40px;height:40px;background:linear-gradient(135deg,var(--accent),var(--al));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:var(--pd);box-shadow:0 2px 8px rgba(200,169,81,.4)}
-.nb{background:var(--accent);color:var(--pd);border:none;border-radius:var(--rs);padding:8px 18px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:.2s}
-.nb:hover{background:var(--al);transform:translateY(-1px)}
-/* PAGES */
+.logoicon{width:40px;height:40px;background:linear-gradient(135deg,var(--ac),var(--al));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:var(--pd)}
+.nbtn{background:var(--ac);color:var(--pd);border:none;border-radius:var(--rs);padding:8px 18px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.875rem;cursor:pointer;transition:.2s}
+.nbtn:hover{background:var(--al);transform:translateY(-1px)}
 .page{display:none;animation:fi .3s ease}
 .page.active{display:block}
-@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-/* HERO */
-.hero{background:linear-gradient(135deg,var(--pd) 0%,#1a3a6b 55%,#1e4a8a 100%);color:#fff;padding:60px 20px 48px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(200,169,81,.08) 0%,transparent 70%)}
-.hero-badge{display:inline-block;background:rgba(200,169,81,.18);border:1px solid rgba(200,169,81,.4);color:var(--al);padding:6px 18px;border-radius:20px;font-size:.82rem;font-weight:600;margin-bottom:20px;animation:fi .5s ease}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,var(--pd) 0%,#1a3a6b 55%,#1e4a8a 100%);color:#fff;padding:60px 20px 50px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(200,169,81,.08),transparent 70%)}
+.hbadge{display:inline-block;background:rgba(200,169,81,.18);border:1px solid rgba(200,169,81,.4);color:var(--al);padding:6px 18px;border-radius:20px;font-size:.82rem;font-weight:600;margin-bottom:20px}
 .hero h1{font-size:clamp(1.7rem,5vw,2.9rem);font-weight:900;margin-bottom:14px;line-height:1.3}
 .hero h1 span{color:var(--al)}
 .hero p{font-size:1rem;opacity:.85;max-width:500px;margin:0 auto 30px;line-height:1.9}
-.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.bp{background:var(--accent);color:var(--pd);border:none;border-radius:var(--rs);padding:13px 28px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:.2s;box-shadow:0 4px 16px rgba(200,169,81,.35)}
-.bp:hover{background:var(--al);transform:translateY(-2px);box-shadow:0 6px 20px rgba(200,169,81,.45)}
-.bo{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:var(--rs);padding:11px 28px;font-family:'Cairo',sans-serif;font-weight:600;font-size:.95rem;cursor:pointer;transition:.2s}
-.bo:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.65)}
-/* FEATURES */
-.features{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;padding:32px 20px;background:var(--pd);border-bottom:1px solid rgba(255,255,255,.08)}
-.feat{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.8);font-size:.875rem}
-.feat span:first-child{font-size:1.2rem}
-/* SECTION */
+.hacts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btnp{background:var(--ac);color:var(--pd);border:none;border-radius:var(--rs);padding:13px 28px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:.2s;box-shadow:0 4px 16px rgba(200,169,81,.35)}
+.btnp:hover{background:var(--al);transform:translateY(-2px)}
+.btno{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:var(--rs);padding:11px 28px;font-family:'Cairo',sans-serif;font-weight:600;font-size:.95rem;cursor:pointer;transition:.2s}
+.btno:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.65)}
+.feats{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;padding:20px;background:rgba(0,0,0,.2)}
+.feat{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.8);font-size:.85rem}
 .sec{padding:44px 20px;max-width:960px;margin:0 auto}
-.sec-t{font-size:1.4rem;font-weight:800;margin-bottom:6px;color:var(--pd)}
-.sec-s{color:var(--mu);font-size:.875rem;margin-bottom:26px}
+.sct{font-size:1.4rem;font-weight:800;margin-bottom:6px;color:var(--pd)}
+.scs{color:var(--mu);font-size:.875rem;margin-bottom:26px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-/* CARDS */
-.card{background:var(--sur);border:2px solid var(--bdr);border-radius:var(--r);padding:26px 22px;cursor:pointer;transition:.25s;position:relative;overflow:hidden}
-.card::after{content:'';position:absolute;top:0;right:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--accent),var(--primary));transform:scaleY(0);transition:.25s;transform-origin:top}
-.card:hover{border-color:var(--primary);box-shadow:0 8px 32px rgba(26,58,107,.12);transform:translateY(-4px)}
+.card{background:var(--su);border:2px solid var(--bd);border-radius:var(--r);padding:26px 22px;cursor:pointer;transition:.25s;position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;top:0;right:0;width:4px;height:100%;background:linear-gradient(to bottom,var(--ac),var(--pr));transform:scaleY(0);transition:.25s;transform-origin:top}
+.card:hover{border-color:var(--pr);box-shadow:0 8px 32px rgba(26,58,107,.12);transform:translateY(-4px)}
 .card:hover::after{transform:scaleY(1)}
-.ci{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px}
-.cb{background:#dbeafe}.cg{background:#dcfce7}.cy{background:#fef9c3}.cp{background:#f3e8ff}
+.cicon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:14px}
+.cb{background:#dbeafe}.cg{background:#dcfce7}.cy{background:#fef9c3}
 .card h3{font-size:1rem;font-weight:700;margin-bottom:8px}
 .card p{font-size:.83rem;color:var(--mu);line-height:1.7}
-.price-row{margin-top:14px;display:flex;align-items:center;gap:8px}
-.pt{background:var(--pd);color:#fff;border-radius:6px;padding:3px 11px;font-size:.8rem;font-weight:700}
-.dt{background:#fef3c7;color:#92400e;border-radius:6px;padding:3px 9px;font-size:.77rem;font-weight:600}
-/* FORM */
+.prow{margin-top:14px;display:flex;align-items:center;gap:8px}
+.ptag{background:var(--pd);color:#fff;border-radius:6px;padding:3px 11px;font-size:.8rem;font-weight:700}
+.dtag{background:#fef3c7;color:#92400e;border-radius:6px;padding:3px 9px;font-size:.77rem;font-weight:600}
 .fc{max-width:700px;margin:0 auto;padding:20px}
-.fcard{background:var(--sur);border-radius:var(--r);box-shadow:var(--shd);overflow:hidden}
-.fh{background:linear-gradient(135deg,var(--pd),var(--primary));color:#fff;padding:22px 26px}
-.fh h2{font-size:1.2rem;font-weight:800;margin-bottom:4px}
-.fh p{font-size:.83rem;opacity:.8}
-.aw{background:#fffbeb;border:1px solid #fcd34d;border-right:4px solid var(--warn);border-radius:var(--rs);padding:11px 14px;margin:16px 26px 0;font-size:.83rem;color:#92400e;display:flex;align-items:center;gap:8px}
+.fcard{background:var(--su);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden}
+.fhead{background:linear-gradient(135deg,var(--pd),var(--pr));color:#fff;padding:22px 26px}
+.fhead h2{font-size:1.2rem;font-weight:800;margin-bottom:4px}
+.fhead p{font-size:.83rem;opacity:.8}
+.aw{background:#fffbeb;border:1px solid #fcd34d;border-right:4px solid var(--wa);border-radius:var(--rs);padding:11px 14px;margin:16px 26px 0;font-size:.83rem;color:#92400e;display:flex;align-items:center;gap:8px}
 .fb{padding:22px 26px}
-.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:540px){.fr{grid-template-columns:1fr}}
+.fr2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:540px){.fr2{grid-template-columns:1fr}}
 .fg{margin-bottom:16px}
 .fg label{display:block;font-size:.83rem;font-weight:600;margin-bottom:5px}
-.req{color:var(--err);margin-right:2px}
+.req{color:var(--er);margin-right:2px}
 .opt{color:var(--mu);font-size:.77rem;font-weight:400}
-.fg input,.fg select,.fg textarea{width:100%;padding:10px 13px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.9rem;color:var(--txt);background:var(--bg);transition:.2s;direction:rtl}
-.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(26,58,107,.1);background:#fff}
-.fg input.err{border-color:var(--err)}
-.fe{color:var(--err);font-size:.77rem;margin-top:3px;display:none}
-.fe.show{display:block}
-.ua{border:2px dashed var(--bdr);border-radius:var(--rs);padding:20px;text-align:center;cursor:pointer;transition:.2s;background:var(--bg)}
-.ua:hover{border-color:var(--primary);background:#f0f4ff}
+.fg input,.fg select,.fg textarea{width:100%;padding:10px 13px;border:1.5px solid var(--bd);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.9rem;color:var(--tx);background:var(--bg);transition:.2s;direction:rtl}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--pr);box-shadow:0 0 0 3px rgba(26,58,107,.1);background:#fff}
+.fg input.inerr{border-color:var(--er)}
+.ferr{color:var(--er);font-size:.77rem;margin-top:3px;display:none}
+.ferr.show{display:block}
+.ua{border:2px dashed var(--bd);border-radius:var(--rs);padding:20px;text-align:center;cursor:pointer;transition:.2s;background:var(--bg)}
+.ua:hover{border-color:var(--pr);background:#f0f4ff}
 .ua p{font-size:.8rem;color:var(--mu);margin-top:6px}
 .ua.hf{border-color:var(--ok);background:#f0fdf4}
-/* PAYMENT */
 .pb{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1.5px solid #86efac;border-radius:var(--r);padding:22px;margin-bottom:18px}
 .pb h3{font-size:.9rem;font-weight:700;color:#15803d;margin-bottom:12px}
-.wn{background:#fff;border:1.5px solid #86efac;border-radius:var(--rs);padding:11px 14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.wn strong{font-size:1rem;color:var(--pd);letter-spacing:1px}
-.cb2{background:var(--pd);color:#fff;border:none;border-radius:6px;padding:5px 12px;font-family:'Cairo',sans-serif;font-size:.77rem;cursor:pointer;transition:.2s}
-.cb2:hover{background:var(--primary)}
-.ad{text-align:center;padding:14px;background:#fff;border-radius:var(--rs);border:1.5px solid #86efac}
-.ad .am{font-size:2rem;font-weight:900;color:var(--pd)}
-.ad .al2{font-size:.8rem;color:var(--mu)}
-/* TRACKING */
-.tc{background:var(--sur);border-radius:var(--r);box-shadow:var(--shd);padding:26px;max-width:620px;margin:0 auto}
-.tid{background:linear-gradient(135deg,var(--pd),var(--primary));border-radius:var(--rs);padding:18px;text-align:center;margin-bottom:22px;color:#fff}
+.wnum{background:#fff;border:1.5px solid #86efac;border-radius:var(--rs);padding:11px 14px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.wnum strong{font-size:1rem;color:var(--pd);letter-spacing:1px}
+.cbtn{background:var(--pd);color:#fff;border:none;border-radius:6px;padding:5px 12px;font-family:'Cairo',sans-serif;font-size:.77rem;cursor:pointer}
+.cbtn:hover{background:var(--pr)}
+.amtd{text-align:center;padding:14px;background:#fff;border-radius:var(--rs);border:1.5px solid #86efac}
+.amtd .amt{font-size:2rem;font-weight:900;color:var(--pd)}
+.amtd .aml{font-size:.8rem;color:var(--mu)}
+.tc{background:var(--su);border-radius:var(--r);box-shadow:var(--sh);padding:26px;max-width:620px;margin:0 auto}
+.tid{background:linear-gradient(135deg,var(--pd),var(--pr));border-radius:var(--rs);padding:18px;text-align:center;margin-bottom:22px;color:#fff}
 .tid .tl{font-size:.77rem;opacity:.75;margin-bottom:4px}
 .tid .tv{font-size:1.4rem;font-weight:900;letter-spacing:3px;font-family:monospace}
 .tid .ts{font-size:.8rem;opacity:.7;margin-top:6px}
 .steps{position:relative}
-.steps::before{content:'';position:absolute;right:19px;top:0;bottom:0;width:2px;background:var(--bdr)}
+.steps::before{content:'';position:absolute;right:19px;top:0;bottom:0;width:2px;background:var(--bd)}
 .step{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;position:relative}
-.sd{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;position:relative;z-index:1;border:3px solid var(--bdr);background:#fff;transition:.4s}
-.step.done .sd{background:var(--ok);border-color:var(--ok);color:#fff}
-.step.active .sd{background:var(--primary);border-color:var(--primary);color:#fff;animation:pulse 2s infinite}
-.step.waiting .sd{background:var(--sur2);color:var(--mu)}
+.sdot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;position:relative;z-index:1;border:3px solid var(--bd);background:#fff;transition:.4s}
+.step.done .sdot{background:var(--ok);border-color:var(--ok);color:#fff}
+.step.active .sdot{background:var(--pr);border-color:var(--pr);color:#fff;animation:pulse 2s infinite}
+.step.waiting .sdot{background:var(--s2);color:var(--mu)}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(26,58,107,.4)}50%{box-shadow:0 0 0 8px rgba(26,58,107,0)}}
-.sc h4{font-size:.88rem;font-weight:700;margin-bottom:3px}
-.sc p{font-size:.78rem;color:var(--mu)}
-.step.done .sc h4{color:var(--ok)}
-.step.active .sc h4{color:var(--primary)}
-/* TRACK SEARCH */
-.ts-box{background:var(--sur);border-radius:var(--r);box-shadow:var(--shd);padding:24px;max-width:580px;margin:0 auto}
-.ts-box h3{font-size:1rem;font-weight:700;margin-bottom:16px;color:var(--pd)}
+.scon h4{font-size:.88rem;font-weight:700;margin-bottom:3px}
+.scon p{font-size:.78rem;color:var(--mu)}
+.step.done .scon h4{color:var(--ok)}
+.step.active .scon h4{color:var(--pr)}
+.tsbox{background:var(--su);border-radius:var(--r);box-shadow:var(--sh);padding:24px;max-width:580px;margin:0 auto}
+.tsbox h3{font-size:1rem;font-weight:700;margin-bottom:16px;color:var(--pd)}
 .trow{display:flex;gap:8px}
-.trow input{flex:1;padding:10px 13px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.9rem;direction:rtl}
-.trow input:focus{outline:none;border-color:var(--primary)}
-/* LOGIN */
+.trow input{flex:1;padding:10px 13px;border:1.5px solid var(--bd);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.9rem;direction:rtl}
+.trow input:focus{outline:none;border-color:var(--pr)}
 .lp{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,var(--pd),#1e3a5f)}
 .lc{background:#fff;border-radius:var(--r);box-shadow:0 20px 60px rgba(0,0,0,.3);width:100%;max-width:400px;overflow:hidden}
-.lh{background:linear-gradient(135deg,var(--pd),var(--primary));padding:28px 28px 22px;text-align:center;color:#fff}
-.lh .li2{width:54px;height:54px;font-size:1.6rem;margin:0 auto 14px;background:linear-gradient(135deg,var(--accent),var(--al));border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--pd)}
+.lh{background:linear-gradient(135deg,var(--pd),var(--pr));padding:28px;text-align:center;color:#fff}
+.lhi{width:54px;height:54px;font-size:1.6rem;margin:0 auto 14px;background:linear-gradient(135deg,var(--ac),var(--al));border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--pd)}
 .lh h2{font-size:1.3rem;font-weight:800;margin-bottom:3px}
 .lh p{font-size:.82rem;opacity:.75}
 .lb{padding:24px 28px}
-/* ADMIN */
-.al{display:flex;min-height:calc(100vh - 64px)}
-.as{width:230px;background:var(--pd);color:#fff;padding:18px 0;flex-shrink:0;position:relative}
-@media(max-width:768px){.as{display:none}}
-.si{padding:11px 18px;cursor:pointer;display:flex;align-items:center;gap:9px;font-size:.875rem;transition:background .2s;border-right:3px solid transparent}
-.si:hover{background:rgba(255,255,255,.08)}
-.si.active{background:rgba(255,255,255,.12);border-right-color:var(--accent);color:var(--al)}
-.am2{flex:1;padding:22px;overflow-x:hidden}
-.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:22px}
-.sc2{background:var(--sur);border-radius:var(--r);padding:18px;border:1.5px solid var(--bdr);transition:.2s}
-.sc2:hover{box-shadow:var(--shd)}
-.sc2 .sn{font-size:1.9rem;font-weight:900;color:var(--primary)}
-.sc2 .sl{font-size:.77rem;color:var(--mu);margin-top:3px}
-.sc2 .si2{font-size:1.3rem;margin-bottom:6px}
-.tbl{background:var(--sur);border-radius:var(--r);border:1.5px solid var(--bdr);overflow:hidden}
+.alay{display:flex;min-height:calc(100vh - 64px)}
+.aside{width:230px;background:var(--pd);color:#fff;padding:18px 0;flex-shrink:0;position:relative}
+@media(max-width:768px){.aside{display:none}}
+.sitem{padding:11px 18px;cursor:pointer;display:flex;align-items:center;gap:9px;font-size:.875rem;transition:background .2s;border-right:3px solid transparent}
+.sitem:hover{background:rgba(255,255,255,.08)}
+.sitem.active{background:rgba(255,255,255,.12);border-right-color:var(--ac);color:var(--al)}
+.amain{flex:1;padding:22px;overflow-x:hidden}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:22px}
+.scard{background:var(--su);border-radius:var(--r);padding:18px;border:1.5px solid var(--bd)}
+.scard .snum{font-size:1.9rem;font-weight:900;color:var(--pr)}
+.scard .slbl{font-size:.77rem;color:var(--mu);margin-top:3px}
+.scard .sico{font-size:1.3rem;margin-bottom:6px}
+.tblw{background:var(--su);border-radius:var(--r);border:1.5px solid var(--bd);overflow:hidden}
 table{width:100%;border-collapse:collapse}
-th{background:var(--sur2);padding:10px 13px;text-align:right;font-size:.76rem;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.5px}
-td{padding:11px 13px;border-bottom:1px solid var(--bdr);font-size:.83rem}
+th{background:var(--s2);padding:10px 13px;text-align:right;font-size:.76rem;font-weight:700;color:var(--mu);letter-spacing:.5px}
+td{padding:11px 13px;border-bottom:1px solid var(--bd);font-size:.83rem}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:var(--bg)}
 .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600}
-.bp2{background:#fef3c7;color:#92400e}.bpr{background:#dbeafe;color:#1e40af}.bg{background:#dcfce7;color:#15803d}.br{background:#fee2e2;color:#991b1b}
-.ab{background:none;border:1.5px solid var(--bdr);border-radius:6px;padding:4px 10px;font-family:'Cairo',sans-serif;font-size:.77rem;cursor:pointer;transition:.2s;margin-left:3px}
-.ab:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
-.ab.ok2:hover{background:var(--ok);border-color:var(--ok);color:#fff}
-.ab.dn:hover{background:var(--err);border-color:var(--err);color:#fff}
-/* MODAL */
-.mo{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:14px;animation:fi .2s}
-.md{background:#fff;border-radius:var(--r);max-width:600px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.mh{padding:16px 20px;border-bottom:1.5px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1}
-.mh h3{font-size:.95rem;font-weight:700}
-.mc{background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--mu)}
-.mb2{padding:16px 20px}
-.dr{display:flex;border-bottom:1px solid var(--bdr);padding:9px 0;gap:13px}
-.dr:last-child{border-bottom:none}
-.dl{width:130px;font-size:.79rem;color:var(--mu);font-weight:600;flex-shrink:0}
-.dv{font-size:.84rem;font-weight:500}
-.ii{width:100%;border-radius:var(--rs);border:1.5px solid var(--bdr);margin:10px 0;max-height:180px;object-fit:cover}
-/* PRINT */
-.print-only{display:none}
-@media print{
-  .no-print{display:none!important}
-  .print-only{display:block}
-  .print-card{width:148mm;border:2px solid #0f2347;border-radius:8px;padding:16px 20px;font-family:'Cairo',sans-serif;direction:rtl}
-  body{background:#fff}
-}
-/* TOAST */
+.bpen{background:#fef3c7;color:#92400e}.bpro{background:#dbeafe;color:#1e40af}.bok{background:#dcfce7;color:#15803d}.brej{background:#fee2e2;color:#991b1b}
+.abtn{background:none;border:1.5px solid var(--bd);border-radius:6px;padding:4px 10px;font-family:'Cairo',sans-serif;font-size:.77rem;cursor:pointer;transition:.2s;margin-left:3px}
+.abtn:hover{background:var(--pr);color:#fff;border-color:var(--pr)}
+.abtn.aok:hover{background:var(--ok);border-color:var(--ok);color:#fff}
+.abtn.aer:hover{background:var(--er);border-color:var(--er);color:#fff}
+.mover{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:14px;animation:fi .2s}
+.mdal{background:#fff;border-radius:var(--r);max-width:600px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.mhdr{padding:16px 20px;border-bottom:1.5px solid var(--bd);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1}
+.mhdr h3{font-size:.95rem;font-weight:700}
+.mclose{background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--mu)}
+.mbdy{padding:16px 20px}
+.drow{display:flex;border-bottom:1px solid var(--bd);padding:9px 0;gap:13px}
+.drow:last-child{border-bottom:none}
+.dlbl{width:130px;font-size:.79rem;color:var(--mu);font-weight:600;flex-shrink:0}
+.dval{font-size:.84rem;font-weight:500}
+.idimg{width:100%;border-radius:var(--rs);border:1.5px solid var(--bd);margin:10px 0;max-height:180px;object-fit:cover}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--pd);color:#fff;padding:11px 22px;border-radius:var(--rs);font-size:.875rem;font-weight:600;z-index:999;transition:transform .3s;box-shadow:0 4px 20px rgba(0,0,0,.3);white-space:nowrap}
 .toast.show{transform:translateX(-50%) translateY(0)}
-.toast.ok{background:var(--ok)}
-.toast.err{background:var(--err)}
-/* MISC */
-.bk{display:flex;align-items:center;gap:7px;background:none;border:none;color:var(--primary);font-family:'Cairo',sans-serif;font-size:.875rem;font-weight:600;cursor:pointer;padding:7px 0;margin-bottom:14px}
-.bk:hover{color:var(--pd)}
-.dv2{height:1px;background:var(--bdr);margin:16px 0}
-/* FOOTER */
+.tok{background:var(--ok)}.ter{background:var(--er)}
+.bkbtn{display:flex;align-items:center;gap:7px;background:none;border:none;color:var(--pr);font-family:'Cairo',sans-serif;font-size:.875rem;font-weight:600;cursor:pointer;padding:7px 0;margin-bottom:14px}
+.bkbtn:hover{color:var(--pd)}
+.dvdr{height:1px;background:var(--bd);margin:16px 0}
 footer{background:var(--pd);color:rgba(255,255,255,.6);text-align:center;padding:20px;font-size:.82rem;margin-top:40px}
 footer a{color:var(--al);text-decoration:none;font-weight:600}
 footer a:hover{text-decoration:underline}
-/* PWA install */
-.install-bar{background:linear-gradient(135deg,var(--accent),var(--al));color:var(--pd);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;font-size:.85rem;font-weight:600;gap:10px;flex-wrap:wrap}
-.install-bar button{background:var(--pd);color:#fff;border:none;border-radius:6px;padding:7px 16px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer}
-/* RESPONSIVE NAV */
-@media(max-width:480px){.logo span{display:none}}
+.ibar{background:linear-gradient(135deg,var(--ac),var(--al));color:var(--pd);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;font-size:.85rem;font-weight:600;gap:10px;flex-wrap:wrap}
+@media print{.noprint{display:none!important}body{background:#fff}}
 </style>
 </head>
 <body>
 
-<!-- INSTALL BAR -->
-<div class="install-bar no-print" id="installBar" style="display:none">
+<div class="ibar noprint" id="ibar" style="display:none">
   <span>📱 ثبّت التطبيق على جهازك للوصول السريع</span>
   <div style="display:flex;gap:8px">
-    <button onclick="installApp()">تثبيت</button>
-    <button onclick="document.getElementById('installBar').style.display='none'" style="background:rgba(0,0,0,.2)">لاحقاً</button>
+    <button onclick="installApp()" style="background:var(--pd);color:#fff;border:none;border-radius:6px;padding:7px 16px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer">تثبيت</button>
+    <button onclick="document.getElementById('ibar').style.display='none'" style="background:rgba(0,0,0,.2);color:var(--pd);border:none;border-radius:6px;padding:7px 12px;font-family:'Cairo',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer">لاحقاً</button>
   </div>
 </div>
 
-<!-- NAV -->
-<nav class="nav no-print">
-  <div class="logo" onclick="showPage('home')">
-    <div class="li">M</div>
+<nav class="nav noprint">
+  <div class="logo" onclick="goPage('home')">
+    <div class="logoicon">M</div>
     <span>ماتركس خدمات</span>
   </div>
-  <div id="navAct">
-    <button class="nb" onclick="showPage('login')">تسجيل الدخول</button>
+  <div id="navact">
+    <button class="nbtn" onclick="goPage('login')">تسجيل الدخول</button>
   </div>
 </nav>
 
 <div class="toast" id="toast"></div>
 
-<!-- ══════════ HOME ══════════ -->
+<!-- HOME -->
 <div class="page active" id="page-home">
   <div class="hero">
-    <div class="hero-badge">🏛️ خدمات حكومية إلكترونية</div>
+    <div class="hbadge">🏛️ خدمات حكومية إلكترونية</div>
     <h1>استخرج <span>وثائقك الرسمية</span><br>بكل سهولة وأمان</h1>
-    <p>خدمة سريعة وموثوقة لاستخراج الوثائق الرسمية — من مكانك بدون تعب أو انتظار</p>
-    <div class="hero-actions">
-      <button class="bp" onclick="showPage('services')">🚀 ابدأ طلبك الآن</button>
-      <button class="bo" onclick="showPage('track-search')">🔍 تتبع طلبك</button>
+    <p>خدمة سريعة وموثوقة لاستخراج الوثائق الرسمية من مكانك بدون تعب أو انتظار</p>
+    <div class="hacts">
+      <button class="btnp" id="startBtn">🚀 ابدأ طلبك الآن</button>
+      <button class="btno" id="trackBtn">🔍 تتبع طلبك</button>
     </div>
   </div>
-  <div class="features">
+  <div class="feats">
     <div class="feat"><span>⚡</span><span>خدمة سريعة</span></div>
     <div class="feat"><span>🔒</span><span>آمن وموثوق</span></div>
     <div class="feat"><span>📱</span><span>يعمل على كل الأجهزة</span></div>
@@ -229,595 +197,708 @@ footer a:hover{text-decoration:underline}
     <div class="feat"><span>📍</span><span>تتبع طلبك لحظة بلحظة</span></div>
   </div>
   <div class="sec">
-    <div class="sec-t">خدماتنا المتاحة</div>
-    <div class="sec-s">اختر الخدمة التي تحتاجها وأكمل طلبك في دقائق</div>
+    <div class="sct">خدماتنا المتاحة</div>
+    <div class="scs">اختر الخدمة التي تحتاجها وأكمل طلبك في دقائق</div>
     <div class="grid">
-      <div class="card" onclick="showPage('birth-form')">
-        <div class="ci cb">📋</div>
-        <h3>شهادة الميلاد</h3>
-        <p>استخراج شهادة ميلاد جديدة أو بدل فاقد بسهولة تامة</p>
-        <div class="price-row"><span class="pt">125 جنيه</span><span class="dt">⏱ 4-5 أيام</span></div>
-      </div>
-      <div class="card" onclick="showPage('marriage-form')">
-        <div class="ci cg">💍</div>
-        <h3>شهادة الزواج</h3>
-        <p>توثيق عقد الزواج واستخراج صورة رسمية معتمدة</p>
-        <div class="price-row"><span class="pt">150 جنيه</span><span class="dt">⏱ 5-7 أيام</span></div>
-      </div>
-      <div class="card" onclick="showPage('family-form')">
-        <div class="ci cy">👨‍👩‍👧‍👦</div>
-        <h3>قيد عائلي</h3>
-        <p>استخراج بيان قيد عائلي محدث من سجلات المحكمة</p>
-        <div class="price-row"><span class="pt">100 جنيه</span><span class="dt">⏱ 4-5 أيام</span></div>
-      </div>
+      <div class="card" id="card-birth"><div class="cicon cb">📋</div><h3>شهادة الميلاد</h3><p>استخراج شهادة ميلاد جديدة أو بدل فاقد بسهولة تامة</p><div class="prow"><span class="ptag">125 جنيه</span><span class="dtag">⏱ 4-5 أيام</span></div></div>
+      <div class="card" id="card-marriage"><div class="cicon cg">💍</div><h3>شهادة الزواج</h3><p>توثيق عقد الزواج واستخراج صورة رسمية معتمدة</p><div class="prow"><span class="ptag">150 جنيه</span><span class="dtag">⏱ 5-7 أيام</span></div></div>
+      <div class="card" id="card-family"><div class="cicon cy">👨‍👩‍👧‍👦</div><h3>قيد عائلي</h3><p>استخراج بيان قيد عائلي محدث من سجلات المحكمة</p><div class="prow"><span class="ptag">100 جنيه</span><span class="dtag">⏱ 4-5 أيام</span></div></div>
     </div>
-    <!-- HOW IT WORKS -->
     <div style="margin-top:44px">
-      <div class="sec-t">كيف يعمل النظام؟</div>
-      <div class="sec-s">3 خطوات بسيطة واستلم وثيقتك</div>
+      <div class="sct">كيف يعمل النظام؟</div>
+      <div class="scs">3 خطوات بسيطة واستلم وثيقتك</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
-        <div style="background:var(--sur);border-radius:var(--r);padding:22px;text-align:center;border:1.5px solid var(--bdr)">
-          <div style="font-size:2rem;margin-bottom:10px">📝</div>
-          <div style="font-weight:700;margin-bottom:6px">1. أدخل بياناتك</div>
-          <div style="font-size:.83rem;color:var(--mu)">أكمل النموذج ببياناتك الشخصية الصحيحة</div>
-        </div>
-        <div style="background:var(--sur);border-radius:var(--r);padding:22px;text-align:center;border:1.5px solid var(--bdr)">
-          <div style="font-size:2rem;margin-bottom:10px">💳</div>
-          <div style="font-weight:700;margin-bottom:6px">2. أدفع الرسوم</div>
-          <div style="font-size:.83rem;color:var(--mu)">أرسل الرسوم عبر المحفظة الإلكترونية</div>
-        </div>
-        <div style="background:var(--sur);border-radius:var(--r);padding:22px;text-align:center;border:1.5px solid var(--bdr)">
-          <div style="font-size:2rem;margin-bottom:10px">📄</div>
-          <div style="font-weight:700;margin-bottom:6px">3. استلم وثيقتك</div>
-          <div style="font-size:.83rem;color:var(--mu)">تابع طلبك واستلم الوثيقة في الموعد المحدد</div>
-        </div>
+        <div style="background:var(--su);border-radius:var(--r);padding:22px;text-align:center;border:1.5px solid var(--bd)"><div style="font-size:2rem;margin-bottom:10px">📝</div><div style="font-weight:700;margin-bottom:6px">1. أدخل بياناتك</div><div style="font-size:.83rem;color:var(--mu)">أكمل النموذج ببياناتك الشخصية الصحيحة</div></div>
+        <div style="background:var(--su);border-radius:var(--r);padding:22px;text-align:center;border:1.5px solid var(--bd)"><div style="font-size:2rem;margin-bottom:10px">💳</div><div style="font-weight:700;margin-bottom:6px">2. أدفع الرسوم</div><div style="font-size:.83rem;color:var(--mu)">أرسل الرسوم عبر المحفظة الإلكترونية</div></div>
+        <div style="background:var(--su);border-radius:var(--r);padding:22px;text-align:center;border:1.5px solid var(--bd)"><div style="font-size:2rem;margin-bottom:10px">📄</div><div style="font-weight:700;margin-bottom:6px">3. استلم وثيقتك</div><div style="font-size:.83rem;color:var(--mu)">تابع طلبك واستلم الوثيقة في الموعد المحدد</div></div>
       </div>
     </div>
   </div>
-  <footer class="no-print">
+  <footer class="noprint">
     <div style="margin-bottom:8px">ماتركس خدمات — جميع الحقوق محفوظة © 2025</div>
-    <div>تطوير من التبرمج | <a href="https://kareem-mohamed-rust.vercel.app/" target="_blank">Kareem Mohamed</a></div>
+    <div>Development by <a href="https://kareem-mohamed-rust.vercel.app/" target="_blank">Kareem Mohamed</a></div>
   </footer>
 </div>
 
-<!-- ══════════ SERVICES ══════════ -->
+<!-- SERVICES -->
 <div class="page" id="page-services">
   <div class="sec">
-    <button class="bk" onclick="showPage('home')">&#8594; الرئيسية</button>
-    <div class="sec-t">اختر الخدمة</div>
-    <div class="sec-s">حدد نوع الوثيقة التي تحتاج إلى استخراجها</div>
+    <button class="bkbtn" id="back-services">&#8594; الرئيسية</button>
+    <div class="sct">اختر الخدمة</div>
+    <div class="scs">حدد نوع الوثيقة التي تحتاج إلى استخراجها</div>
     <div class="grid">
-      <div class="card" onclick="showPage('birth-form')"><div class="ci cb">📋</div><h3>شهادة الميلاد</h3><p>استخراج شهادة ميلاد جديدة أو بدل فاقد</p><div class="price-row"><span class="pt">125 جنيه</span><span class="dt">⏱ 4-5 أيام</span></div></div>
-      <div class="card" onclick="showPage('marriage-form')"><div class="ci cg">💍</div><h3>شهادة الزواج</h3><p>توثيق عقد الزواج واستخراج صورة رسمية</p><div class="price-row"><span class="pt">150 جنيه</span><span class="dt">⏱ 5-7 أيام</span></div></div>
-      <div class="card" onclick="showPage('family-form')"><div class="ci cy">👨‍👩‍👧‍👦</div><h3>قيد عائلي</h3><p>استخراج بيان قيد عائلي محدث</p><div class="price-row"><span class="pt">100 جنيه</span><span class="dt">⏱ 4-5 أيام</span></div></div>
+      <div class="card" id="srv-birth"><div class="cicon cb">📋</div><h3>شهادة الميلاد</h3><p>استخراج شهادة ميلاد جديدة أو بدل فاقد</p><div class="prow"><span class="ptag">125 جنيه</span><span class="dtag">⏱ 4-5 أيام</span></div></div>
+      <div class="card" id="srv-marriage"><div class="cicon cg">💍</div><h3>شهادة الزواج</h3><p>توثيق عقد الزواج واستخراج صورة رسمية</p><div class="prow"><span class="ptag">150 جنيه</span><span class="dtag">⏱ 5-7 أيام</span></div></div>
+      <div class="card" id="srv-family"><div class="cicon cy">👨‍👩‍👧‍👦</div><h3>قيد عائلي</h3><p>استخراج بيان قيد عائلي محدث</p><div class="prow"><span class="ptag">100 جنيه</span><span class="dtag">⏱ 4-5 أيام</span></div></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ TRACK SEARCH ══════════ -->
-<div class="page" id="page-track-search">
+<!-- TRACK SEARCH -->
+<div class="page" id="page-track">
   <div class="sec">
-    <button class="bk" onclick="showPage('home')">&#8594; الرئيسية</button>
-    <div class="sec-t">تتبع طلبك</div>
-    <div class="sec-s">ابحث برقم الطلب أو الاسم أو الرقم القومي</div>
-    <div class="ts-box">
+    <button class="bkbtn" id="back-track">&#8594; الرئيسية</button>
+    <div class="sct">تتبع طلبك</div>
+    <div class="scs">ابحث برقم الطلب أو الاسم أو الرقم القومي</div>
+    <div class="tsbox">
       <h3>🔍 البحث عن الطلب</h3>
       <div class="fg">
         <label>رقم الطلب</label>
         <div class="trow">
-          <input id="s_code" placeholder="مثال: MX-ABC123" dir="ltr" onkeydown="if(event.key==='Enter')searchCode()">
-          <button class="bp" style="padding:10px 16px;font-size:.875rem;white-space:nowrap" onclick="searchCode()">بحث</button>
+          <input id="s_code" placeholder="مثال: MX-ABC123" dir="ltr">
+          <button class="btnp" id="btn-scode" style="padding:10px 16px;font-size:.875rem;white-space:nowrap">بحث</button>
         </div>
       </div>
-      <div class="dv2" style="text-align:center;position:relative"><span style="background:var(--sur);padding:0 12px;color:var(--mu);font-size:.8rem;position:relative;z-index:1">أو</span></div>
+      <div class="dvdr" style="text-align:center;position:relative"><span style="background:var(--su);padding:0 12px;color:var(--mu);font-size:.8rem;position:relative;z-index:1">أو</span></div>
       <div class="fg">
         <label>الاسم</label>
         <div class="trow">
-          <input id="s_name" placeholder="أدخل اسمك" onkeydown="if(event.key==='Enter')searchName()">
-          <button class="bp" style="padding:10px 16px;font-size:.875rem;white-space:nowrap" onclick="searchName()">بحث</button>
+          <input id="s_name" placeholder="أدخل اسمك">
+          <button class="btnp" id="btn-sname" style="padding:10px 16px;font-size:.875rem;white-space:nowrap">بحث</button>
         </div>
       </div>
       <div class="fg">
         <label>الرقم القومي</label>
         <div class="trow">
-          <input id="s_nid" placeholder="14 رقم" maxlength="14" dir="ltr" onkeydown="if(event.key==='Enter')searchNid()">
-          <button class="bp" style="padding:10px 16px;font-size:.875rem;white-space:nowrap" onclick="searchNid()">بحث</button>
+          <input id="s_nid" placeholder="14 رقم" maxlength="14" dir="ltr">
+          <button class="btnp" id="btn-snid" style="padding:10px 16px;font-size:.875rem;white-space:nowrap">بحث</button>
         </div>
       </div>
-      <div id="sResults"></div>
+      <div id="sresults"></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ BIRTH FORM ══════════ -->
-<div class="page" id="page-birth-form">
+<!-- BIRTH FORM -->
+<div class="page" id="page-birth">
   <div class="fc">
-    <button class="bk" onclick="showPage('services')">&#8594; الرجوع</button>
+    <button class="bkbtn" id="back-birth">&#8594; الرجوع</button>
     <div class="fcard">
-      <div class="fh"><h2>📋 طلب شهادة ميلاد</h2><p>أدخل البيانات المطلوبة بدقة</p></div>
+      <div class="fhead"><h2>📋 طلب شهادة ميلاد</h2><p>أدخل البيانات المطلوبة بدقة</p></div>
       <div class="aw">⚠️ تُستخرج الشهادة خلال <strong>4 إلى 5 أيام عمل</strong> من تأكيد الدفع</div>
       <div class="fb">
         <div class="fg">
           <label>صورة البطاقة <span class="opt">(صاحب الطلب أو ولي الأمر — اختياري)</span></label>
-          <div class="ua" onclick="$('b_img').click()" id="b_ua"><div style="font-size:1.8rem">📷</div><p>اضغط لرفع صورة البطاقة (JPG/PNG)</p></div>
-          <input type="file" id="b_img" accept="image/*" style="display:none" onchange="upload(this,'b_ua')">
+          <div class="ua" id="b_ua"><div style="font-size:1.8rem">📷</div><p>اضغط لرفع صورة البطاقة</p></div>
+          <input type="file" id="b_img" accept="image/*" style="display:none">
         </div>
-        <div class="fr">
-          <div class="fg">
-            <label><span class="req">*</span> الاسم الرباعي (عربي)</label>
-            <input id="b_name" placeholder="محمد أحمد علي حسن" oninput="valName(this,'b_ne')">
-            <div class="fe" id="b_ne">الاسم يجب أن يكون رباعياً باللغة العربية</div>
-          </div>
-          <div class="fg">
-            <label><span class="req">*</span> اسم الأم</label>
-            <input id="b_mother" placeholder="اسم الأم الثنائي على الأقل">
-            <div class="fe" id="b_me">اسم الأم مطلوب</div>
-          </div>
+        <div class="fr2">
+          <div class="fg"><label><span class="req">*</span> الاسم الرباعي (عربي)</label><input id="b_name" placeholder="محمد أحمد علي حسن"><div class="ferr" id="b_ne">الاسم يجب أن يكون رباعياً باللغة العربية</div></div>
+          <div class="fg"><label><span class="req">*</span> اسم الأم</label><input id="b_mother" placeholder="اسم الأم"><div class="ferr" id="b_me">اسم الأم مطلوب</div></div>
         </div>
-        <div class="fr">
-          <div class="fg">
-            <label><span class="req">*</span> تاريخ الميلاد</label>
-            <input type="date" id="b_date">
-            <div class="fe" id="b_de">تاريخ الميلاد مطلوب</div>
-          </div>
-          <div class="fg">
-            <label><span class="req">*</span> رقم الهاتف</label>
-            <input type="tel" id="b_phone" placeholder="01xxxxxxxxx" maxlength="11" dir="ltr">
-            <div class="fe" id="b_pe">رقم هاتف مصري صحيح مطلوب</div>
-          </div>
+        <div class="fr2">
+          <div class="fg"><label><span class="req">*</span> تاريخ الميلاد</label><input type="date" id="b_date"><div class="ferr" id="b_de">تاريخ الميلاد مطلوب</div></div>
+          <div class="fg"><label><span class="req">*</span> رقم الهاتف</label><input type="tel" id="b_phone" placeholder="01xxxxxxxxx" maxlength="11" dir="ltr"><div class="ferr" id="b_pe">رقم هاتف مصري صحيح مطلوب</div></div>
         </div>
-        <div class="fg">
-          <label>الرقم القومي لصاحب الشهادة <span class="opt">(اختياري)</span></label>
-          <input id="b_nid" placeholder="14 رقم" maxlength="14" dir="ltr">
-        </div>
-        <button class="bp" style="width:100%;padding:13px" onclick="submitBirth()">متابعة للدفع ◀</button>
+        <div class="fg"><label>الرقم القومي <span class="opt">(اختياري)</span></label><input id="b_nid" placeholder="14 رقم" maxlength="14" dir="ltr"></div>
+        <button class="btnp" id="btn-birth" style="width:100%;padding:13px">متابعة للدفع ◀</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ MARRIAGE FORM ══════════ -->
-<div class="page" id="page-marriage-form">
+<!-- MARRIAGE FORM -->
+<div class="page" id="page-marriage">
   <div class="fc">
-    <button class="bk" onclick="showPage('services')">&#8594; الرجوع</button>
+    <button class="bkbtn" id="back-marriage">&#8594; الرجوع</button>
     <div class="fcard">
-      <div class="fh"><h2>💍 طلب شهادة زواج</h2><p>أدخل بيانات الزوجين كاملة</p></div>
+      <div class="fhead"><h2>💍 طلب شهادة زواج</h2><p>أدخل بيانات الزوجين كاملة</p></div>
       <div class="aw">⚠️ تُستخرج الشهادة خلال <strong>5 إلى 7 أيام عمل</strong> من تأكيد الدفع</div>
       <div class="fb">
-        <div class="fr">
-          <div class="fg"><label><span class="req">*</span> اسم الزوج رباعياً</label><input id="m_h" placeholder="الاسم الرباعي عربي" oninput="valName(this,'m_he')"><div class="fe" id="m_he">اسم الزوج مطلوب رباعياً بالعربية</div></div>
-          <div class="fg"><label><span class="req">*</span> اسم الزوجة رباعياً</label><input id="m_w" placeholder="الاسم الرباعي عربي" oninput="valName(this,'m_we')"><div class="fe" id="m_we">اسم الزوجة مطلوب رباعياً بالعربية</div></div>
+        <div class="fr2">
+          <div class="fg"><label><span class="req">*</span> اسم الزوج رباعياً</label><input id="m_h" placeholder="الاسم الرباعي عربي"><div class="ferr" id="m_he">اسم الزوج مطلوب رباعياً</div></div>
+          <div class="fg"><label><span class="req">*</span> اسم الزوجة رباعياً</label><input id="m_w" placeholder="الاسم الرباعي عربي"><div class="ferr" id="m_we">اسم الزوجة مطلوب رباعياً</div></div>
         </div>
-        <div class="fr">
-          <div class="fg"><label><span class="req">*</span> رقم قومي الزوج</label><input id="m_hn" placeholder="14 رقم" maxlength="14" dir="ltr"><div class="fe" id="m_hne">الرقم القومي مطلوب (14 رقم)</div></div>
-          <div class="fg"><label><span class="req">*</span> رقم قومي الزوجة</label><input id="m_wn" placeholder="14 رقم" maxlength="14" dir="ltr"><div class="fe" id="m_wne">الرقم القومي مطلوب (14 رقم)</div></div>
+        <div class="fr2">
+          <div class="fg"><label><span class="req">*</span> رقم قومي الزوج</label><input id="m_hn" placeholder="14 رقم" maxlength="14" dir="ltr"><div class="ferr" id="m_hne">الرقم القومي مطلوب (14 رقم)</div></div>
+          <div class="fg"><label><span class="req">*</span> رقم قومي الزوجة</label><input id="m_wn" placeholder="14 رقم" maxlength="14" dir="ltr"><div class="ferr" id="m_wne">الرقم القومي مطلوب (14 رقم)</div></div>
         </div>
-        <div class="fr">
-          <div class="fg"><label><span class="req">*</span> بطاقة الزوج</label><div class="ua" onclick="$('m_hi').click()" id="m_hua"><div style="font-size:1.4rem">📷</div><p style="font-size:.8rem">رفع بطاقة الزوج</p></div><input type="file" id="m_hi" accept="image/*" style="display:none" onchange="upload(this,'m_hua')"></div>
-          <div class="fg"><label><span class="req">*</span> بطاقة الزوجة</label><div class="ua" onclick="$('m_wi').click()" id="m_wua"><div style="font-size:1.4rem">📷</div><p style="font-size:.8rem">رفع بطاقة الزوجة</p></div><input type="file" id="m_wi" accept="image/*" style="display:none" onchange="upload(this,'m_wua')"></div>
+        <div class="fr2">
+          <div class="fg"><label><span class="req">*</span> بطاقة الزوج</label><div class="ua" id="m_hua"><div style="font-size:1.4rem">📷</div><p style="font-size:.8rem">رفع بطاقة الزوج</p></div><input type="file" id="m_hi" accept="image/*" style="display:none"></div>
+          <div class="fg"><label><span class="req">*</span> بطاقة الزوجة</label><div class="ua" id="m_wua"><div style="font-size:1.4rem">📷</div><p style="font-size:.8rem">رفع بطاقة الزوجة</p></div><input type="file" id="m_wi" accept="image/*" style="display:none"></div>
         </div>
-        <div class="fg"><label><span class="req">*</span> رقم الهاتف</label><input type="tel" id="m_p" placeholder="01xxxxxxxxx" maxlength="11" dir="ltr"><div class="fe" id="m_pe">رقم هاتف مصري صحيح مطلوب</div></div>
-        <button class="bp" style="width:100%;padding:13px" onclick="submitMarriage()">متابعة للدفع ◀</button>
+        <div class="fg"><label><span class="req">*</span> رقم الهاتف</label><input type="tel" id="m_p" placeholder="01xxxxxxxxx" maxlength="11" dir="ltr"><div class="ferr" id="m_pe">رقم هاتف مصري صحيح مطلوب</div></div>
+        <button class="btnp" id="btn-marriage" style="width:100%;padding:13px">متابعة للدفع ◀</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ FAMILY FORM ══════════ -->
-<div class="page" id="page-family-form">
+<!-- FAMILY FORM -->
+<div class="page" id="page-family">
   <div class="fc">
-    <button class="bk" onclick="showPage('services')">&#8594; الرجوع</button>
+    <button class="bkbtn" id="back-family">&#8594; الرجوع</button>
     <div class="fcard">
-      <div class="fh"><h2>👨‍👩‍👧‍👦 طلب قيد عائلي</h2><p>أدخل بيانات رب الأسرة</p></div>
+      <div class="fhead"><h2>👨‍👩‍👧‍👦 طلب قيد عائلي</h2><p>أدخل بيانات رب الأسرة</p></div>
       <div class="aw">⚠️ يُستخرج القيد العائلي خلال <strong>4 إلى 5 أيام عمل</strong> من تأكيد الدفع</div>
       <div class="fb">
-        <div class="fr">
-          <div class="fg"><label><span class="req">*</span> اسم رب الأسرة رباعياً</label><input id="f_name" placeholder="الاسم الرباعي عربي" oninput="valName(this,'f_ne')"><div class="fe" id="f_ne">الاسم يجب أن يكون رباعياً بالعربية</div></div>
-          <div class="fg"><label><span class="req">*</span> الرقم القومي</label><input id="f_nid" placeholder="14 رقم" maxlength="14" dir="ltr"><div class="fe" id="f_nide">الرقم القومي مطلوب (14 رقم)</div></div>
+        <div class="fr2">
+          <div class="fg"><label><span class="req">*</span> اسم رب الأسرة رباعياً</label><input id="f_name" placeholder="الاسم الرباعي عربي"><div class="ferr" id="f_ne">الاسم يجب أن يكون رباعياً بالعربية</div></div>
+          <div class="fg"><label><span class="req">*</span> الرقم القومي</label><input id="f_nid" placeholder="14 رقم" maxlength="14" dir="ltr"><div class="ferr" id="f_nide">الرقم القومي مطلوب (14 رقم)</div></div>
         </div>
-        <div class="fg">
-          <label><span class="req">*</span> بطاقة رب الأسرة</label>
-          <div class="ua" onclick="$('f_img').click()" id="f_ua"><div style="font-size:1.8rem">📷</div><p>اضغط لرفع صورة البطاقة</p></div>
-          <input type="file" id="f_img" accept="image/*" style="display:none" onchange="upload(this,'f_ua')">
-        </div>
-        <div class="fr">
-          <div class="fg"><label><span class="req">*</span> رقم الهاتف</label><input type="tel" id="f_p" placeholder="01xxxxxxxxx" maxlength="11" dir="ltr"><div class="fe" id="f_pe">رقم هاتف مصري صحيح مطلوب</div></div>
+        <div class="fg"><label><span class="req">*</span> بطاقة رب الأسرة</label><div class="ua" id="f_ua"><div style="font-size:1.8rem">📷</div><p>اضغط لرفع صورة البطاقة</p></div><input type="file" id="f_img" accept="image/*" style="display:none"></div>
+        <div class="fr2">
+          <div class="fg"><label><span class="req">*</span> رقم الهاتف</label><input type="tel" id="f_p" placeholder="01xxxxxxxxx" maxlength="11" dir="ltr"><div class="ferr" id="f_pe">رقم هاتف مصري صحيح مطلوب</div></div>
           <div class="fg"><label>عدد أفراد الأسرة <span class="opt">(اختياري)</span></label><input type="number" id="f_mem" placeholder="مثال: 4" min="1" max="30"></div>
         </div>
-        <button class="bp" style="width:100%;padding:13px" onclick="submitFamily()">متابعة للدفع ◀</button>
+        <button class="btnp" id="btn-family" style="width:100%;padding:13px">متابعة للدفع ◀</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ PAYMENT ══════════ -->
+<!-- PAYMENT -->
 <div class="page" id="page-payment">
   <div class="fc">
     <div class="fcard">
-      <div class="fh"><h2>💳 إتمام الدفع</h2><p>أرسل المبلغ المطلوب ثم أدخل رقم المرجع</p></div>
+      <div class="fhead"><h2>💳 إتمام الدفع</h2><p>أرسل المبلغ المطلوب ثم أدخل رقم المرجع</p></div>
       <div class="fb">
         <div class="pb">
           <h3>📱 رقم المحفظة (فودافون كاش / إنستاباي)</h3>
-          <div class="wn"><strong>01000000000</strong><button class="cb2" onclick="copyW()">نسخ الرقم</button></div>
-          <div class="ad"><div class="al2">المبلغ المطلوب</div><div class="am" id="payAmt">125</div><div class="al2">جنيه مصري</div></div>
+          <div class="wnum"><strong>01000000000</strong><button class="cbtn" id="btn-copy">نسخ الرقم</button></div>
+          <div class="amtd"><div class="aml">المبلغ المطلوب</div><div class="amt" id="payamt">125</div><div class="aml">جنيه مصري</div></div>
         </div>
-        <div class="fg">
-          <label><span class="req">*</span> رقم مرجع التحويل</label>
-          <input id="t_ref" placeholder="أدخل رقم المرجع بعد التحويل" dir="ltr">
-          <div class="fe" id="t_re">رقم المرجع مطلوب</div>
-        </div>
-        <button class="bp" style="width:100%;padding:13px" onclick="confirmPay()">✅ تأكيد الدفع وإرسال الطلب</button>
+        <div class="fg"><label><span class="req">*</span> رقم مرجع التحويل</label><input id="t_ref" placeholder="أدخل رقم المرجع بعد التحويل" dir="ltr"><div class="ferr" id="t_re">رقم المرجع مطلوب</div></div>
+        <button class="btnp" id="btn-pay" style="width:100%;padding:13px">✅ تأكيد الدفع وإرسال الطلب</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ TRACKING ══════════ -->
+<!-- TRACKING RESULT -->
 <div class="page" id="page-tracking">
   <div class="sec">
-    <button class="bk" onclick="showPage('home')">&#8594; الرئيسية</button>
+    <button class="bkbtn" id="back-tracking">&#8594; الرئيسية</button>
     <div class="tc">
       <div class="tid">
         <div class="tl">رقم طلبك — احتفظ به للمتابعة</div>
-        <div class="tv" id="trkCode">---</div>
-        <div class="ts" id="trkType">---</div>
+        <div class="tv" id="trk_code">---</div>
+        <div class="ts" id="trk_type">---</div>
       </div>
       <div class="steps">
-        <div class="step done"><div class="sd">✓</div><div class="sc"><h4>تم استلام الطلب</h4><p>تم استلام بياناتك بنجاح</p></div></div>
-        <div class="step done" id="ts1"><div class="sd">✓</div><div class="sc"><h4>تم تأكيد الدفع</h4><p>تم استلام رسوم الخدمة</p></div></div>
-        <div class="step active" id="ts2"><div class="sd">⚙</div><div class="sc"><h4>جارٍ المعالجة</h4><p>طلبك قيد المراجعة من الإدارة</p></div></div>
-        <div class="step waiting" id="ts3"><div class="sd">📄</div><div class="sc"><h4>جاهز للاستلام</h4><p>ستصلك رسالة عند جاهزية الوثيقة</p></div></div>
-        <div class="step waiting" id="ts4"><div class="sd">🏁</div><div class="sc"><h4>تم الاستلام</h4><p>اكتملت الخدمة بنجاح</p></div></div>
+        <div class="step done"><div class="sdot">✓</div><div class="scon"><h4>تم استلام الطلب</h4><p>تم استلام بياناتك بنجاح</p></div></div>
+        <div class="step done" id="ts1"><div class="sdot">✓</div><div class="scon"><h4>تم تأكيد الدفع</h4><p>تم استلام رسوم الخدمة</p></div></div>
+        <div class="step active" id="ts2"><div class="sdot">⚙</div><div class="scon"><h4>جارٍ المعالجة</h4><p>طلبك قيد المراجعة من الإدارة</p></div></div>
+        <div class="step waiting" id="ts3"><div class="sdot">📄</div><div class="scon"><h4>جاهز للاستلام</h4><p>ستصلك رسالة عند جاهزية الوثيقة</p></div></div>
+        <div class="step waiting" id="ts4"><div class="sdot">🏁</div><div class="scon"><h4>تم الاستلام</h4><p>اكتملت الخدمة بنجاح</p></div></div>
       </div>
-      <div id="trkNote" style="display:none;margin-top:14px;padding:12px 14px;background:#fffbeb;border:1px solid #fcd34d;border-radius:var(--rs);font-size:.85rem"></div>
-      <div style="margin-top:18px;padding:14px;background:var(--sur2);border-radius:var(--rs);font-size:.85rem;color:var(--mu)">
-        📞 للاستفسار تواصل معنا على: <strong style="color:var(--txt)">01000000000</strong>
-      </div>
+      <div id="trk_note" style="display:none;margin-top:14px;padding:12px 14px;background:#fffbeb;border:1px solid #fcd34d;border-radius:var(--rs);font-size:.85rem"></div>
+      <div style="margin-top:18px;padding:14px;background:var(--s2);border-radius:var(--rs);font-size:.85rem;color:var(--mu)">📞 للاستفسار: <strong style="color:var(--tx)">01000000000</strong></div>
       <div style="margin-top:12px">
-        <button class="ab" onclick="showPage('track-search')">🔍 تتبع طلب آخر</button>
-        <button class="ab" onclick="showPage('home')">🏠 الرئيسية</button>
+        <button class="abtn" id="btn-trackanother">🔍 تتبع طلب آخر</button>
+        <button class="abtn" id="btn-trackhome">🏠 الرئيسية</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ LOGIN ══════════ -->
+<!-- LOGIN -->
 <div class="page" id="page-login">
   <div class="lp">
     <div class="lc">
-      <div class="lh">
-        <div class="li2">M</div>
-        <h2>ماتركس خدمات</h2>
-        <p>دخول الإدارة</p>
-      </div>
+      <div class="lh"><div class="lhi">M</div><h2>ماتركس خدمات</h2><p>دخول الإدارة</p></div>
       <div class="lb">
         <div class="fg"><label>البريد الإلكتروني</label><input type="email" id="l_em" placeholder="example@email.com" dir="ltr"></div>
-        <div class="fg"><label>كلمة المرور</label><input type="password" id="l_pw" placeholder="••••••••" dir="ltr" onkeydown="if(event.key==='Enter')doLogin()"></div>
-        <button class="bp" style="width:100%;padding:13px;margin-top:6px" onclick="doLogin()">دخول</button>
-        <div id="l_err" style="color:var(--err);font-size:.82rem;margin-top:10px;text-align:center;display:none">بيانات الدخول غير صحيحة</div>
-        <div class="dv2"></div>
-        <button class="bk" style="justify-content:center;width:100%" onclick="showPage('home')">&#8594; الرجوع للرئيسية</button>
+        <div class="fg"><label>كلمة المرور</label><input type="password" id="l_pw" placeholder="••••••••" dir="ltr"></div>
+        <button class="btnp" id="btn-login" style="width:100%;padding:13px;margin-top:6px">دخول</button>
+        <div id="l_err" style="color:var(--er);font-size:.82rem;margin-top:10px;text-align:center;display:none">بيانات الدخول غير صحيحة</div>
+        <div class="dvdr"></div>
+        <button class="bkbtn" id="back-login" style="justify-content:center;width:100%">&#8594; الرجوع للرئيسية</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ ADMIN ══════════ -->
+<!-- ADMIN -->
 <div class="page" id="page-admin">
-  <div class="al">
-    <div class="as no-print">
+  <div class="alay">
+    <div class="aside noprint">
       <div style="padding:14px 18px 18px;border-bottom:1px solid rgba(255,255,255,.1)">
         <div style="font-size:.72rem;opacity:.6;margin-bottom:3px">مرحباً</div>
-        <div style="font-weight:700;font-size:.95rem" id="adminNm">المدير</div>
-        <div style="font-size:.75rem;opacity:.55;margin-top:2px" id="adminRole"></div>
+        <div style="font-weight:700;font-size:.95rem" id="adm_name">المدير</div>
+        <div style="font-size:.75rem;opacity:.55;margin-top:2px" id="adm_role"></div>
       </div>
       <div style="margin-top:10px">
-        <div class="si active" onclick="aTab('req')">📋 الطلبات</div>
-        <div class="si" onclick="aTab('stats')">📊 الإحصائيات</div>
-        <div class="si" onclick="aTab('set')">⚙️ الإعدادات</div>
+        <div class="sitem active" id="tab-btn-req">📋 الطلبات</div>
+        <div class="sitem" id="tab-btn-stats">📊 الإحصائيات</div>
+        <div class="sitem" id="tab-btn-set">⚙️ الإعدادات</div>
       </div>
       <div style="position:absolute;bottom:16px;width:230px">
-        <div class="si" onclick="doLogout()">🚪 تسجيل الخروج</div>
+        <div class="sitem" id="btn-logout">🚪 تسجيل الخروج</div>
       </div>
     </div>
-    <div class="am2">
-
-      <!-- REQUESTS -->
-      <div id="t_req">
+    <div class="amain">
+      <div id="tab-req">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px">
           <h2 style="font-size:1.15rem;font-weight:800">📋 إدارة الطلبات</h2>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <input id="a_search" placeholder="بحث..." oninput="renderTbl()" style="padding:8px 12px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.82rem;width:160px">
-            <select id="a_fs" onchange="renderTbl()" style="padding:8px 11px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.82rem">
-              <option value="">كل الحالات</option>
-              <option value="processing">قيد المعالجة</option>
-              <option value="done">مكتمل</option>
-              <option value="rejected">مرفوض</option>
-            </select>
-            <select id="a_ft" onchange="renderTbl()" style="padding:8px 11px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.82rem">
-              <option value="">كل الخدمات</option>
-              <option value="birth">ميلاد</option>
-              <option value="marriage">زواج</option>
-              <option value="family">قيد عائلي</option>
-            </select>
+            <input id="a_search" placeholder="بحث..." style="padding:8px 12px;border:1.5px solid var(--bd);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.82rem;width:150px">
+            <select id="a_fs" style="padding:8px 11px;border:1.5px solid var(--bd);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.82rem"><option value="">كل الحالات</option><option value="processing">قيد المعالجة</option><option value="done">مكتمل</option><option value="rejected">مرفوض</option></select>
+            <select id="a_ft" style="padding:8px 11px;border:1.5px solid var(--bd);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.82rem"><option value="">كل الخدمات</option><option value="birth">ميلاد</option><option value="marriage">زواج</option><option value="family">قيد عائلي</option></select>
           </div>
         </div>
-        <div class="tbl" style="overflow-x:auto">
-          <table><thead><tr><th>رقم الطلب</th><th>الاسم</th><th>الخدمة</th><th>الهاتف</th><th>الحالة</th><th>التاريخ</th><th>إجراءات</th></tr></thead>
-          <tbody id="a_tbl"></tbody></table>
-        </div>
+        <div class="tblw" style="overflow-x:auto"><table><thead><tr><th>رقم الطلب</th><th>الاسم</th><th>الخدمة</th><th>الهاتف</th><th>الحالة</th><th>التاريخ</th><th>إجراءات</th></tr></thead><tbody id="a_tbl"></tbody></table></div>
       </div>
-
-      <!-- STATS -->
-      <div id="t_stats" style="display:none">
+      <div id="tab-stats" style="display:none">
         <h2 style="margin-bottom:16px;font-size:1.15rem;font-weight:800">📊 الإحصائيات</h2>
-        <div class="sg">
-          <div class="sc2"><div class="si2">📋</div><div class="sn" id="s_tot">0</div><div class="sl">إجمالي الطلبات</div></div>
-          <div class="sc2"><div class="si2">⏳</div><div class="sn" id="s_pen">0</div><div class="sl">قيد المعالجة</div></div>
-          <div class="sc2"><div class="si2">✅</div><div class="sn" id="s_don">0</div><div class="sl">مكتملة</div></div>
-          <div class="sc2"><div class="si2">❌</div><div class="sn" id="s_rej">0</div><div class="sl">مرفوضة</div></div>
-          <div class="sc2"><div class="si2">💰</div><div class="sn" id="s_rev">0</div><div class="sl">الإيرادات (جنيه)</div></div>
-          <div class="sc2"><div class="si2">📋</div><div class="sn" id="s_bi">0</div><div class="sl">شهادات ميلاد</div></div>
-          <div class="sc2"><div class="si2">💍</div><div class="sn" id="s_ma">0</div><div class="sl">شهادات زواج</div></div>
-          <div class="sc2"><div class="si2">👨‍👩‍👧‍👦</div><div class="sn" id="s_fa">0</div><div class="sl">قيود عائلية</div></div>
+        <div class="sgrid">
+          <div class="scard"><div class="sico">📋</div><div class="snum" id="s_tot">0</div><div class="slbl">إجمالي الطلبات</div></div>
+          <div class="scard"><div class="sico">⏳</div><div class="snum" id="s_pen">0</div><div class="slbl">قيد المعالجة</div></div>
+          <div class="scard"><div class="sico">✅</div><div class="snum" id="s_don">0</div><div class="slbl">مكتملة</div></div>
+          <div class="scard"><div class="sico">❌</div><div class="snum" id="s_rej">0</div><div class="slbl">مرفوضة</div></div>
+          <div class="scard"><div class="sico">💰</div><div class="snum" id="s_rev">0</div><div class="slbl">الإيرادات (جنيه)</div></div>
+          <div class="scard"><div class="sico">📋</div><div class="snum" id="s_bi">0</div><div class="slbl">شهادات ميلاد</div></div>
+          <div class="scard"><div class="sico">💍</div><div class="snum" id="s_ma">0</div><div class="slbl">شهادات زواج</div></div>
+          <div class="scard"><div class="sico">👨‍👩‍👧‍👦</div><div class="snum" id="s_fa">0</div><div class="slbl">قيود عائلية</div></div>
         </div>
       </div>
-
-      <!-- SETTINGS -->
-      <div id="t_set" style="display:none">
+      <div id="tab-set" style="display:none">
         <h2 style="margin-bottom:16px;font-size:1.15rem;font-weight:800">⚙️ الإعدادات</h2>
-        <div class="fcard" style="max-width:440px">
-          <div class="fb">
-            <div class="fg"><label>تغيير كلمة مرور المدير</label><input type="password" id="np1" placeholder="كلمة المرور الجديدة" dir="ltr"></div>
-            <div class="fg"><label>تأكيد كلمة المرور</label><input type="password" id="np2" placeholder="أعد كتابة كلمة المرور" dir="ltr"></div>
-            <button class="bp" onclick="chgPass()">حفظ التغييرات</button>
-          </div>
-        </div>
-        <div style="margin-top:20px">
-          <div class="fcard" style="max-width:440px">
-            <div class="fb">
-              <div style="font-weight:700;margin-bottom:12px;color:var(--err)">⚠️ منطقة الخطر</div>
-              <button class="ab dn" onclick="clearAll()">🗑️ حذف كل الطلبات</button>
-            </div>
-          </div>
-        </div>
+        <div class="fcard" style="max-width:440px"><div class="fb">
+          <div class="fg"><label>تغيير كلمة مرور المدير</label><input type="password" id="np1" placeholder="كلمة المرور الجديدة" dir="ltr"></div>
+          <div class="fg"><label>تأكيد كلمة المرور</label><input type="password" id="np2" placeholder="أعد كتابة كلمة المرور" dir="ltr"></div>
+          <button class="btnp" id="btn-chgpass">حفظ التغييرات</button>
+        </div></div>
+        <div style="margin-top:20px"><div class="fcard" style="max-width:440px"><div class="fb">
+          <div style="font-weight:700;margin-bottom:12px;color:var(--er)">⚠️ منطقة الخطر</div>
+          <button class="abtn aer" id="btn-clearall">🗑️ حذف كل الطلبات</button>
+        </div></div></div>
       </div>
-
     </div>
   </div>
 </div>
 
 <!-- MODAL -->
-<div class="mo" id="modal" style="display:none" onclick="if(event.target===this)this.style.display='none'">
-  <div class="md" onclick="event.stopPropagation()">
-    <div class="mh no-print"><h3 id="m_t">تفاصيل الطلب</h3><button class="mc" onclick="$('modal').style.display='none'">✕</button></div>
-    <div class="mb2" id="m_b"></div>
-    <div style="padding:14px 20px;border-top:1.5px solid var(--bdr)" class="no-print">
-      <textarea id="a_note" placeholder="أضف ملاحظة للطلب..." style="width:100%;padding:9px 12px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.84rem;resize:vertical;min-height:56px;direction:rtl;margin-bottom:10px"></textarea>
+<div class="mover" id="modal" style="display:none">
+  <div class="mdal">
+    <div class="mhdr noprint"><h3 id="m_title">تفاصيل الطلب</h3><button class="mclose" id="btn-closemodal">✕</button></div>
+    <div class="mbdy" id="m_body"></div>
+    <div style="padding:14px 20px;border-top:1.5px solid var(--bd)" class="noprint">
+      <textarea id="a_note" placeholder="أضف ملاحظة للطلب..." style="width:100%;padding:9px 12px;border:1.5px solid var(--bd);border-radius:var(--rs);font-family:'Cairo',sans-serif;font-size:.84rem;resize:vertical;min-height:56px;direction:rtl;margin-bottom:10px"></textarea>
       <div style="display:flex;gap:7px;flex-wrap:wrap">
-        <button class="ab" onclick="saveNote()">💾 حفظ</button>
-        <button class="ab" onclick="setSt('processing')">🔄 قيد المعالجة</button>
-        <button class="ab ok2" onclick="setSt('done')">✅ مكتمل</button>
-        <button class="ab dn" onclick="setSt('rejected')">❌ رفض</button>
-        <button class="ab" onclick="window.print()">🖨️ طباعة</button>
-        <button class="ab" onclick="dlReq()">⬇️ تنزيل</button>
+        <button class="abtn" id="btn-savenote">💾 حفظ</button>
+        <button class="abtn" id="btn-setproc">🔄 قيد المعالجة</button>
+        <button class="abtn aok" id="btn-setdone">✅ مكتمل</button>
+        <button class="abtn aer" id="btn-setrej">❌ رفض</button>
+        <button class="abtn" id="btn-print">🖨️ طباعة</button>
+        <button class="abtn" id="btn-dl">⬇️ تنزيل</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-// ─── HELPERS ────────────────────────────────────────
-const $=id=>document.getElementById(id);
-const K='mx_v3';
-const USERS={'centermatrix020@gmail.com':{p:'1964111',r:'admin',n:'المدير'},'kareem.00005455249@gmail.com':{p:'1682006',r:'super',n:'Kareem Mohamed'}};
-let CU=null,PD=null,AID=null,deferPrompt=null;
+// ══════════════════════════════════════════════
+// CORE UTILS
+// ══════════════════════════════════════════════
+const KEY = 'mx_v4';
+const USERS = {
+  'centermatrix020@gmail.com': {p:'1964111', r:'admin', n:'المدير'},
+  'kareem.00005455249@gmail.com': {p:'1682006', r:'super', n:'Kareem Mohamed'}
+};
+let CU = null, PD = null, AID = null, dPr = null;
 
-function gR(){return JSON.parse(localStorage.getItem(K)||'[]')}
-function sR(r){localStorage.setItem(K,JSON.stringify(r))}
-function genId(){return 'MX-'+Math.random().toString(36).substr(2,6).toUpperCase()}
-function toast(m,t=''){const el=$('toast');el.textContent=m;el.className='toast '+t+' show';setTimeout(()=>el.classList.remove('show'),3500)}
-function showE(id,s){$(id).classList.toggle('show',s)}
-function isAr(s){return /^[\u0600-\u06FF\s]+$/.test(s.trim())}
-function wc(s){return s.trim().split(/\s+/).filter(w=>w).length}
-function valName(inp,eId){const v=inp.value,ok=isAr(v)&&wc(v)>=4;inp.classList.toggle('err',v.length>0&&!ok);showE(eId,v.length>0&&!ok);return ok}
-function chkPh(v){return /^01[0-9]{9}$/.test(v)}
-function upload(inp,aId){if(!inp.files[0])return;const a=$(aId);a.innerHTML=`<div style="font-size:1.4rem">✅</div><p style="color:var(--ok);font-size:.8rem">${inp.files[0].name}</p>`;a.classList.add('hf')}
-function rf(f){return new Promise(r=>{if(!f){r(null);return}const rd=new FileReader();rd.onload=e=>r(e.target.result);rd.readAsDataURL(f)})}
+function gel(id){ return document.getElementById(id); }
+function gR(){ return JSON.parse(localStorage.getItem(KEY)||'[]'); }
+function sR(r){ localStorage.setItem(KEY, JSON.stringify(r)); }
+function genId(){ return 'MX-' + Math.random().toString(36).substr(2,6).toUpperCase(); }
 
-// ─── NAV ────────────────────────────────────────────
-function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));$('page-'+id).classList.add('active');window.scrollTo(0,0)}
+function showToast(msg, type){
+  var t = gel('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + (type||'') + ' show';
+  setTimeout(function(){ t.classList.remove('show'); }, 3500);
+}
 
-// ─── BIRTH ──────────────────────────────────────────
+function showErr(id, show){
+  var el = gel(id);
+  if(el){ el.classList.toggle('show', show); }
+}
+
+function isAr(s){ return /^[\u0600-\u06FF\s]+$/.test(s.trim()); }
+function wc(s){ return s.trim().split(/\s+/).filter(function(w){ return w; }).length; }
+function chkPh(v){ return /^01[0-9]{9}$/.test(v); }
+
+function goPage(id){
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  var pg = gel('page-' + id);
+  if(pg){ pg.classList.add('active'); }
+  window.scrollTo(0,0);
+}
+
+function setSteps(status){
+  var ids = ['ts1','ts2','ts3','ts4'];
+  var dots = ['✓','⚙','📄','🏁'];
+  var map = {
+    processing: ['done','active','waiting','waiting'],
+    done:       ['done','done','done','done'],
+    rejected:   ['done','waiting','waiting','waiting']
+  };
+  var s = map[status] || map.processing;
+  ids.forEach(function(id, i){
+    var el = gel(id);
+    if(!el) return;
+    el.className = 'step ' + s[i];
+    el.querySelector('.sdot').textContent = s[i]==='done' ? '✓' : dots[i];
+  });
+}
+
+function readFile(file){
+  return new Promise(function(resolve){
+    if(!file){ resolve(null); return; }
+    var rd = new FileReader();
+    rd.onload = function(e){ resolve(e.target.result); };
+    rd.readAsDataURL(file);
+  });
+}
+
+function setupUpload(areaId, inputId){
+  var area = gel(areaId);
+  var input = gel(inputId);
+  if(!area || !input) return;
+  area.addEventListener('click', function(){ input.click(); });
+  input.addEventListener('change', function(){
+    if(input.files[0]){
+      area.innerHTML = '<div style="font-size:1.4rem">✅</div><p style="color:var(--ok);font-size:.8rem">' + input.files[0].name + '</p>';
+      area.classList.add('hf');
+    }
+  });
+}
+
+// ══════════════════════════════════════════════
+// NAVIGATION BUTTONS
+// ══════════════════════════════════════════════
+function initApp(){
+  // Upload areas
+  setupUpload('b_ua', 'b_img');
+  setupUpload('m_hua', 'm_hi');
+  setupUpload('m_wua', 'm_wi');
+  setupUpload('f_ua', 'f_img');
+
+  // HOME
+  gel('startBtn').addEventListener('click', function(){ goPage('services'); });
+  gel('trackBtn').addEventListener('click', function(){ goPage('track'); });
+  gel('card-birth').addEventListener('click', function(){ goPage('birth'); });
+  gel('card-marriage').addEventListener('click', function(){ goPage('marriage'); });
+  gel('card-family').addEventListener('click', function(){ goPage('family'); });
+
+  // SERVICES
+  gel('back-services').addEventListener('click', function(){ goPage('home'); });
+  gel('srv-birth').addEventListener('click', function(){ goPage('birth'); });
+  gel('srv-marriage').addEventListener('click', function(){ goPage('marriage'); });
+  gel('srv-family').addEventListener('click', function(){ goPage('family'); });
+
+  // TRACK SEARCH
+  gel('back-track').addEventListener('click', function(){ goPage('home'); });
+  gel('btn-scode').addEventListener('click', function(){ searchCode(); });
+  gel('btn-sname').addEventListener('click', function(){ searchName(); });
+  gel('btn-snid').addEventListener('click', function(){ searchNid(); });
+  gel('s_code').addEventListener('keydown', function(e){ if(e.key==='Enter') searchCode(); });
+  gel('s_name').addEventListener('keydown', function(e){ if(e.key==='Enter') searchName(); });
+  gel('s_nid').addEventListener('keydown', function(e){ if(e.key==='Enter') searchNid(); });
+
+  // BIRTH FORM
+  gel('back-birth').addEventListener('click', function(){ goPage('services'); });
+  gel('btn-birth').addEventListener('click', function(){ submitBirth(); });
+
+  // MARRIAGE FORM
+  gel('back-marriage').addEventListener('click', function(){ goPage('services'); });
+  gel('btn-marriage').addEventListener('click', function(){ submitMarriage(); });
+
+  // FAMILY FORM
+  gel('back-family').addEventListener('click', function(){ goPage('services'); });
+  gel('btn-family').addEventListener('click', function(){ submitFamily(); });
+
+  // PAYMENT
+  gel('btn-copy').addEventListener('click', function(){ navigator.clipboard.writeText('01000000000').then(function(){ showToast('تم نسخ رقم المحفظة ✓','tok'); }); });
+  gel('btn-pay').addEventListener('click', function(){ confirmPay(); });
+
+  // TRACKING
+  gel('back-tracking').addEventListener('click', function(){ goPage('home'); });
+  gel('btn-trackanother').addEventListener('click', function(){ goPage('track'); });
+  gel('btn-trackhome').addEventListener('click', function(){ goPage('home'); });
+
+  // LOGIN
+  gel('back-login').addEventListener('click', function(){ goPage('home'); });
+  gel('btn-login').addEventListener('click', function(){ doLogin(); });
+  gel('l_pw').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+
+  // ADMIN TABS
+  gel('tab-btn-req').addEventListener('click', function(){ aTab('req'); });
+  gel('tab-btn-stats').addEventListener('click', function(){ aTab('stats'); });
+  gel('tab-btn-set').addEventListener('click', function(){ aTab('set'); });
+  gel('btn-logout').addEventListener('click', function(){ doLogout(); });
+
+  // ADMIN SEARCH/FILTER
+  gel('a_search').addEventListener('input', function(){ renderTbl(); });
+  gel('a_fs').addEventListener('change', function(){ renderTbl(); });
+  gel('a_ft').addEventListener('change', function(){ renderTbl(); });
+
+  // ADMIN SETTINGS
+  gel('btn-chgpass').addEventListener('click', function(){ chgPass(); });
+  gel('btn-clearall').addEventListener('click', function(){
+    if(confirm('هل أنت متأكد من حذف كل الطلبات؟')){ sR([]); renderTbl(); updStats(); showToast('تم حذف كل الطلبات'); }
+  });
+
+  // MODAL
+  gel('btn-closemodal').addEventListener('click', function(){ gel('modal').style.display='none'; });
+  gel('modal').addEventListener('click', function(e){ if(e.target===gel('modal')) gel('modal').style.display='none'; });
+  gel('btn-savenote').addEventListener('click', function(){ saveNote(); });
+  gel('btn-setproc').addEventListener('click', function(){ setSt('processing'); });
+  gel('btn-setdone').addEventListener('click', function(){ setSt('done'); });
+  gel('btn-setrej').addEventListener('click', function(){ setSt('rejected'); });
+  gel('btn-print').addEventListener('click', function(){ window.print(); });
+  gel('btn-dl').addEventListener('click', function(){ dlReq(); });
+
+  // PWA
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault(); dPr = e;
+    gel('ibar').style.display = 'flex';
+  });
+  window.addEventListener('appinstalled', function(){
+    gel('ibar').style.display = 'none';
+    showToast('تم تثبيت التطبيق بنجاح ✓','tok');
+  });
+
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  }
+});
+
+function installApp(){
+  if(!dPr) return;
+  dPr.prompt();
+  dPr.userChoice.then(function(){ dPr=null; gel('ibar').style.display='none'; });
+}
+
+// ══════════════════════════════════════════════
+// FORMS
+// ══════════════════════════════════════════════
 async function submitBirth(){
-  let ok=true;
-  const name=$('b_name').value,mother=$('b_mother').value.trim(),date=$('b_date').value,phone=$('b_phone').value;
-  if(!isAr(name)||wc(name)<4){showE('b_ne',true);ok=false}
-  if(!mother){showE('b_me',true);ok=false}
-  if(!date){showE('b_de',true);ok=false}
-  if(!chkPh(phone)){showE('b_pe',true);ok=false}
-  if(!ok)return;
-  const img=await rf($('b_img').files[0]);
-  PD={type:'birth',typeName:'شهادة ميلاد',amount:125,name,motherName:mother,birthDate:date,phone,nationalId:$('b_nid').value,idImage:img,date:new Date().toLocaleDateString('ar-EG')};
-  $('payAmt').textContent='125';showPage('payment');
+  var ok = true;
+  var name = gel('b_name').value;
+  var mother = gel('b_mother').value.trim();
+  var date = gel('b_date').value;
+  var phone = gel('b_phone').value;
+  if(!isAr(name)||wc(name)<4){ showErr('b_ne',true); ok=false; }
+  if(!mother){ showErr('b_me',true); ok=false; }
+  if(!date){ showErr('b_de',true); ok=false; }
+  if(!chkPh(phone)){ showErr('b_pe',true); ok=false; }
+  if(!ok) return;
+  var img = await readFile(gel('b_img').files[0]);
+  PD = {type:'birth', typeName:'شهادة ميلاد', amount:125, name:name, motherName:mother, birthDate:date, phone:phone, nationalId:gel('b_nid').value, idImage:img, date:new Date().toLocaleDateString('ar-EG')};
+  gel('payamt').textContent = '125';
+  goPage('payment');
 }
 
-// ─── MARRIAGE ───────────────────────────────────────
 async function submitMarriage(){
-  let ok=true;
-  const hn=$('m_h').value,wn=$('m_w').value,hN=$('m_hn').value,wN=$('m_wn').value,ph=$('m_p').value;
-  if(!isAr(hn)||wc(hn)<4){showE('m_he',true);ok=false}
-  if(!isAr(wn)||wc(wn)<4){showE('m_we',true);ok=false}
-  if(hN.length!==14){showE('m_hne',true);ok=false}
-  if(wN.length!==14){showE('m_wne',true);ok=false}
-  if(!chkPh(ph)){showE('m_pe',true);ok=false}
-  if(!ok)return;
-  const hI=await rf($('m_hi').files[0]),wI=await rf($('m_wi').files[0]);
-  PD={type:'marriage',typeName:'شهادة زواج',amount:150,husbandName:hn,wifeName:wn,husbandNid:hN,wifeNid:wN,phone:ph,husbandImage:hI,wifeImage:wI,date:new Date().toLocaleDateString('ar-EG')};
-  $('payAmt').textContent='150';showPage('payment');
+  var ok = true;
+  var hn = gel('m_h').value, wn = gel('m_w').value;
+  var hN = gel('m_hn').value, wN = gel('m_wn').value;
+  var ph = gel('m_p').value;
+  if(!isAr(hn)||wc(hn)<4){ showErr('m_he',true); ok=false; }
+  if(!isAr(wn)||wc(wn)<4){ showErr('m_we',true); ok=false; }
+  if(hN.length!==14){ showErr('m_hne',true); ok=false; }
+  if(wN.length!==14){ showErr('m_wne',true); ok=false; }
+  if(!chkPh(ph)){ showErr('m_pe',true); ok=false; }
+  if(!ok) return;
+  var hI = await readFile(gel('m_hi').files[0]);
+  var wI = await readFile(gel('m_wi').files[0]);
+  PD = {type:'marriage', typeName:'شهادة زواج', amount:150, husbandName:hn, wifeName:wn, husbandNid:hN, wifeNid:wN, phone:ph, husbandImage:hI, wifeImage:wI, date:new Date().toLocaleDateString('ar-EG')};
+  gel('payamt').textContent = '150';
+  goPage('payment');
 }
 
-// ─── FAMILY ─────────────────────────────────────────
 async function submitFamily(){
-  let ok=true;
-  const name=$('f_name').value,nid=$('f_nid').value,ph=$('f_p').value;
-  if(!isAr(name)||wc(name)<4){showE('f_ne',true);ok=false}
-  if(nid.length!==14){showE('f_nide',true);ok=false}
-  if(!chkPh(ph)){showE('f_pe',true);ok=false}
-  if(!ok)return;
-  const img=await rf($('f_img').files[0]);
-  PD={type:'family',typeName:'قيد عائلي',amount:100,name,nationalId:nid,phone:ph,members:$('f_mem').value,idImage:img,date:new Date().toLocaleDateString('ar-EG')};
-  $('payAmt').textContent='100';showPage('payment');
+  var ok = true;
+  var name = gel('f_name').value;
+  var nid = gel('f_nid').value;
+  var ph = gel('f_p').value;
+  if(!isAr(name)||wc(name)<4){ showErr('f_ne',true); ok=false; }
+  if(nid.length!==14){ showErr('f_nide',true); ok=false; }
+  if(!chkPh(ph)){ showErr('f_pe',true); ok=false; }
+  if(!ok) return;
+  var img = await readFile(gel('f_img').files[0]);
+  PD = {type:'family', typeName:'قيد عائلي', amount:100, name:name, nationalId:nid, phone:ph, members:gel('f_mem').value, idImage:img, date:new Date().toLocaleDateString('ar-EG')};
+  gel('payamt').textContent = '100';
+  goPage('payment');
 }
-
-// ─── PAYMENT ────────────────────────────────────────
-function copyW(){navigator.clipboard.writeText('01000000000').then(()=>toast('تم نسخ رقم المحفظة ✓','ok'))}
 
 function confirmPay(){
-  const ref=$('t_ref').value.trim();
-  if(!ref){showE('t_re',true);return}
-  const id=genId(),r=gR();
-  const req={id,...PD,transRef:ref,status:'processing',adminNote:'',createdAt:new Date().toISOString()};
-  r.push(req);sR(r);
-  $('trkCode').textContent=id;
-  $('trkType').textContent=req.typeName+' — '+req.date;
+  var ref = gel('t_ref').value.trim();
+  if(!ref){ showErr('t_re',true); return; }
+  var id = genId();
+  var r = gR();
+  var req = Object.assign({}, PD, {id:id, transRef:ref, status:'processing', adminNote:'', createdAt:new Date().toISOString()});
+  r.push(req); sR(r);
+  gel('trk_code').textContent = id;
+  gel('trk_type').textContent = req.typeName + ' — ' + req.date;
   setSteps('processing');
-  $('trkNote').style.display='none';
-  showPage('tracking');
-  toast('✅ تم إرسال طلبك! رقمه: '+id,'ok');
-  $('t_ref').value='';
+  gel('trk_note').style.display = 'none';
+  goPage('tracking');
+  showToast('✅ تم إرسال طلبك! رقمه: ' + id, 'tok');
+  gel('t_ref').value = '';
 }
 
-// ─── STEPS ──────────────────────────────────────────
-function setSteps(status){
-  const ids=['ts1','ts2','ts3','ts4'],dots=['✓','⚙','📄','🏁'];
-  const map={processing:['done','active','waiting','waiting'],done:['done','done','done','done'],rejected:['done','waiting','waiting','waiting']};
-  const s=map[status]||map.processing;
-  ids.forEach((id,i)=>{const el=$(id);el.className='step '+s[i];el.querySelector('.sd').textContent=s[i]==='done'?'✓':dots[i]});
+// ══════════════════════════════════════════════
+// SEARCH
+// ══════════════════════════════════════════════
+function searchCode(){
+  var c = gel('s_code').value.trim().toUpperCase();
+  if(!c) return;
+  showResults(gR().filter(function(x){ return x.id===c; }));
 }
-
-// ─── SEARCH ─────────────────────────────────────────
-function searchCode(){const c=$('s_code').value.trim().toUpperCase();if(!c)return;const r=gR().filter(x=>x.id===c);showResults(r)}
-function searchName(){const q=$('s_name').value.trim().toLowerCase();if(!q)return;const r=gR().filter(x=>(x.name||x.husbandName||'').toLowerCase().includes(q)||((x.wifeName||'').toLowerCase().includes(q)));showResults(r)}
-function searchNid(){const q=$('s_nid').value.trim();if(!q)return;const r=gR().filter(x=>x.nationalId===q||x.husbandNid===q||x.wifeNid===q);showResults(r)}
+function searchName(){
+  var q = gel('s_name').value.trim().toLowerCase();
+  if(!q) return;
+  showResults(gR().filter(function(x){ return (x.name||x.husbandName||'').toLowerCase().indexOf(q)>=0 || (x.wifeName||'').toLowerCase().indexOf(q)>=0; }));
+}
+function searchNid(){
+  var q = gel('s_nid').value.trim();
+  if(!q) return;
+  showResults(gR().filter(function(x){ return x.nationalId===q||x.husbandNid===q||x.wifeNid===q; }));
+}
 
 function showResults(results){
-  const el=$('sResults');
-  if(!results.length){el.innerHTML='<div style="background:var(--sur2);border-radius:var(--rs);padding:14px;font-size:.875rem;color:var(--mu);text-align:center">لم يتم العثور على نتائج</div>';return}
-  const sm={processing:'قيد المعالجة 🔄',done:'مكتمل ✅',rejected:'مرفوض ❌'};
-  el.innerHTML=results.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).map(r=>`
-    <div onclick="goTrack('${r.id}')" style="background:var(--sur);border:1.5px solid var(--bdr);border-radius:var(--rs);padding:14px 16px;margin-top:10px;cursor:pointer;transition:.2s" onmouseover="this.style.borderColor='var(--primary)'" onmouseout="this.style.borderColor='var(--bdr)'">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px">
-        <div>
-          <div style="font-weight:700;font-size:.95rem">${r.name||r.husbandName||'---'}</div>
-          <div style="font-size:.8rem;color:var(--mu);margin-top:3px">${r.typeName} — ${r.date}</div>
-          <div style="font-size:.8rem;color:var(--mu)">📞 ${r.phone}</div>
-        </div>
-        <div style="text-align:left">
-          <div style="font-family:monospace;font-size:.85rem;color:var(--primary);font-weight:700;margin-bottom:4px">${r.id}</div>
-          <div style="font-size:.8rem;font-weight:600">${sm[r.status]||r.status}</div>
-        </div>
-      </div>
-    </div>`).join('');
+  var el = gel('sresults');
+  if(!results.length){
+    el.innerHTML = '<div style="background:var(--s2);border-radius:var(--rs);padding:14px;font-size:.875rem;color:var(--mu);text-align:center;margin-top:12px">لم يتم العثور على نتائج</div>';
+    return;
+  }
+  var sm = {processing:'قيد المعالجة 🔄', done:'مكتمل ✅', rejected:'مرفوض ❌'};
+  el.innerHTML = results.sort(function(a,b){ return new Date(b.createdAt)-new Date(a.createdAt); }).map(function(r){
+    return '<div data-id="' + r.id + '" class="sresult" style="background:var(--su);border:1.5px solid var(--bd);border-radius:var(--rs);padding:14px 16px;margin-top:10px;cursor:pointer;transition:.2s"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px"><div><div style="font-weight:700;font-size:.95rem">' + (r.name||r.husbandName||'---') + '</div><div style="font-size:.8rem;color:var(--mu);margin-top:3px">' + r.typeName + ' — ' + r.date + '</div><div style="font-size:.8rem;color:var(--mu)">📞 ' + r.phone + '</div></div><div style="text-align:left"><div style="font-family:monospace;font-size:.85rem;color:var(--pr);font-weight:700;margin-bottom:4px">' + r.id + '</div><div style="font-size:.8rem;font-weight:600">' + (sm[r.status]||r.status) + '</div></div></div></div>';
+  }).join('');
+  document.querySelectorAll('.sresult').forEach(function(el){
+    el.addEventListener('click', function(){ goTrack(this.getAttribute('data-id')); });
+  });
 }
 
 function goTrack(id){
-  const r=gR().find(x=>x.id===id);if(!r)return;
-  $('trkCode').textContent=id;
-  $('trkType').textContent=r.typeName+' — '+r.date;
+  var r = gR().find(function(x){ return x.id===id; });
+  if(!r) return;
+  gel('trk_code').textContent = id;
+  gel('trk_type').textContent = r.typeName + ' — ' + r.date;
   setSteps(r.status);
-  const ne=$('trkNote');
-  if(r.adminNote){ne.innerHTML='<strong>ملاحظة الإدارة:</strong> '+r.adminNote;ne.style.display='block'}else ne.style.display='none';
-  showPage('tracking');
+  var ne = gel('trk_note');
+  if(r.adminNote){ ne.innerHTML = '<strong>ملاحظة الإدارة:</strong> ' + r.adminNote; ne.style.display='block'; }
+  else ne.style.display = 'none';
+  goPage('tracking');
 }
 
-// ─── LOGIN ──────────────────────────────────────────
+// ══════════════════════════════════════════════
+// LOGIN / LOGOUT
+// ══════════════════════════════════════════════
 function doLogin(){
-  const em=$('l_em').value.trim(),pw=$('l_pw').value;
-  const u=USERS[em];
-  if(!u||u.p!==pw){$('l_err').style.display='block';return}
-  $('l_err').style.display='none';
-  CU={email:em,...u};
-  $('adminNm').textContent=u.n;
-  $('adminRole').textContent=u.r==='super'?'Super Admin':'مدير النظام';
-  $('navAct').innerHTML=`<span style="color:rgba(255,255,255,.75);font-size:.82rem;margin-left:10px">${u.n}</span><button class="nb" onclick="doLogout()">خروج</button>`;
-  renderTbl();updStats();showPage('admin');aTab('req');
+  var em = gel('l_em').value.trim();
+  var pw = gel('l_pw').value;
+  var u = USERS[em];
+  if(!u||u.p!==pw){ gel('l_err').style.display='block'; return; }
+  gel('l_err').style.display = 'none';
+  CU = {email:em, p:u.p, r:u.r, n:u.n};
+  gel('adm_name').textContent = u.n;
+  gel('adm_role').textContent = u.r==='super' ? 'Super Admin' : 'مدير النظام';
+  gel('navact').innerHTML = '<span style="color:rgba(255,255,255,.75);font-size:.82rem;margin-left:10px">' + u.n + '</span><button class="nbtn" id="nav-logout">خروج</button>';
+  gel('nav-logout').addEventListener('click', doLogout);
+  renderTbl(); updStats();
+  goPage('admin'); aTab('req');
 }
-function doLogout(){CU=null;$('navAct').innerHTML=`<button class="nb" onclick="showPage('login')">تسجيل الدخول</button>`;showPage('home')}
 
-// ─── ADMIN ──────────────────────────────────────────
+function doLogout(){
+  CU = null;
+  gel('navact').innerHTML = '<button class="nbtn" onclick="goPage(\'login\')">تسجيل الدخول</button>';
+  goPage('home');
+}
+
+// ══════════════════════════════════════════════
+// ADMIN
+// ══════════════════════════════════════════════
 function aTab(t){
-  ['req','stats','set'].forEach(x=>$('t_'+x).style.display=x===t?'block':'none');
-  document.querySelectorAll('.si').forEach((el,i)=>el.classList.toggle('active',['req','stats','set'][i]===t));
-  if(t==='stats')updStats();
+  ['req','stats','set'].forEach(function(x){ gel('tab-'+x).style.display = x===t ? 'block':'none'; });
+  ['req','stats','set'].forEach(function(x, i){ gel('tab-btn-'+['req','stats','set'][i]).classList.toggle('active', x===t); });
+  if(t==='stats') updStats();
 }
 
 function updStats(){
-  const r=gR();
-  $('s_tot').textContent=r.length;
-  $('s_pen').textContent=r.filter(x=>x.status==='processing').length;
-  $('s_don').textContent=r.filter(x=>x.status==='done').length;
-  $('s_rej').textContent=r.filter(x=>x.status==='rejected').length;
-  $('s_rev').textContent=r.filter(x=>x.status!=='rejected').reduce((s,x)=>s+(x.amount||0),0);
-  $('s_bi').textContent=r.filter(x=>x.type==='birth').length;
-  $('s_ma').textContent=r.filter(x=>x.type==='marriage').length;
-  $('s_fa').textContent=r.filter(x=>x.type==='family').length;
+  var r = gR();
+  gel('s_tot').textContent = r.length;
+  gel('s_pen').textContent = r.filter(function(x){ return x.status==='processing'; }).length;
+  gel('s_don').textContent = r.filter(function(x){ return x.status==='done'; }).length;
+  gel('s_rej').textContent = r.filter(function(x){ return x.status==='rejected'; }).length;
+  gel('s_rev').textContent = r.filter(function(x){ return x.status!=='rejected'; }).reduce(function(s,x){ return s+(x.amount||0); },0);
+  gel('s_bi').textContent = r.filter(function(x){ return x.type==='birth'; }).length;
+  gel('s_ma').textContent = r.filter(function(x){ return x.type==='marriage'; }).length;
+  gel('s_fa').textContent = r.filter(function(x){ return x.type==='family'; }).length;
 }
 
 function renderTbl(){
-  const q=($('a_search')?.value||'').toLowerCase();
-  const fs=$('a_fs')?.value||'',ft=$('a_ft')?.value||'';
-  let r=gR().filter(x=>{
-    const n=(x.name||x.husbandName||'').toLowerCase();
-    return(!fs||x.status===fs)&&(!ft||x.type===ft)&&(!q||n.includes(q)||x.id.toLowerCase().includes(q)||x.phone?.includes(q));
-  }).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
-  const sm={processing:['قيد المعالجة','bpr'],done:['مكتمل','bg'],rejected:['مرفوض','br']};
-  const tb=$('a_tbl');if(!tb)return;
-  if(!r.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--mu);padding:28px">لا توجد طلبات</td></tr>';return}
-  tb.innerHTML=r.map(x=>{const[l,c]=sm[x.status]||['---',''];return`<tr>
-    <td><strong style="font-family:monospace;font-size:.78rem">${x.id}</strong></td>
-    <td>${x.name||x.husbandName||'---'}</td>
-    <td>${x.typeName||'---'}</td>
-    <td style="direction:ltr;text-align:right;font-size:.8rem">${x.phone||'---'}</td>
-    <td><span class="badge ${c}">${l}</span></td>
-    <td style="font-size:.77rem">${x.date||'---'}</td>
-    <td><button class="ab" onclick="openDetail('${x.id}')">عرض</button></td>
-  </tr>`}).join('');
+  var q = (gel('a_search').value||'').toLowerCase();
+  var fs = gel('a_fs').value||'';
+  var ft = gel('a_ft').value||'';
+  var r = gR().filter(function(x){
+    var n = (x.name||x.husbandName||'').toLowerCase();
+    return (!fs||x.status===fs) && (!ft||x.type===ft) && (!q||n.indexOf(q)>=0||x.id.toLowerCase().indexOf(q)>=0||(x.phone||'').indexOf(q)>=0);
+  }).sort(function(a,b){ return new Date(b.createdAt)-new Date(a.createdAt); });
+  var sm = {processing:['قيد المعالجة','bpro'], done:['مكتمل','bok'], rejected:['مرفوض','brej']};
+  var tb = gel('a_tbl');
+  if(!r.length){ tb.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--mu);padding:28px">لا توجد طلبات</td></tr>'; return; }
+  tb.innerHTML = r.map(function(x){
+    var lc = sm[x.status]||['---',''];
+    return '<tr><td><strong style="font-family:monospace;font-size:.78rem">'+x.id+'</strong></td><td>'+(x.name||x.husbandName||'---')+'</td><td>'+(x.typeName||'---')+'</td><td style="direction:ltr;text-align:right;font-size:.8rem">'+(x.phone||'---')+'</td><td><span class="badge '+lc[1]+'">'+lc[0]+'</span></td><td style="font-size:.77rem">'+(x.date||'---')+'</td><td><button class="abtn open-detail" data-id="'+x.id+'">عرض</button></td></tr>';
+  }).join('');
+  document.querySelectorAll('.open-detail').forEach(function(btn){
+    btn.addEventListener('click', function(){ openDetail(this.getAttribute('data-id')); });
+  });
 }
 
 function openDetail(id){
-  const r=gR().find(x=>x.id===id);if(!r)return;
-  AID=id;$('m_t').textContent='طلب: '+id;$('a_note').value=r.adminNote||'';
-  const row=(l,v)=>`<div class="dr"><div class="dl">${l}</div><div class="dv">${v||'---'}</div></div>`;
-  let h='';
+  var r = gR().find(function(x){ return x.id===id; });
+  if(!r) return;
+  AID = id;
+  gel('m_title').textContent = 'طلب: ' + id;
+  gel('a_note').value = r.adminNote||'';
+  var row = function(l,v){ return '<div class="drow"><div class="dlbl">'+l+'</div><div class="dval">'+(v||'---')+'</div></div>'; };
+  var h = '';
   if(r.type==='birth'){
-    h=row('الخدمة',r.typeName)+row('الاسم الرباعي',r.name)+row('اسم الأم',r.motherName)+row('تاريخ الميلاد',r.birthDate)+row('الهاتف',r.phone)+row('الرقم القومي',r.nationalId||'لم يُدخل')+row('مرجع الدفع',r.transRef)+row('الحالة',r.status)+row('التاريخ',r.date);
-    if(r.idImage)h+=`<img src="${r.idImage}" class="ii">`;
-  }else if(r.type==='marriage'){
-    h=row('الخدمة',r.typeName)+row('اسم الزوج',r.husbandName)+row('اسم الزوجة',r.wifeName)+row('رقم قومي الزوج',r.husbandNid)+row('رقم قومي الزوجة',r.wifeNid)+row('الهاتف',r.phone)+row('مرجع الدفع',r.transRef)+row('الحالة',r.status)+row('التاريخ',r.date);
-    if(r.husbandImage)h+=`<div style="margin-top:8px"><small style="color:var(--mu)">بطاقة الزوج:</small><img src="${r.husbandImage}" class="ii"></div>`;
-    if(r.wifeImage)h+=`<div style="margin-top:8px"><small style="color:var(--mu)">بطاقة الزوجة:</small><img src="${r.wifeImage}" class="ii"></div>`;
-  }else{
-    h=row('الخدمة',r.typeName)+row('اسم رب الأسرة',r.name)+row('الرقم القومي',r.nationalId)+row('الهاتف',r.phone)+row('عدد الأفراد',r.members||'---')+row('مرجع الدفع',r.transRef)+row('الحالة',r.status)+row('التاريخ',r.date);
-    if(r.idImage)h+=`<img src="${r.idImage}" class="ii">`;
+    h = row('الخدمة',r.typeName)+row('الاسم الرباعي',r.name)+row('اسم الأم',r.motherName)+row('تاريخ الميلاد',r.birthDate)+row('الهاتف',r.phone)+row('الرقم القومي',r.nationalId||'لم يُدخل')+row('مرجع الدفع',r.transRef)+row('الحالة',r.status)+row('التاريخ',r.date);
+    if(r.idImage) h += '<img src="'+r.idImage+'" class="idimg">';
+  } else if(r.type==='marriage'){
+    h = row('الخدمة',r.typeName)+row('اسم الزوج',r.husbandName)+row('اسم الزوجة',r.wifeName)+row('رقم قومي الزوج',r.husbandNid)+row('رقم قومي الزوجة',r.wifeNid)+row('الهاتف',r.phone)+row('مرجع الدفع',r.transRef)+row('الحالة',r.status)+row('التاريخ',r.date);
+    if(r.husbandImage) h += '<div style="margin-top:8px"><small style="color:var(--mu)">بطاقة الزوج:</small><img src="'+r.husbandImage+'" class="idimg"></div>';
+    if(r.wifeImage) h += '<div style="margin-top:8px"><small style="color:var(--mu)">بطاقة الزوجة:</small><img src="'+r.wifeImage+'" class="idimg"></div>';
+  } else {
+    h = row('الخدمة',r.typeName)+row('اسم رب الأسرة',r.name)+row('الرقم القومي',r.nationalId)+row('الهاتف',r.phone)+row('عدد الأفراد',r.members||'---')+row('مرجع الدفع',r.transRef)+row('الحالة',r.status)+row('التاريخ',r.date);
+    if(r.idImage) h += '<img src="'+r.idImage+'" class="idimg">';
   }
-  if(r.adminNote)h+=`<div style="margin-top:10px;background:#fffbeb;border:1px solid #fcd34d;border-radius:var(--rs);padding:10px 13px;font-size:.84rem"><strong>ملاحظة الإدارة:</strong> ${r.adminNote}</div>`;
-  $('m_b').innerHTML=h;$('modal').style.display='flex';
+  if(r.adminNote) h += '<div style="margin-top:10px;background:#fffbeb;border:1px solid #fcd34d;border-radius:var(--rs);padding:10px 13px;font-size:.84rem"><strong>ملاحظة الإدارة:</strong> '+r.adminNote+'</div>';
+  gel('m_body').innerHTML = h;
+  gel('modal').style.display = 'flex';
 }
 
-function setSt(s){const r=gR();const i=r.findIndex(x=>x.id===AID);if(i===-1)return;r[i].status=s;sR(r);$('modal').style.display='none';renderTbl();toast('تم تحديث حالة الطلب','ok')}
-function saveNote(){const n=$('a_note').value;const r=gR();const i=r.findIndex(x=>x.id===AID);if(i===-1)return;r[i].adminNote=n;sR(r);toast('تم حفظ الملاحظة','ok')}
-function dlReq(){const r=gR().find(x=>x.id===AID);if(!r)return;const b=new Blob([JSON.stringify(r,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='req-'+r.id+'.json';a.click()}
-function chgPass(){const p1=$('np1').value,p2=$('np2').value;if(!p1||p1!==p2){toast('كلمتا المرور غير متطابقتين','err');return}if(CU)USERS[CU.email].p=p1;toast('تم تغيير كلمة المرور','ok');$('np1').value='';$('np2').value=''}
-function clearAll(){if(confirm('هل أنت متأكد من حذف كل الطلبات؟ لا يمكن التراجع.')){sR([]);renderTbl();updStats();toast('تم حذف كل الطلبات')}}
-
-// ─── PWA ────────────────────────────────────────────
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferPrompt=e;$('installBar').style.display='flex'});
-function installApp(){if(!deferPrompt)return;deferPrompt.prompt();deferPrompt.userChoice.then(()=>{deferPrompt=null;$('installBar').style.display='none'})}
-window.addEventListener('appinstalled',()=>{$('installBar').style.display='none';toast('تم تثبيت التطبيق بنجاح ✓','ok')});
-
-// ─── SERVICE WORKER ─────────────────────────────────
-if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})})}
+function setSt(s){
+  var r=gR(); var i=r.findIndex(function(x){ return x.id===AID; });
+  if(i===-1) return;
+  r[i].status=s; sR(r);
+  gel('modal').style.display='none';
+  renderTbl(); showToast('تم تحديث حالة الطلب','tok');
+}
+function saveNote(){
+  var n=gel('a_note').value; var r=gR(); var i=r.findIndex(function(x){ return x.id===AID; });
+  if(i===-1) return; r[i].adminNote=n; sR(r); showToast('تم حفظ الملاحظة','tok');
+}
+function dlReq(){
+  var r=gR().find(function(x){ return x.id===AID; }); if(!r) return;
+  var b=new Blob([JSON.stringify(r,null,2)],{type:'application/json'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='req-'+r.id+'.json'; a.click();
+}
+function chgPass(){
+  var p1=gel('np1').value, p2=gel('np2').value;
+  if(!p1||p1!==p2){ showToast('كلمتا المرور غير متطابقتين','ter'); return; }
+  if(CU) USERS[CU.email].p=p1;
+  showToast('تم تغيير كلمة المرور','tok');
+  gel('np1').value=''; gel('np2').value='';
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initApp);}else{initApp();}
 </script>
 </body>
 </html>
